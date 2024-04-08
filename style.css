@@ -1,0 +1,58 @@
+body {
+
+}
+
+.wrapper {
+    overflow:  hidden;
+    padding-left: 15px;
+    padding-right: 15px;
+    padding-top: 50px;
+}
+
+.card_block {
+    display: flex;
+    justify-content:  space-between;
+    width: 100%
+}
+
+.card_item {
+    
+}
+
+.card_image {
+    position: relative;
+    width: 200px;
+    height: 250px;
+}
+
+.card_image img {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+}
+
+.button {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    margin-top: 70px;
+}
+
+.button button {
+    padding: 17px 25px;
+    border: none;
+    border-radius: 15px;
+    background: #7b8aff;
+    color: #ffff;
+    font-weight: 600;
+    text-transform: uppercase;
+    cursor: pointer;
+    transition: background .2s ease;
+}
+
+.button button:hover {
+    background: #6678ff;
+}
