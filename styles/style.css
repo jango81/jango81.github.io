@@ -1,5 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&display=swap');
-
+@import url("https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&display=swap");
 
 :root {
     /* Colors */
@@ -7,13 +6,14 @@
     --calori-color-bg-primary: rgb(33, 55, 53);
     --calori-color-bg-secondary: rgb(232, 250, 238);
     --calori-color-bg-third: rgb(243, 243, 243);
-    --calori-color-text-primary: rgb(211, 211, 211);
+    --calori-color-text-primary: rgb(102, 102, 102);
     --calori-color-text-secondary: rgb(0, 0, 0);
     --calori-color-text-third: rgb(255, 255, 255);
     --calori-color-button-anim: rgb(46, 67, 65);
 }
 
-html, body {
+html,
+body {
     height: 100%;
     overflow: hidden;
 }
@@ -24,16 +24,29 @@ body {
     font-weight: 400;
 }
 
+.wrapper {
+    height: 100%;
+    overflow: auto;
+}
+
 ._container {
     padding: 0 1.25rem;
 }
 
 .submenu {
     overflow: hidden;
-    transition: height .3s ease;
+    transition: height 0.3s ease;
 }
 
+/*-------------------------------- Swiper global styles --------------------------------*/
 
+.swiper-pagination {
+    position: static;
+    user-select: none;
+}
+.swiper-pagination-bullet-active {
+    background: var(--calori-color-bg-primary);
+}
 /*-------------------------------- Buttons --------------------------------*/
 
 .btn-solid {
@@ -55,10 +68,10 @@ body {
     background: var(--calori-color-button-anim);
 }
 .btn-solid:hover::before {
-    animation: showSolidBtnAnim .3s ease forwards;
+    animation: showSolidBtnAnim 0.3s ease forwards;
 }
 .btn-solid:not(:hover)::before {
-    animation: closeSolidBtnAnim .3s ease forwards;
+    animation: closeSolidBtnAnim 0.3s ease forwards;
 }
 @keyframes closeSolidBtnAnim {
     0% {
@@ -77,14 +90,13 @@ body {
     }
 }
 
-
 .btn-transparent {
     display: inline !important;
     position: relative;
     width: auto !important;
     overflow: hidden;
 }
-.btn-transparent::after{
+.btn-transparent::after {
     content: "";
     position: absolute;
     left: 0;
@@ -105,11 +117,11 @@ body {
 }
 
 .btn-transparent:hover::before {
-    animation: openTransparentBtnBefore .5s ease forwards;
+    animation: openTransparentBtnBefore 0.5s ease forwards;
     animation-delay: 0.3s;
 }
 .btn-transparent:hover::after {
-    animation: closeTransparentBtnAfter .5s ease forwards;
+    animation: closeTransparentBtnAfter 0.5s ease forwards;
 }
 
 @keyframes openTransparentBtnBefore {
@@ -154,21 +166,21 @@ body {
 
 .announcement {
     display: block;
-    padding: .625rem 0;
-   
+    padding: 0.625rem 0;
+
     background: var(--calori-color-bg-primary);
 }
 .announcement__content {
     display: flex;
     align-items: center;
-    
-    padding: .625rem 0;
+
+    padding: 0.625rem 0;
 }
 .announcement__item {
     flex: 1 0 auto;
     display: flex;
     align-items: center;
-    color: var(--calori-color-text-primary);
+    color: var(--calori-color-text-third);
 
     position: relative;
 }
@@ -182,8 +194,8 @@ body {
     width: 100%;
 }
 .announcement__heading {
-    font-size: .875rem;
-    margin-left: .625rem;
+    font-size: 0.875rem;
+    margin-left: 0.625rem;
     font-weight: 600;
     text-transform: uppercase;
 }
@@ -245,7 +257,7 @@ body {
     width: 170px;
     height: 42px;
 }
-.header__logo img{
+.header__logo img {
     width: 100%;
     height: 100%;
 }
@@ -261,7 +273,7 @@ body {
     width: 25px;
     height: 25px;
 }
-.header__icon svg{
+.header__icon svg {
     width: 100%;
     height: 100%;
 }
@@ -274,7 +286,7 @@ body {
     z-index: 10;
     height: 100%;
     width: 100%;
-    background: rgba(0, 0, 0, .2);
+    background: rgba(0, 0, 0, 0.2);
 }
 
 .header__navigation {
@@ -330,7 +342,7 @@ body {
     background: #ffff;
     border-radius: 7px;
     z-index: 5;
-    transition: height .3s ease, padding .3s ease;
+    transition: height 0.3s ease, padding 0.3s ease;
     font-weight: 500;
 }
 .header__submenu._active {
@@ -339,7 +351,7 @@ body {
 .header__submenu li {
     padding: 10px 5px;
     padding-left: 14px;
-    transition: background .3s ease;
+    transition: background 0.3s ease;
 }
 .header__submenu li:last-child {
     margin-bottom: 20px;
@@ -348,7 +360,7 @@ body {
     background: var(--calori-color-bg-third);
     cursor: pointer;
 }
-.header__submenu li a{
+.header__submenu li a {
     display: block;
 }
 /*-------------------------------- Header mobile nav --------------------------------*/
@@ -360,7 +372,7 @@ body {
     height: 100%;
     z-index: 20;
     background: #ffff;
-    transition: left .4s ease;
+    transition: left 0.4s ease;
     overflow: auto;
     padding-bottom: 40px;
 }
@@ -390,7 +402,7 @@ body {
     width: 20px;
     position: relative;
 
-    transition: transform .3s ease;
+    transition: transform 0.3s ease;
 }
 .navigation__button button {
     position: relative;
@@ -414,7 +426,7 @@ body {
     height: 2px;
     background: #000;
     transform: translate(-50%, -100%) rotate(-45deg);
-    transition: transform .3s ease;
+    transition: transform 0.3s ease;
 }
 .navigation__button::after {
     content: "";
@@ -425,7 +437,7 @@ body {
     height: 2px;
     background: #000;
     transform: translate(-50%, -100%) rotate(45deg);
-    transition: transform .3s ease;
+    transition: transform 0.3s ease;
 }
 
 .navigation__menu {
@@ -454,7 +466,7 @@ body {
     background: none;
     border: none;
     position: relative;
-    transition: transform .4s ease;
+    transition: transform 0.4s ease;
 }
 .navigation__open button._active {
     transform: rotate(-180deg);
@@ -474,7 +486,7 @@ body {
     height: 1px;
     background: #000;
 }
-.navigation__open button::after{
+.navigation__open button::after {
     content: "";
     position: absolute;
     left: 0;
@@ -483,7 +495,7 @@ body {
     width: 100%;
     height: 1px;
     background: #000;
-    transition: opacity .4s ease;
+    transition: opacity 0.4s ease;
 }
 .navigation__submenu {
     font-size: 16px;
@@ -504,12 +516,13 @@ body {
     .header__drawer._active {
         visibility: visible;
         opacity: 1;
-        transition: opacity .4s ease;
+        transition: opacity 0.4s ease;
     }
 }
 
 @media (min-width: 1470px) {
-    .navigation, .header__burger {
+    .navigation,
+    .header__burger {
         display: none;
     }
     .header__navigation {
@@ -520,7 +533,6 @@ body {
         align-items: center;
     }
 }
-
 
 /*-------------------------------- Head-section --------------------------------*/
 
@@ -539,7 +551,7 @@ body {
     justify-content: center;
     padding: 60px 0;
     width: auto;
-    color: var(--calori-color-text-third)
+    color: var(--calori-color-text-third);
 }
 .head-section__title {
     width: 80%;
@@ -596,7 +608,6 @@ body {
     object-fit: cover;
 }
 
-
 @media (min-width: 480px) {
     .head-section__wrapper {
         padding: 80px 0;
@@ -640,4 +651,95 @@ body {
     }
 }
 
+/*-------------------------------- Info section --------------------------------*/
+.info {
+    padding: 20px 0;
+}
+.info-swiper__wrapper {
+}
+.info-slide {
+}
+.info-slide__content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 0px 10px;
+}
 
+.info-slide__text {
+    text-align: center;
+    font-size: 13px;
+    color: var(--calori-color-text-primary);
+    margin-top: 10px;
+}
+
+.info-swiper__pagination {
+    margin-top: 20px;
+}
+
+.info__container {
+    display: none;
+}
+.info__content {
+    display: flex;
+    flex-wrap: wrap;
+}
+.info__item {
+    flex: 0 0 33%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 0px 15px;
+}
+
+.info__item:nth-child(n + 4) {
+    margin-top: 40px;
+}
+
+.info__image {
+    width: 40px;
+    height: 40px;
+}
+
+.info__image img {
+    height: 100%;
+    width: 100%;
+}
+
+.info__text {
+    margin-top: 20px;
+
+    text-align: center;
+    color: var(--calori-color-text-primary);
+    font-size: 17px;
+}
+
+@media (min-width: 765px) {
+    .info {
+        padding: 60px 0px;
+    }
+    .info__container {
+        display: block;
+    }
+    .info-swiper {
+        display: none;
+    }
+    .info__image {
+        width: 50px;
+        height: 50px;
+    }
+}
+
+@media (min-width: 1330px) {
+    .info__container {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .info__content {
+        width: 77%;;
+    }
+}

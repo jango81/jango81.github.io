@@ -1,3 +1,5 @@
+
+
 document.addEventListener("DOMContentLoaded", () => {
     const announcementSelectors = {
         announcementItem: "announcement__item",
@@ -206,4 +208,13 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 
     customElements.define("custom-header", CustomHeader);
+
+    const infoSwiper = new Swiper(".info-swiper", {
+        loop: true,
+        slidesPerView: 2,
+        spaceBetween: 20,
+        pagination: {
+            el: ".info-swiper__pagination"
+        }
+    })
 });
