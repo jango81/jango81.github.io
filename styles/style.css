@@ -6,10 +6,16 @@
     --calori-color-bg-primary: rgb(33, 55, 53);
     --calori-color-bg-secondary: rgb(232, 250, 238);
     --calori-color-bg-third: rgb(243, 243, 243);
+    --calori-color-bg-fourth: rgb(211, 211, 211);
+    --calor-color-bg-fifth: rgb(225, 242, 231);
     --calori-color-text-primary: rgb(102, 102, 102);
     --calori-color-text-secondary: rgb(0, 0, 0);
     --calori-color-text-third: rgb(255, 255, 255);
+    --calori-color-text-fifth: rgb(33, 55, 53);
     --calori-color-button-anim: rgb(46, 67, 65);
+
+    /* Measures */
+    --calori-container-width: 1440px;
 }
 
 html,
@@ -24,18 +30,35 @@ body {
     font-weight: 400;
 }
 
-.wrapper {
+#wrapper {
     height: 100%;
-    overflow: auto;
+    overflow-y: auto;
+    overflow-x: hidden;
 }
 
 ._container {
-    padding: 0 1.25rem;
+    padding: 0 20px;
 }
 
 .submenu {
     overflow: hidden;
     transition: height 0.3s ease;
+}
+
+/*-------------------------------- Decor line --------------------------------*/
+.decor-line {
+    position: relative;
+    overflow: hidden;
+    width: var(--calori-container-width);
+    margin: 0 auto;
+    max-width: 100%;
+    height: 1px;
+}
+.decor-line span {
+    display: block;
+    width: 100%;
+    height: 100%;
+    background: var(--calori-color-bg-fourth);
 }
 
 /*-------------------------------- Swiper global styles --------------------------------*/
@@ -202,13 +225,49 @@ body {
 
 /*-------------------------------- Header --------------------------------*/
 
+#header {
+    position: relative;
+    min-height: 72px;
+}
+
 .header {
     display: block;
-    max-height: 72px;
+    height: 100%;
     padding: 15px 0;
     position: relative;
+    top: 0;
     z-index: 10;
     background: #ffff;
+}
+
+.header.hide {
+    animation: hideCompactHeader 0.2s ease forwards;
+}
+
+.header.scrolled {
+    position: fixed;
+    left: 0;
+    top: 0;
+    width: 100%;
+    max-height: 72px;
+    animation: showCompactHeader 0.2s ease forwards;
+}
+
+@keyframes showCompactHeader {
+    0% {
+        transform: translateY(-100%);
+    }
+    100% {
+        transform: translateY(0);
+    }
+}
+@keyframes hideCompactHeader {
+    0% {
+        transform: translateY(100%);
+    }
+    100% {
+        transform: translateY(0);
+    }
 }
 .header__container {
     height: 100%;
@@ -655,10 +714,6 @@ body {
 .info {
     padding: 20px 0;
 }
-.info-swiper__wrapper {
-}
-.info-slide {
-}
 .info-slide__content {
     display: flex;
     flex-direction: column;
@@ -680,10 +735,14 @@ body {
 
 .info__container {
     display: none;
+    width: var(--calori-container-width);
+    max-width: 100%;
+    margin: 0 auto;
 }
 .info__content {
     display: flex;
     flex-wrap: wrap;
+    width: 100%;
 }
 .info__item {
     flex: 0 0 33%;
@@ -732,14 +791,136 @@ body {
     }
 }
 
-@media (min-width: 1330px) {
-    .info__container {
-        display: flex;
-        align-items: center;
-        justify-content: center;
-    }
+/*-------------------------------- Meals section --------------------------------*/
+#meals {
+    padding: 60px 0;
+}
+.meals {
+}
+.meals__container {
+    width: var(--calori-container-width);
+    max-width: 100%;
+    margin: 0 auto;
+}
+._container {
+}
+.meals__content {
+}
+.meals__title {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.meals__title h1 {
+    font-weight: 400;
+}
+.meals__days {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 30px;
+}
+.meals__days li {
+    flex: 1 1 calc(100% / 7);
+    padding: 0 5px;
+}
+.meals__days li:not(:first-child) {
+}
+.meals__days li button {
+    width: 100%;
+    height: 100%;
+    border: none;
+    padding: 10px;
+    border-radius: 10px;
+    color: var(--calori-color-text-fifth);
+    font-weight: 500;
+    background: var(--calor-color-bg-fifth);
+    transition: color 0.3s ease, background 0.3s ease;
+}
+.meals__days li button._active {
+    color: var(--calori-color-text-third);
+    background: var(--calori-color-bg-primary);
+}
+.meals__days li button:hover {
+    color: var(--calori-color-text-third);
+    background: var(--calori-color-bg-primary);
+}
+.meals-slide__content {
+    padding: 20px;
+}
+.meals-slide__image {
+    position: relative;
+    padding: 20px;
+    background: var(--calor-color-bg-fifth);
+    border-radius: 15px;
+}
+.meals-slide__image:hover {
+    cursor: pointer;
+}
+.meals-slide__image img {
+    max-width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+.meals-slide__info {
+    margin-top: 17px;
+}
+.meals-slide__title {
+}
+.meals-slide__description {
+}
 
-    .info__content {
-        width: 77%;;
+.meals-swiper__pagination {
+}
+
+.meals-popup {
+    visibility: hidden;
+    opacity: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: fixed;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 100;
+    background: rgba(0, 0, 0, 0.5);
+    transition: visibility 0.3s ease, opacity 0.3s ease;
+}
+
+.meals-popup._active {
+    visibility: visible;
+    opacity: 1;
+}
+
+.meals-popup__image {
+    user-select: none;
+    transform: scale(0.3);
+    width: 50%;
+    height: 50%;
+    transition: transform 0.3s ease;
+}
+.meals-popup._active .meals-popup__image {
+    transform: scale(1);
+}
+@keyframes closePopup {
+    0% {
+        transform: scale(1);
+    }
+    100% {
+        transform: scale(0.3);
+    }
+}
+.meals-popup__image img {
+    object-fit: contain;
+    width: 100%;
+    height: 100%;
+}
+
+@media (max-width: 980px) {
+    .meals-popup__image {
+        width: 90%;
+        height: 90%;
     }
 }

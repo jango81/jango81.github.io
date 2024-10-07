@@ -1,5 +1,3 @@
-
-
 document.addEventListener("DOMContentLoaded", () => {
     const announcementSelectors = {
         announcementItem: "announcement__item",
@@ -75,6 +73,7 @@ document.addEventListener("DOMContentLoaded", () => {
     customElements.define("announcement-bar", AnnouncementBar);
 
     const headerSelectors = {
+        headerTag: "header",
         burgerMenu: "header__burger",
         navButton: "navigation__button",
         drawer: "header__drawer",
@@ -89,6 +88,8 @@ document.addEventListener("DOMContentLoaded", () => {
         constructor() {
             super();
 
+            this.siteWrapper = document.querySelector("#wrapper");
+            this.headerTag = document.querySelector(`#${headerSelectors.headerTag}`);
             this.burgerMenu = this.querySelector(`.${headerSelectors.burgerMenu}`);
             this.navigationButton = this.querySelector(`.${headerSelectors.navButton}`);
             this.drawer = this.querySelector(`.${headerSelectors.drawer}`);
@@ -101,6 +102,7 @@ document.addEventListener("DOMContentLoaded", () => {
         }
 
         init() {
+            this.siteWrapper.addEventListener("scroll", this.showHeaderScrolled.bind(this));
             this.burgerMenu.addEventListener("click", this.setNavigationClass.bind(this));
             this.navigationButton.addEventListener("click", this.removeNavigationClass.bind(this));
             this.drawer.addEventListener("click", this.removeNavigationClass.bind(this));
@@ -118,6 +120,28 @@ document.addEventListener("DOMContentLoaded", () => {
                     subMenu.style.height = 0;
                 }
             });
+        }
+
+        showHeaderScrolled() {
+            const rect = this.headerTag.getBoundingClientRect();
+            const headerTopSide = rect.top;
+            const headerBottomSide = rect.bottom;
+            const headerHeight = this.headerTag.offsetHeight;
+
+            if (headerTopSide < 0 - headerHeight) {
+                this.headerTag.style.height = headerHeight;
+                this.classList.add("scrolled");
+            } else if (headerBottomSide >= 0 && this.classList.contains("scrolled")) {
+                this.classList.remove("scrolled");
+                this.classList.add("hide");
+                this.addEventListener(
+                    "animationend",
+                    () => {
+                        this.classList.remove("hide");
+                    },
+                    { once: true }
+                );
+            }
         }
 
         //Set class active to navigation that showing it
@@ -178,7 +202,7 @@ document.addEventListener("DOMContentLoaded", () => {
             }
         }
 
-        //Changing submenu height 
+        //Changing submenu height
         changeHeight(subMenu) {
             if (subMenu.classList.contains("_active")) {
                 const height = subMenu.scrollHeight + "px";
@@ -191,7 +215,7 @@ document.addEventListener("DOMContentLoaded", () => {
                 subMenu.style.height = "0px";
             }
         }
-        
+
         //Submenu button click handle (mobile only)
         navSubmenuButtonHandle(event) {
             const button = event.currentTarget;
@@ -209,12 +233,107 @@ document.addEventListener("DOMContentLoaded", () => {
 
     customElements.define("custom-header", CustomHeader);
 
+    const mealsSelectors = {
+        mealsDays: "meals__days",
+        mealsPopup: "meals-popup",
+        mealsPopupImage: "meals-popup__image",
+        mealsSlideImage: "meals-slide__image",
+    };
+
+    class CustomMeals extends HTMLElement {
+        constructor() {
+            super();
+            this.daysElement = this.querySelector(`.${mealsSelectors.mealsDays}`);
+            this.mealsPopup = this.querySelector(`.${mealsSelectors.mealsPopup}`);
+            this.mealsPopupImage = this.querySelector(`.${mealsSelectors.mealsPopupImage}`);
+            this.mealsSlideImages = this.querySelectorAll(`.${mealsSelectors.mealsSlideImage}`);
+        }
+        connectedCallback() {
+            this.init();
+            this.addDays();
+        }
+        init() {
+            this.daysObj = {
+                monday: "Maanantai",
+                tuesday: "Tiistai",
+                wednesday: "Keskiviikko",
+                thursday: "Torstai",
+                friday: "Perjantai",
+                saturday: "Lauantai",
+                sunday: "Sunnuntai",
+            };
+
+            if (this.mealsSlideImages.length > 0 && this.mealsPopup) {
+                this.mealsSlideImages.forEach((el) => el.addEventListener("click", this.openPopup.bind(this)));
+            }
+        }
+        openPopup(e) {
+            const currentImage = e.currentTarget.querySelector("img");
+            const imagePath = currentImage.getAttribute("src");
+
+            if (imagePath === "") throw new Error("Image path undefined");
+
+            this.mealsPopup.classList.add("_active");
+            this.mealsPopupImage.querySelector("img").setAttribute("src", imagePath);
+            this.mealsPopup.addEventListener("click", this.closePopup.bind(this));
+        }
+        closePopup(e) {
+            this.mealsPopup.classList.remove("_active"); 
+        }
+        buttonClickHandle(event) {
+            const currentBtn = event.currentTarget;
+            if (this.clickedBtn) this.clickedBtn.classList.remove("_active");
+
+            this.clickedBtn = currentBtn;
+            currentBtn.classList.toggle("_active");
+        }
+        addDays() {
+            this.daysElement.innerHTML = "";
+
+            if (window.innerWidth > 640) {
+                for (const day in this.daysObj) {
+                    this.daysElement.innerHTML += `<li><button>${this.daysObj[day]}</button></li>`;
+                    this.daysElement.querySelectorAll("button").forEach((el) => el.addEventListener("click", this.buttonClickHandle.bind(this)));
+                }
+            } else if (window.innerWidth < 640) {
+                for (const day in this.daysObj) {
+                    const calcSliceIndex = 0 - this.daysObj[day].length + 2;
+                    const shortestDay = this.daysObj[day].slice(0, calcSliceIndex);
+                    this.daysElement.innerHTML += `<li><button>${shortestDay}</button></li>`;
+                    this.daysElement.querySelectorAll("button").forEach((el) => el.addEventListener("click", this.buttonClickHandle.bind(this)));
+                }
+            }
+        }
+    }
+
+    customElements.define("custom-meals", CustomMeals);
+
     const infoSwiper = new Swiper(".info-swiper", {
         loop: true,
         slidesPerView: 2,
         spaceBetween: 20,
         pagination: {
-            el: ".info-swiper__pagination"
-        }
-    })
+            el: ".info-swiper__pagination",
+        },
+    });
+    const mealsSwiper = new Swiper(".meals-swiper", {
+        loop: false,
+        breakpoints: {
+            550: {
+                slidesPerView: 2,
+            },
+            980: {
+                slidesPerView: 3,
+            },
+            1340: {
+                slidesPerView: 4,
+            },
+        },
+        pagination: {
+            el: ".meals-swiper__pagination",
+        },
+    });
+    window.addEventListener("resize", () => {
+        document.querySelector(".meals").addDays();
+    });
 });
