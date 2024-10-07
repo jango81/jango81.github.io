@@ -278,7 +278,7 @@ document.addEventListener("DOMContentLoaded", () => {
             this.mealsPopup.addEventListener("click", this.closePopup.bind(this));
         }
         closePopup(e) {
-            this.mealsPopup.classList.remove("_active"); 
+            this.mealsPopup.classList.remove("_active");
         }
         buttonClickHandle(event) {
             const currentBtn = event.currentTarget;
@@ -336,4 +336,18 @@ document.addEventListener("DOMContentLoaded", () => {
     window.addEventListener("resize", () => {
         document.querySelector(".meals").addDays();
     });
+
+    let lastTouchEnd = 0;
+
+    document.addEventListener(
+        "touchend",
+        function (event) {
+            const now = new Date().getTime();
+            if (now - lastTouchEnd <= 300) {
+                event.preventDefault(); // Предотвращаем зум при двойном касании
+            }
+            lastTouchEnd = now;
+        },
+        false
+    );
 });
