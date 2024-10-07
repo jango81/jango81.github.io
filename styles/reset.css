@@ -9,6 +9,10 @@ html {
     box-sizing: inherit;
 }
 
+* {
+    touch-action: manipulation;
+}
+
 body,
 h1,
 h2,

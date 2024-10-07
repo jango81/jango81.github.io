@@ -45,6 +45,11 @@ body {
     transition: height 0.3s ease;
 }
 
+
+.us-none {
+    user-select: none;
+}
+
 /*-------------------------------- Decor line --------------------------------*/
 .decor-line {
     position: relative;
