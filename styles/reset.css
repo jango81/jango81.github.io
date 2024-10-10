@@ -37,7 +37,7 @@ a {
     text-decoration: none;
     color: inherit;
 }
-button {
+button, select, select > option {
     font-family: "DM Sans", sans-serif;
     font-style: normal;
 }

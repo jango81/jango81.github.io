@@ -308,6 +308,275 @@ document.addEventListener("DOMContentLoaded", () => {
 
     customElements.define("custom-meals", CustomMeals);
 
+    const customOrderSelectors = {};
+
+    class CustomOrder extends HTMLElement {
+        constructor() {
+            super();
+        }
+    }
+
+    customElements.define("custom-order", CustomOrder);
+
+    const customSelect = {
+        customSelecValue: "custom-select__value",
+        customSelectOptions: "custom-select__options",
+        customSelectOption: "custom-select__option",
+    };
+
+    class CustomSelect extends HTMLElement {
+        constructor() {
+            super();
+            this.defaulSelect = this.querySelector("select");
+            this.customSelectValue = this.querySelector(`.${customSelect.customSelecValue}`);
+            this.customSelectOptions = this.querySelector(`.${customSelect.customSelectOptions}`);
+            this.customSelectOption = this.querySelectorAll(`.${customSelect.customSelectOption}`);
+            this.heading = this.getAttribute("data-heading");
+        }
+
+        connectedCallback() {
+            this.init();
+        }
+
+        init() {
+            this.changeHeading();
+            this.customSelectValue.addEventListener("click", this.selectClickHandle.bind(this));
+        }
+
+        changeHeading() {
+            this.customSelectValue.querySelector("h5").textContent = this.heading;
+        }
+
+        selectClickHandle() {
+            this.customSelectValue.classList.toggle("_opened");
+            this.customSelectOptions.classList.toggle("_opened");
+
+            if (this.customSelectValue.classList.contains("_opened") && this.customSelectOptions.classList.contains("_opened")) {
+                this.openSelectOptions();
+            } else {
+                this.closeSelectOptions();
+            }
+        }
+
+        openSelectOptions() {
+            let optionsHeight = 0;
+            const selectValueHeight = this.customSelectValue.offsetHeight;
+            this.customSelectOptions.style.height = "auto";
+            optionsHeight = this.customSelectOptions.offsetHeight;
+
+            setTimeout(() => {
+                this.customSelectOptions.style.height = `${optionsHeight + selectValueHeight}px`;
+                this.customSelectOptions.style.paddingTop = `${selectValueHeight + 10}px`;
+            }, 0);
+
+            this.customSelectOption.forEach((el) => el.addEventListener("click", this.setSelectData.bind(this)));
+        }
+        closeSelectOptions() {
+            if (this.customSelectValue.classList.contains("_opened") && this.customSelectOptions.classList.contains("_opened")) {
+                this.customSelectValue.classList.remove("_opened");
+                this.customSelectOptions.classList.remove("_opened");
+            }
+            this.customSelectOptions.style.height = 0;
+            this.customSelectOptions.style.paddingTop = 0;
+        }
+
+        setSelectData(event) {
+            const currentOption = event.currentTarget;
+            const dataValue = currentOption.getAttribute("data-value");
+            if (!dataValue) throw new Error("data-value attribute is undefined");
+            this.defaulSelect.value = dataValue;
+            this.heading = dataValue;
+            this.changeHeading();
+            this.closeSelectOptions();
+        }
+    }
+
+    customElements.define("custom-select", CustomSelect);
+
+    const customRadioSelectors = {
+        radioBullet: "custom-radio__bullet",
+        radioHeading: "custom-radio__heading",
+        radioPrice: "custom-radio__price",
+    };
+
+    class RadiosHandler {
+        constructor() {
+            this.sameRadioNames = new Set();
+            this.radios = new Map();
+        }
+
+        addRadio(element) {
+            console.log("before adding");
+            console.log(this.radios);
+
+            let currentRadio = element;
+
+            let radioName = currentRadio.getAttribute("data-radio");
+
+            this.sameRadioNames.add(radioName);
+
+            if (!this.radios.has(radioName)) {
+                this.radios.set(radioName, [currentRadio]);
+            } else {
+                const radioElements = this.radios.get(radioName);
+                radioElements.push(currentRadio);
+                this.radios.set(radioName, radioElements);
+            }
+
+            this.checkForGroup(radioName);
+            this.init(radioName);
+
+            console.log("after adding");
+            console.log(this.radios);
+        }
+
+        deleteRadio(element) {
+            console.log("Before deleting: ");
+            console.log(this.radios);
+
+            let currentRadio = element;
+            let radioName = currentRadio.getAttribute("data-radio");
+
+            if (this.radios.has(radioName)) {
+                const radioElements = this.radios.get(radioName);
+                let changedArray = radioElements.filter((el) => el !== currentRadio);
+                this.radios.set(radioName, changedArray);
+            }
+
+            this.checkForGroup(radioName);
+
+            console.log("After deleting:");
+            console.log(this.radios);
+        }
+
+        checkForGroup(key) {
+            if (this.radios.has(key)) {
+                const radioElements = this.radios.get(key);
+                const radioElementsLength = radioElements.length;
+                console.log("length: " + radioElementsLength);
+                if (radioElementsLength === 1) {
+                    radioElements[0].setGroupStatus = false;
+                    radioElements[0].setGroupName = "";
+                    radioElements[0].setGroup = [];
+                } else if (radioElementsLength <= 0) {
+                    this.radios.delete(key);
+                } else {
+                    radioElements.forEach((el) => {
+                        el.setGroupStatus = true;
+                        el.setGroupName = key;
+                        el.setGroup = radioElements;
+                    });
+                }
+            }
+        }
+
+        init(key) {
+            if (this.radios.has(key)) {
+                const radioElements = this.radios.get(key);
+
+                this.clearAllClasses(key);
+
+                radioElements.forEach((el) => {
+                    el.querySelector("input[type='radio']").checked = false;
+                });
+
+                if (radioElements.length === 1) {
+                    radioElements[0].querySelector("input[type='radio']").checked = true;
+                    radioElements[0].classList.add("_checked");
+                } else if (radioElements.length > 1) {
+                    let hasChecked = false;
+
+                    for (const element of radioElements) {
+                        const radioInput = element.querySelector("input[type='radio']");
+                        if (radioInput.checked) {
+                            element.classList.add("_checked");
+                            hasChecked = true;
+                            break;
+                        }
+                    }
+
+                    if (!hasChecked) {
+                        radioElements[0].querySelector("input[type='radio']").checked = true;
+                        radioElements[0].classList.add("_checked");
+                    }
+                }
+            }
+        }
+
+        clearAllClasses(key) {
+            if (this.radios.has(key)) {
+                this.radios.get(key).forEach((el) => {
+                    el.classList.remove("_checked");
+                    el.querySelector("input[type='radio']").checked = false;
+                });
+            }
+        }
+
+        clickHandle(event) {
+            const clickedRadio = event.currentTarget;
+            const radioGroupName = clickedRadio.getGroupName;
+
+            if(clickedRadio.classList.contains("_checked")) return;
+
+            this.clearAllClasses(radioGroupName);
+
+            clickedRadio.classList.add("_checked");
+            clickedRadio.querySelector("input[type='radio']").checked = true;
+        }
+    }
+
+    const radioHandler = new RadiosHandler();
+
+    class CustomRadio extends HTMLElement {
+        constructor() {
+            super();
+            this.radioHeading = this.querySelector(`.${customRadioSelectors.radioHeading}`);
+            this.radioBullet = this.querySelector(`${customRadioSelectors.radioBullet}`);
+            this.radioPrice = this.querySelector(`.${customRadioSelectors.radioPrice}`);
+            this.customRadios = document.querySelectorAll("custom-radio");
+            this.checked = false;
+            this.hasGroup = false;
+            this.groupName = "";
+
+            this.addEventListener("click", (event) => radioHandler.clickHandle(event));
+        }
+
+        set setGroupStatus(value) {
+            this.hasGroup = value;
+        }
+        get getGroupStatus() {
+            return this.hasGroup;
+        }
+        set setGroupName(value) {
+            this.groupName = value;
+        }
+        get getGroupName() {
+            return this.groupName;
+        }
+        set setGroup(value) {
+            this.group = value;
+        }
+        get getGroup() {
+            return this.group;
+        }
+
+        connectedCallback() {
+            radioHandler.addRadio(this);
+            this.setInfo();
+        }
+        disconnectedCallback() {
+            radioHandler.deleteRadio(this);
+        }
+        
+        setInfo() {
+            let price = this.getAttribute("data-price") !== "" ? this.getAttribute("data-price") : "0.00€";
+            this.radioHeading.textContent = this.getAttribute("data-heading");
+            this.radioPrice.textContent = price;
+        }
+    }
+
+    customElements.define("custom-radio", CustomRadio);
+
     const infoSwiper = new Swiper(".info-swiper", {
         loop: true,
         slidesPerView: 2,
