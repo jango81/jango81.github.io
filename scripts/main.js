@@ -749,6 +749,78 @@ document.addEventListener("DOMContentLoaded", () => {
 
     customElements.define("custom-timer", CustomTimer);
 
+    const stepsSwiper = new Swiper(".steps-swiper", {
+        direction: "vertical",
+        spaceBetween: 50,
+        on: {
+            init: () => {
+                const slideContents = document.querySelectorAll(".steps-slide__content");
+                const swiper = document.querySelector(".steps-swiper");
+
+                let height = 0;
+                for (let i = 0; i < slideContents.length; i++) {
+                    if (height < slideContents[i].offsetHeight) {
+                        height = slideContents[i].offsetHeight;
+                    }
+                    console.log(height);
+                }
+
+                swiper.style.height = height + "px";
+            },
+        },
+    });
+
+    const stepsSelectors = {
+        stepsPoint: "steps__point",
+        slides: "steps-slide",
+        slideContent: "steps-slide__content",
+    };
+    class CustomSteps extends HTMLElement {
+        constructor() {
+            super();
+            this.slides = this.querySelectorAll(`.${stepsSelectors.slides}`);
+            this.slideContents = this.querySelectorAll(`.${stepsSelectors.slideContent}`);
+            this.stepsPoints = this.querySelectorAll(`.${stepsSelectors.stepsPoint}`);
+            this.activeSlide = stepsSwiper.realIndex;
+            this.activePoints = new Set();
+        }
+
+        connectedCallback() {
+            this.addProgress();
+            stepsSwiper.on("realIndexChange", () => {
+                let oldSlideIndex = this.activeSlide;
+                this.activeSlide = stepsSwiper.realIndex;
+
+                if (oldSlideIndex < this.activeSlide) {
+                    this.addProgress();
+                } else {
+                    this.removeProgress();
+                }
+            });
+        }
+
+        addProgress() {
+            for (let i = 0; i <= this.activeSlide; i++) {
+                this.stepsPoints[i].classList.add("_scrolled");
+                if (this.activeSlide > 0 && i > 0) {
+                    this.stepsPoints[i - 1].classList.add("_active");
+                }
+            }
+        }
+
+        removeProgress() {
+            for (let i = this.activeSlide; i < this.stepsPoints.length; i++) {
+                this.stepsPoints[i].classList.remove("_active");
+                if (i !== this.activeSlide) {
+                    this.stepsPoints[i].classList.remove("_scrolled");
+                }
+            }
+        }
+        setSlidesHeight() {}
+    }
+
+    customElements.define("custom-steps", CustomSteps);
+
     const infoSwiper = new Swiper(".info-swiper", {
         loop: true,
         slidesPerView: 2,
