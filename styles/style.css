@@ -95,13 +95,11 @@ body {
     font-size: 16px;
 }
 
-
 /*-------------------------------- Custom radiobutton styles --------------------------------*/
 
 /*Smaller radio*/
 
-
-.radio-sm  {
+.radio-sm {
     position: relative;
     margin: 0 5px;
     margin-top: 5px;
@@ -127,7 +125,7 @@ body {
     padding: 10px 15px;
     border: 1px solid #000;
     border-radius: 10px;
-    transition: color .3s ease, background .3s ease;
+    transition: color 0.3s ease, background 0.3s ease;
 }
 .radio-sm:hover label {
     border: 1px solid var(--calori-color-bg-primary);
@@ -137,8 +135,7 @@ body {
 .radio-sm._checked label {
     background: var(--calori-color-bg-primary);
     color: var(--calori-color-bg-third);
-} 
-
+}
 
 /*---------*/
 .custom-radio {
@@ -147,7 +144,7 @@ body {
 }
 .custom-radio > input:hover {
     cursor: pointer;
-}   
+}
 .custom-radio > input {
     position: absolute;
     left: 0;
@@ -226,7 +223,7 @@ body {
     color: var(--calori-color-text-secondary);
     border: 1px solid #000;
     border-radius: var(--calori-blocks-border-radius);
-    transition: background .3s ease, color .3s ease, border .3s ease;
+    transition: background 0.3s ease, color 0.3s ease, border 0.3s ease;
 }
 .custom-select__value:hover {
     background: var(--calori-color-bg-primary);
@@ -245,7 +242,7 @@ body {
     margin-left: 10px;
     width: 30px;
     height: 18px;
-    transition: transform .3s ease;
+    transition: transform 0.3s ease;
 }
 .custom-select__value._opened > span {
     transform: rotate(-180deg);
@@ -259,7 +256,7 @@ body {
     width: 13px;
     height: 1px;
     background: var(--calori-color-text-secondary);
-    transition: background .3s ease;
+    transition: background 0.3s ease;
 }
 .custom-select__value > span::after {
     content: "";
@@ -270,16 +267,16 @@ body {
     width: 13px;
     height: 1px;
     background: var(--calori-color-text-secondary);
-    transition: background .3s ease;
+    transition: background 0.3s ease;
 }
 
-.custom-select__value:hover span::before, 
+.custom-select__value:hover span::before,
 .custom-select__value:hover span::after {
     background: var(--calori-color-text-third);
 }
 
 .custom-select__value._opened span::before,
-.custom-select__value._opened span::after{
+.custom-select__value._opened span::after {
     background: var(--calori-color-text-third);
 }
 
@@ -695,8 +692,6 @@ body {
 }
 .navigation._active {
     left: 0;
-}
-.navigation__content {
 }
 .navigation__header {
     display: flex;
@@ -1364,7 +1359,7 @@ body {
 }
 .infos-order__content {
     overflow: hidden;
-    
+
     height: 0;
     opacity: 0;
     transition: height 0.3s ease, opacity 0.3s ease;
@@ -1377,9 +1372,13 @@ body {
 }
 
 @media (max-width: 650px) {
-    .order-type__buttons, 
+    .order-type__buttons,
     .order-duration__buttons {
         display: none;
+    }
+
+    .order__timer .custom-timer__number {
+        font-size: 35px;
     }
 }
 @media (min-width: 650px) {
@@ -1389,7 +1388,7 @@ body {
     .order-products {
         max-width: 50%;
     }
-    .order-products button{
+    .order-products button {
         font-size: 18px;
     }
     .order-type {
@@ -1442,7 +1441,7 @@ body {
         flex: 0 1 50%;
         margin-left: 10px;
     }
-    
+
     .order-payment__radiobutton {
         width: 100%;
     }
@@ -1458,5 +1457,125 @@ body {
 
     .order-payment__radiobutton:not(:first-child) {
         margin-left: 10px;
+    }
+}
+
+/*-------------------------------- Advantages section --------------------------------*/
+
+#advantages {
+    padding: 20px 0;
+}
+.advantages__container {
+    max-width: var(--calori-container-width);
+    width: 100%;
+    margin: 0 auto;
+}
+.advantages__body {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+.advantages__block {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    padding: 20px 10px;
+    border-radius: 15px;
+}
+.advantages__block:not(:first-child) {
+    margin-top: 20px;
+}
+.advantages-without {
+    color: var(--calori-color-text-secondary);
+    background: #ffff;
+    border: 1px solid #000;
+}
+.advantages-with {
+    color: var(--calori-color-text-third);
+    background: var(--calori-color-bg-primary);
+}
+.advantages__content {
+    max-width: 270px;
+    width: 100%;
+}
+.advantages__title {
+    text-align: center;
+}
+.advantages__list {
+    margin-top: 15px;
+}
+
+.advantages__list li:not(:first-child) {
+    margin-top: 10px;
+}
+
+.advantages__list li {
+    position: relative;
+}
+.advantages-without .advantages__list li::before {
+    content: "";
+    position: absolute;
+    left: -28px;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 15px;
+    height: 1px;
+    background: #000;
+}
+
+.advantages-with .advantages__list li::before {
+    content: "";
+    position: absolute;
+    left: -28px;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 15px;
+    height: 1px;
+    background: var(--calori-color-text-third);
+}
+.advantages-with .advantages__list li::after {
+    content: "";
+    position: absolute;
+    left: -28px;
+    top: 50%;
+    transform: translateY(-50%) rotate(90deg);
+    width: 15px;
+    height: 1px;
+    background: var(--calori-color-text-third);
+}
+
+@media (min-width: 620px) {
+    .advantages__content {
+        max-width: 400px;
+    }
+}
+
+@media (min-width: 830px) {
+    .advantages__body {
+        flex-direction: row;
+        align-items: stretch;
+    }
+    .advantages__block:not(:first-child) {
+        margin: 0;
+    }
+    .advantages__block {
+        flex: 1 1 auto;
+    }
+    .advantages__block:nth-child(1) {
+        margin-right: 5px;
+    }
+    .advantages__block:nth-child(2) {
+        margin-left: 5px;
+    }
+    .advantages__content {
+        max-width: 250px;
+    }
+}
+
+@media (min-width: 1300px) {
+    .advantages__content {
+        max-width: 350px;
     }
 }
