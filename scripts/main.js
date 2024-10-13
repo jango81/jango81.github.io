@@ -308,11 +308,79 @@ document.addEventListener("DOMContentLoaded", () => {
 
     customElements.define("custom-meals", CustomMeals);
 
-    const customOrderSelectors = {};
+    const customOrderSelectors = {
+        productButton: "order-products__product",
+        orderSpoiler: "infos-order__spoiler",
+        orderInfoHeading: "infos-order__heading",
+        orderInfoContent: "infos-order__content",
+        orderButtons: "order__buttons",
+        orderBlock: "order-block",
+        orderDuration: "order__duration",
+    };
 
     class CustomOrder extends HTMLElement {
         constructor() {
             super();
+            this.spoilers = this.querySelectorAll(`.${customOrderSelectors.orderSpoiler}`);
+            this.productButtons = this.querySelectorAll(`.${customOrderSelectors.productButton}`);
+            this.infoContent = this.querySelector(`.${customOrderSelectors.orderInfoContent}`);
+            this.orderButtons = this.querySelector(`.${customOrderSelectors.orderButtons}`);
+            this.orderDuration = this.querySelector(`.${customOrderSelectors.orderDuration}`);
+
+            this.spoilers.forEach((e) => {
+                e.querySelector(`.${customOrderSelectors.orderInfoHeading}`).addEventListener("click", this.spoilerHandle.bind(this));
+            });
+            this.productButtons.forEach((e) => {
+                e.addEventListener("click", this.productButtonHandle.bind(this));
+            });
+        }
+
+        connectedCallback() {
+            //this.setButtonsMargin();
+        }
+
+        spoilerHandle(event) {
+            const target = event.currentTarget;
+            const parent = target.parentElement;
+
+            parent.classList.toggle("_opened");
+            this.setSpoilerContentHeight(parent);
+        }
+
+        setSpoilerContentHeight(parent) {
+            const contentElem = parent.querySelector(`.${customOrderSelectors.orderInfoContent}`);
+            if (parent.classList.contains("_opened")) {
+                const height = contentElem.scrollHeight;
+                contentElem.style.height = `${height}px`;
+                contentElem.style.opacity = 1;
+            } else {
+                contentElem.style.height = "0px";
+                contentElem.style.opacity = 0;
+            }
+        }
+
+        productButtonHandle(e) {
+            const target = e.currentTarget;
+            this.productButtons.forEach((e) => {
+                e.classList.remove("_active");
+            });
+
+            target.classList.add("_active");
+        }
+
+        setButtonsMargin() {
+            const orderDurationMargin = parseInt(window.getComputedStyle(this.orderDuration).marginTop);
+            const orderBlockHeight = this.orderDuration.offsetHeight + orderDurationMargin;
+            const orderButtonsHeight = this.orderButtons.offsetHeight;
+
+            console.log(orderDurationMargin);
+
+            console.log("block height: " + orderBlockHeight);
+            console.log("buttons height: " + orderButtonsHeight);
+
+            const margin = orderBlockHeight - orderButtonsHeight;
+
+            this.orderButtons.style.marginTop = margin + "px";
         }
     }
 
@@ -359,14 +427,12 @@ document.addEventListener("DOMContentLoaded", () => {
         }
 
         openSelectOptions() {
-            let optionsHeight = 0;
             const selectValueHeight = this.customSelectValue.offsetHeight;
-            this.customSelectOptions.style.height = "auto";
-            optionsHeight = this.customSelectOptions.offsetHeight;
-
+            const selectValueOptions = this.customSelectOptions.scrollHeight;
+            this.customSelectOptions.style.height = "0px";
             setTimeout(() => {
-                this.customSelectOptions.style.height = `${optionsHeight + selectValueHeight}px`;
-                this.customSelectOptions.style.paddingTop = `${selectValueHeight + 10}px`;
+                this.customSelectOptions.style.height = `${selectValueOptions}px`;
+                this.customSelectOptions.style.paddingTop = `${selectValueHeight}px`;
             }, 0);
 
             this.customSelectOption.forEach((el) => el.addEventListener("click", this.setSelectData.bind(this)));
@@ -406,9 +472,6 @@ document.addEventListener("DOMContentLoaded", () => {
         }
 
         addRadio(element) {
-            console.log("before adding");
-            console.log(this.radios);
-
             let currentRadio = element;
 
             let radioName = currentRadio.getAttribute("data-radio");
@@ -425,15 +488,9 @@ document.addEventListener("DOMContentLoaded", () => {
 
             this.checkForGroup(radioName);
             this.init(radioName);
-
-            console.log("after adding");
-            console.log(this.radios);
         }
 
         deleteRadio(element) {
-            console.log("Before deleting: ");
-            console.log(this.radios);
-
             let currentRadio = element;
             let radioName = currentRadio.getAttribute("data-radio");
 
@@ -444,16 +501,12 @@ document.addEventListener("DOMContentLoaded", () => {
             }
 
             this.checkForGroup(radioName);
-
-            console.log("After deleting:");
-            console.log(this.radios);
         }
 
         checkForGroup(key) {
             if (this.radios.has(key)) {
                 const radioElements = this.radios.get(key);
                 const radioElementsLength = radioElements.length;
-                console.log("length: " + radioElementsLength);
                 if (radioElementsLength === 1) {
                     radioElements[0].setGroupStatus = false;
                     radioElements[0].setGroupName = "";
@@ -516,7 +569,7 @@ document.addEventListener("DOMContentLoaded", () => {
             const clickedRadio = event.currentTarget;
             const radioGroupName = clickedRadio.getGroupName;
 
-            if(clickedRadio.classList.contains("_checked")) return;
+            if (clickedRadio.classList.contains("_checked")) return;
 
             this.clearAllClasses(radioGroupName);
 
@@ -567,7 +620,7 @@ document.addEventListener("DOMContentLoaded", () => {
         disconnectedCallback() {
             radioHandler.deleteRadio(this);
         }
-        
+
         setInfo() {
             let price = this.getAttribute("data-price") !== "" ? this.getAttribute("data-price") : "0.00€";
             this.radioHeading.textContent = this.getAttribute("data-heading");
@@ -576,6 +629,125 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 
     customElements.define("custom-radio", CustomRadio);
+
+    const timerSelectors = {
+        days: "#timer-days",
+        hours: "#timer-hours",
+        minutes: "#timer-minutes",
+        seconds: "#timer-seconds",
+    };
+
+    class CustomTimer extends HTMLElement {
+        constructor() {
+            super();
+            this.daysElement = this.querySelector(timerSelectors.days);
+            this.hoursElement = this.querySelector(timerSelectors.hours);
+            this.minutesElement = this.querySelector(timerSelectors.minutes);
+            this.secondsElement = this.querySelector(timerSelectors.seconds);
+
+            this.endDay = this.getAttribute("data-day").toLowerCase();
+            this.endTime = this.getAttribute("data-time");
+
+            this.daysInMs = 1000 * 60 * 60 * 24;
+            this.hoursInMs = this.daysInMs / 24;
+            this.minutesInMs = this.hoursInMs / 60;
+            this.secondsInMs = this.minutesInMs / 60;
+        }
+
+        connectedCallback() {
+            this.calcEndDate();
+
+            this.interval = setInterval(this.updateTime.bind(this), 1000);
+        }
+
+        calcEndDate() {
+            const week = {
+                "sunnuntai": 0,
+                "maanantai": 1,
+                "tiistai": 2,
+                "keskiviikko": 3,
+                "torstai": 4,
+                "perjantai": 5,
+                "lauatai": 6,
+            };
+
+            const [hours, minutes] = this.endTime.split(":").map(Number);
+            const currentDate = new Date();
+            const currentDay = currentDate.getDay();
+            const deliveryDay = week[this.endDay];
+
+            const nextDeliveryDate = new Date(currentDate);
+            nextDeliveryDate.setHours(hours);
+            nextDeliveryDate.setMinutes(minutes);
+            nextDeliveryDate.setSeconds(0);
+            nextDeliveryDate.setMilliseconds(0);
+
+            let daysRemaining;
+
+            if (currentDay < deliveryDay) {
+                daysRemaining = deliveryDay - currentDay;
+            } else if (currentDay === deliveryDay) {
+                if (currentDate > nextDeliveryDate) {
+                    daysRemaining = 7;
+                } else {
+                    daysRemaining = 0;
+                }
+            } else {
+                daysRemaining = 7 - (currentDay - deliveryDay);
+            }
+
+            nextDeliveryDate.setDate(currentDate.getDate() + daysRemaining);
+            console.log(nextDeliveryDate);
+
+            this.endDate = Date.parse(nextDeliveryDate);
+        }
+
+        convertTime(timeInMs) {
+            const days = parseInt(timeInMs / this.daysInMs, 10);
+            timeInMs -= days * this.daysInMs;
+            const hours = parseInt(timeInMs / this.hoursInMs, 10);
+            timeInMs -= hours * this.hoursInMs;
+            const minutes = parseInt(timeInMs / this.minutesInMs, 10);
+            timeInMs -= minutes * this.minutesInMs;
+            const seconds = parseInt(timeInMs / this.secondsInMs, 10);
+
+            return {
+                days: days,
+                hours: hours,
+                minutes: minutes,
+                seconds: seconds,
+            };
+        }
+
+        formatDigits(number) {
+            if (number < 10 && number !== 0) number = "0" + number;
+            return number;
+        }
+
+        render(time) {
+            this.daysElement.textContent = time.days;
+            this.hoursElement.textContent = time.hours;
+            this.minutesElement.textContent = time.minutes;
+            this.secondsElement.textContent = time.seconds;
+        }
+
+        updateTime() {
+            const currentDate = Date.now();
+            const timeDiff = this.endDate - currentDate;
+
+            if (timeDiff <= 0) {
+                this.calcNextDate();
+
+                return;
+            }
+
+            const remainingTime = this.convertTime(timeDiff);
+
+            this.render(remainingTime);
+        }
+    }
+
+    customElements.define("custom-timer", CustomTimer);
 
     const infoSwiper = new Swiper(".info-swiper", {
         loop: true,

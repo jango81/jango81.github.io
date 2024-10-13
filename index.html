@@ -166,10 +166,10 @@
                             <h3 class="head-section__subtext">Säästä jopa 50h / kk sinulle tärkeämpiin asioihin</h3>
                             <div class="head-section__buttons main-buttons">
                                 <div class="main-buttons__item">
-                                    <a class="btn-solid btn-medium" href="#"><span class="btn-text">Valitse menu</span></a>
+                                    <a class="btn btn-solid btn-medium" href="#"><span class="btn-text">Valitse menu</span></a>
                                 </div>
                                 <div class="main-buttons__item">
-                                    <a class="btn-transparent btn-small" href="#">Tutustu lisää</a>
+                                    <a class="btn btn-transparent btn-small" href="#">Tutustu lisää</a>
                                 </div>
                             </div>
                         </div>
@@ -383,83 +383,183 @@
                                         </svg>
                                     </div>
                                     <div class="order-delivery__text">
-                                        <h3>Saat tilauksesi jos tilaat nyt</h3>
+                                        <h3>Ensimmäinen toimitus:</h3>
                                     </div>
                                     <div class="order-delivery__date">
-                                        <h3></h3>
+                                        <h3>PE 11.10</h3>
                                     </div>
                                 </div>
                                 <form class="order__form">
-                                    <div class="order__type order-type order-block">
-                                        <div class="order-type__title order-block-title">
-                                            <h5>Ruokatilaus</h5>
+                                    <div class="order__products order-products order-block">
+                                        <div class="order-products__product">
+                                            <button type="button">Arjen helpotus ruokavalio</button>
                                         </div>
-                                        <custom-select class="custom-select order-type__variants order-block-select" data-heading="Valitse ruokatilauksesi">
-                                            <select name="order-variants"></select>
-                                            <div class="custom-select__wrapper">
-                                                <div class="custom-select__value">
-                                                    <h5></h5>
-                                                    <span></span>
+                                        <div class="order-products__product">
+                                            <button type="button">Kalorilaskettu ruokavalio</button>
+                                        </div>
+                                    </div>
+                                    <div class="order__controls">
+                                        <div class="order__settings">
+                                            <fieldset class="order__type order-type order-block">
+                                                <legend class="order-type__title order-block-title">Ruokatilaus</legend>
+                                                <custom-select class="custom-select order-type__variants order-block-select" data-heading="Valitse ruokatilauksesi">
+                                                    <select name="order-variants"></select>
+                                                    <div class="custom-select__wrapper">
+                                                        <div class="custom-select__value">
+                                                            <h5></h5>
+                                                            <span></span>
+                                                        </div>
+                                                        <div class="custom-select__options">
+                                                            <div class="custom-select__option" data-value="Lounas + Päivällinen">Lounas + Päivällinen</div>
+                                                            <div class="custom-select__option" data-value="Aamupala + Lounas">Aamupala + Lounas</div>
+                                                            <div class="custom-select__option" data-value="Aamupala + Päivällinen">Aamupala + Päivällinen</div>
+                                                            <div class="custom-select__option" data-value="Päivällinen + Välipala">Päivällinen + Välipala</div>
+                                                            <div class="custom-select__option" data-value="Aamupala + Lounas + Päivällinen">Aamupala + Lounas + Päivällinen</div>
+                                                            <div class="custom-select__option" data-value="Lounas + Päivällinen + Välipala">Lounas + Päivällinen + Välipala</div>
+                                                        </div>
+                                                    </div>
+                                                </custom-select>
+                                                <div class="order-type__buttons _desktop">
+                                                    <span class="order-type__button radio-sm">
+                                                        <input type="radio" name="order-variants" id="" />
+                                                        <label for="order-variants">1500 kcal</label>
+                                                    </span>
+                                                    <span class="order-type__button radio-sm">
+                                                        <input type="radio" name="order-variants" id="" />
+                                                        <label for="order-variants">1500 kcal</label>
+                                                    </span>
+                                                    <span class="order-type__button radio-sm">
+                                                        <input type="radio" name="order-variants" id="" />
+                                                        <label for="order-variants">1500 kcal</label>
+                                                    </span>
+                                                    <span class="order-type__button radio-sm">
+                                                        <input type="radio" name="order-variants" id="" />
+                                                        <label for="order-variants">1500 kcal</label>
+                                                    </span>
                                                 </div>
-                                                <div class="custom-select__options">
-                                                    <div class="custom-select__option" data-value="Lounas + Päivällinen">Lounas + Päivällinen</div>
-                                                    <div class="custom-select__option" data-value="Aamupala + Lounas">Aamupala + Lounas</div>
-                                                    <div class="custom-select__option" data-value="Aamupala + Päivällinen">Aamupala + Päivällinen</div>
-                                                    <div class="custom-select__option" data-value="Päivällinen + Välipala">Päivällinen + Välipala</div>
-                                                    <div class="custom-select__option" data-value="Aamupala + Lounas + Päivällinen">Aamupala + Lounas + Päivällinen</div>
-                                                    <div class="custom-select__option" data-value="Lounas + Päivällinen + Välipala">Lounas + Päivällinen + Välipala</div>
+                                            </fieldset>
+                                            <fieldset class="order__duration order-duration order-block">
+                                                <legend class="order-duration__title order-block-title">Tilauksen kesto</legend>
+                                                <custom-select class="custom-select order-type__durations order-block-select" data-heading="Valitse tilauksen kesto">
+                                                    <select name="order-variants"></select>
+                                                    <div class="custom-select__wrapper">
+                                                        <div class="custom-select__value">
+                                                            <h5></h5>
+                                                            <span></span>
+                                                        </div>
+                                                        <div class="custom-select__options">
+                                                            <div class="custom-select__option" data-value="Lounas + Päivällinen">Lounas + Päivällinen</div>
+                                                            <div class="custom-select__option" data-value="Aamupala + Lounas">Aamupala + Lounas</div>
+                                                            <div class="custom-select__option" data-value="Aamupala + Päivällinen">Aamupala + Päivällinen</div>
+                                                            <div class="custom-select__option" data-value="Päivällinen + Välipala">Päivällinen + Välipala</div>
+                                                            <div class="custom-select__option" data-value="Aamupala + Lounas + Päivällinen">Aamupala + Lounas + Päivällinen</div>
+                                                            <div class="custom-select__option" data-value="Lounas + Päivällinen + Välipala">Lounas + Päivällinen + Välipala</div>
+                                                        </div>
+                                                    </div>
+                                                </custom-select>
+                                                <div class="order-duration__buttons _desktop">
+                                                    <span class="order-duration__button radio-sm">
+                                                        <input type="radio" name="order-duration" id="" />
+                                                        <label for="order-duration">1500 kcal</label>
+                                                    </span>
+                                                    <span class="order-duration__button radio-sm">
+                                                        <input type="radio" name="order-duration" id="" />
+                                                        <label for="order-duration">1500 kcal</label>
+                                                    </span>
+                                                    <span class="order-duration__button radio-sm">
+                                                        <input type="radio" name="order-duration" id="" />
+                                                        <label for="order-duration">1500 kcal</label>
+                                                    </span>
+                                                    <span class="order-duration__button radio-sm">
+                                                        <input type="radio" name="order-duration" id="" />
+                                                        <label for="order-duration">1500 kcal</label>
+                                                    </span>
+                                                </div>
+                                            </fieldset>
+                                        </div>
+                                        <div class="order__details">
+                                            <fieldset class="order__payment order-payment order-block">
+                                                <legend class="order-payment__title order-block-title">Maksun muoto</legend>
+                                                <div class="order-payment__radiobuttons">
+                                                    <div class="order-payment__radiobutton">
+                                                        <custom-radio class="custom-radio" data-radio="order-payment-radio" data-price="" data-heading="Kertamaksu">
+                                                            <input type="radio" name="order-radio" />
+                                                            <div class="custom-radio__wrapper">
+                                                                <span class="custom-radio__bullet"></span>
+                                                                <h3 class="custom-radio__heading"></h3>
+                                                                <h3 class="custom-radio__price"></h3>
+                                                            </div>
+                                                        </custom-radio>
+                                                    </div>
+                                                    <div class="order-payment__radiobutton">
+                                                        <custom-radio class="custom-radio" data-radio="order-payment-radio" data-price="" data-heading="Uusiutuva">
+                                                            <input type="radio" name="order-radio" />
+                                                            <div class="custom-radio__wrapper">
+                                                                <span class="custom-radio__bullet"></span>
+                                                                <h3 class="custom-radio__heading"></h3>
+                                                                <h3 class="custom-radio__price"></h3>
+                                                            </div>
+                                                        </custom-radio>
+                                                    </div>
+                                                </div>
+                                            </fieldset>
+                                            <div class="order__buttons">
+                                                <div class="order__button">
+                                                    <a href="#" class="btn btn-solid btn-medium">
+                                                        <span class="btn-text">Lisää ostoskoriin</span>
+                                                    </a>
                                                 </div>
                                             </div>
-                                        </custom-select>
-                                    </div>
-                                    <div class="order__duration order-duration order-block">
-                                        <div class="order-duration__title order-block-title">
-                                            <h5>Tilauksen kesto</h5>
-                                        </div>
-                                        <custom-select class="custom-select order-type__durations order-block-select" data-heading="Valitse tilauksen kesto">
-                                            <select name="order-variants"></select>
-                                            <div class="custom-select__wrapper">
-                                                <div class="custom-select__value">
-                                                    <h5></h5>
-                                                    <span></span>
-                                                </div>
-                                                <div class="custom-select__options">
-                                                    <div class="custom-select__option" data-value="Lounas + Päivällinen">Lounas + Päivällinen</div>
-                                                    <div class="custom-select__option" data-value="Aamupala + Lounas">Aamupala + Lounas</div>
-                                                    <div class="custom-select__option" data-value="Aamupala + Päivällinen">Aamupala + Päivällinen</div>
-                                                    <div class="custom-select__option" data-value="Päivällinen + Välipala">Päivällinen + Välipala</div>
-                                                    <div class="custom-select__option" data-value="Aamupala + Lounas + Päivällinen">Aamupala + Lounas + Päivällinen</div>
-                                                    <div class="custom-select__option" data-value="Lounas + Päivällinen + Välipala">Lounas + Päivällinen + Välipala</div>
-                                                </div>
-                                            </div>
-                                        </custom-select>
-                                    </div>
-                                    <div class="order__payment order-payment order-block">
-                                        <div class="order-payment__title order-block-title">
-                                            <h5>Maksun muoto</h5>
-                                        </div>
-                                        <div class="order-payment__radiobutton">
-                                            <custom-radio class="custom-radio" data-radio="order-payment-radio" data-price="" data-heading="Kertamaksu">
-                                                <input type="radio" name="order-radio"/>
-                                                <div class="custom-radio__wrapper">
-                                                    <span class="custom-radio__bullet"></span>
-                                                    <h3 class="custom-radio__heading"></h3>
-                                                    <h3 class="custom-radio__price"></h3>
-                                                </div>
-                                            </custom-radio>
-                                        </div>
-                                        <div class="order-payment__radiobutton">
-                                            <custom-radio class="custom-radio" data-radio="order-payment-radio" data-price="" data-heading="Kertamaksu">
-                                                <input type="radio" name="order-radio"/>
-                                                <div class="custom-radio__wrapper">
-                                                    <span class="custom-radio__bullet"></span>
-                                                    <h3 class="custom-radio__heading"></h3>
-                                                    <h3 class="custom-radio__price"></h3>
-                                                </div>
-                                            </custom-radio>
                                         </div>
                                     </div>
                                 </form>
+                                <div class="order__infos infos-order">
+                                    <div class="infos-order__spoiler">
+                                        <div class="infos-order__heading">
+                                            <h3>Tilaus / toimitus</h3>
+                                            <span></span>
+                                        </div>
+                                        <div class="infos-order__content">
+                                            <p>
+                                                Kun teet tilauksen ennen tiistaita 14:30 - tilauksesi toimitetaan ensimmäistä kertaa saman viikon perjantaina kun tilaukset sulkeutuivat. Sen jälkeen saat toimituksia kahdesti viikossa (ti ja pe) kunnes
+                                                tilauksesi päättyy. Tiistain jälkeen tehdyt tilaukset siirtyvät automaattisesti seuraavalle viikolle.
+                                            </p>
+                                        </div>
+                                    </div>
+                                    <div class="infos-order__spoiler">
+                                        <div class="infos-order__heading">
+                                            <h3>Tilaus / toimitus</h3>
+                                            <span></span>
+                                        </div>
+                                        <div class="infos-order__content">
+                                            <p>
+                                                Kun teet tilauksen ennen tiistaita 14:30 - tilauksesi toimitetaan ensimmäistä kertaa saman viikon perjantaina kun tilaukset sulkeutuivat. Sen jälkeen saat toimituksia kahdesti viikossa (ti ja pe) kunnes
+                                                tilauksesi päättyy. Tiistain jälkeen tehdyt tilaukset siirtyvät automaattisesti seuraavalle viikolle.
+                                            </p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <custom-timer class="order__timer custom-timer" data-day="Tiistai" data-time="14:30">
+                                    <h4 class="custom-timer__title">Tilaukset sulkeutuvat tiistaisin klo 14.30</h4>
+                                    <div class="custom-timer__body">
+                                        <div class="custom-timer__time">
+                                            <span class="custom-timer__number" id="timer-days">4</span>
+                                            <span class="custom-timer__name">Päivää</span>
+                                        </div>
+                                        <div class="custom-timer__time">
+                                            <span class="custom-timer__number" id="timer-hours">0</span>
+                                            <span class="custom-timer__name">Tuntia</span>
+                                        </div>
+                                        <div class="custom-timer__time">
+                                            <span class="custom-timer__number" id="timer-minutes">13</span>
+                                            <span class="custom-timer__name">Minuuttia</span>
+                                        </div>
+                                        <div class="custom-timer__time">
+                                            <span class="custom-timer__number" id="timer-seconds">23</span>
+                                            <span class="custom-timer__name">Sekunttia</span>
+                                        </div>
+                                    </div>
+                                </custom-timer>
                             </div>
                         </div>
                     </custom-order>
