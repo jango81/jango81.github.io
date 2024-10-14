@@ -1,4 +1,21 @@
 document.addEventListener("DOMContentLoaded", () => {
+    const resizeSliders = (element, content) => {
+        let height = 0;
+        for (let i = 0; i < content.length; i++) {
+            if (height < content[i].offsetHeight) {
+                height = content[i].offsetHeight;
+            }
+            console.log(height);
+        }
+
+        element.el.style.height = height + "px";
+    };
+
+    const swipersSettings = {
+        delay: 2500,
+        speed: 900,
+    }
+
     const announcementSelectors = {
         announcementItem: "announcement__item",
         announcementIcon: "announcement__icon",
@@ -752,20 +769,15 @@ document.addEventListener("DOMContentLoaded", () => {
     const stepsSwiper = new Swiper(".steps-swiper", {
         direction: "vertical",
         spaceBetween: 50,
+        speed: swipersSettings.speed,
+        autoplay: {
+            delay: swipersSettings.delay,
+            pauseOnMouseEnter: true,
+        },
         on: {
-            init: () => {
+            init: (a) => {
                 const slideContents = document.querySelectorAll(".steps-slide__content");
-                const swiper = document.querySelector(".steps-swiper");
-
-                let height = 0;
-                for (let i = 0; i < slideContents.length; i++) {
-                    if (height < slideContents[i].offsetHeight) {
-                        height = slideContents[i].offsetHeight;
-                    }
-                    console.log(height);
-                }
-
-                swiper.style.height = height + "px";
+                resizeSliders(a, slideContents);
             },
         },
     });
@@ -821,16 +833,37 @@ document.addEventListener("DOMContentLoaded", () => {
 
     customElements.define("custom-steps", CustomSteps);
 
+
+    const disableDoubleTouchZoom = () => {
+        let lastTouchEnd = 0;
+
+        document.addEventListener(
+            "touchend",
+            function (event) {
+                const now = new Date().getTime();
+                if (now - lastTouchEnd <= 300) {
+                    event.preventDefault();
+                }
+                lastTouchEnd = now;
+            },
+            false
+        );
+    };
+
+    disableDoubleTouchZoom();
+
     const infoSwiper = new Swiper(".info-swiper", {
         loop: true,
         slidesPerView: 2,
         spaceBetween: 20,
+        speed: swipersSettings.speed,
         pagination: {
             el: ".info-swiper__pagination",
         },
     });
     const mealsSwiper = new Swiper(".meals-swiper", {
         loop: false,
+        speed: swipersSettings.speed,
         breakpoints: {
             550: {
                 slidesPerView: 2,
@@ -846,21 +879,34 @@ document.addEventListener("DOMContentLoaded", () => {
             el: ".meals-swiper__pagination",
         },
     });
+    const whySwiper = new Swiper(".why-swiper", {
+        spaceBetween: 20,
+        slidesPerView: 1,
+        speed: swipersSettings.speed,
+        loop: true,
+        autoplay: {
+            delay: swipersSettings.delay,
+            pauseOnMouseEnter: true,
+        },
+        breakpoints: {
+            590: {
+                slidesPerView: 2,
+            },
+            1280: {
+                slidesPerView: 4,
+                
+            }
+        },
+        on: {
+            init: (swiper) => {
+                const content = document.querySelectorAll(".why-slide__content");
+                resizeSliders(swiper, content);
+            },
+        },
+    });
+
     window.addEventListener("resize", () => {
         document.querySelector(".meals").addDays();
     });
 
-    let lastTouchEnd = 0;
-
-    document.addEventListener(
-        "touchend",
-        function (event) {
-            const now = new Date().getTime();
-            if (now - lastTouchEnd <= 300) {
-                event.preventDefault(); // Предотвращаем зум при двойном касании
-            }
-            lastTouchEnd = now;
-        },
-        false
-    );
 });
