@@ -19,12 +19,25 @@
     --calori-container-width: 1440px;
     --calori-blocks-border-radius: 15px;
     --calori-sections-padding: 30px;
+    
+    /*Fonts sizes*/
+
     --calori-sections-title-fz: 20px;
+    --calori-default-text-fz: 16px;
+    --calori-subtitle-fz: 16px;
+    --calori-subtext-fz: 14px;
 }
 
 @media (min-width: 900px) {
     :root {
         --calori-sections-title-fz: 24px;
+    }
+}
+
+@media (min-width: 1220px) {
+    :root {
+        --calori-default-text-fz: 18px;
+        --calori-subtext-fz: 16px;
     }
 }
 
@@ -89,6 +102,7 @@ body {
 }
 .custom-timer__title {
     text-align: center;
+    font-size: var(--calori-subtitle-fz);
 }
 .custom-timer__body {
     display: flex;
@@ -383,6 +397,7 @@ body {
     position: relative;
     width: auto !important;
     overflow: hidden;
+    font-weight: 500;
 }
 .btn-transparent::after {
     content: "";
@@ -392,6 +407,7 @@ body {
     width: 100%;
     height: 1px;
     background: #ffff;
+    z-index: 0;
 }
 
 .btn-transparent::before {
@@ -402,6 +418,7 @@ body {
     width: 0%;
     height: 1px;
     background: #ffff;
+    z-index: 0;
 }
 
 .btn-transparent:hover::before {
@@ -436,7 +453,7 @@ body {
 
 .btn-small {
     font-size: 13.5px;
-    font-weight: 500;
+    font-weight: 600;
 }
 
 .btn-text {
@@ -892,7 +909,7 @@ body {
 }
 .head-section__subtext {
     margin-top: 16px;
-    font-size: 15px;
+    font-size: var(--calori-subtext-fz);
     font-weight: 500;
 }
 .main-buttons {
@@ -990,7 +1007,7 @@ body {
 
 .info-slide__text {
     text-align: center;
-    font-size: 13px;
+    font-size: var(--calori-default-text-fz);
     color: var(--calori-color-text-primary);
     margin-top: 10px;
 }
@@ -1116,6 +1133,12 @@ body {
     height: 100%;
     object-fit: cover;
 }
+.meals-slide__title {
+    font-size: var(--calori-subtitle-fz);
+}
+.meals-slide__description {
+    font-size: var(--calori-default-text-fz);
+}
 .meals-slide__info {
     margin-top: 17px;
 }
@@ -1227,8 +1250,8 @@ body {
     color: var(--calori-color-text-third);
     margin-top: 25px;
     padding: 15px 20px;
-    font-size: 12px;
     border-radius: var(--calori-blocks-border-radius);
+    font-size: var(--calori-subtext-fz);
 }
 .order-delivery__icon {
     width: 25px;
@@ -1331,6 +1354,7 @@ body {
     display: flex;
     justify-content: space-between;
     height: 100%;
+    font-size: var(--calori-subtitle-fz);
 }
 
 .infos-order__heading:hover {
@@ -1367,9 +1391,9 @@ body {
 }
 .infos-order__content {
     overflow: hidden;
-
     height: 0;
     opacity: 0;
+    font-size: var(--calori-default-text-fz);
     transition: height 0.3s ease, opacity 0.3s ease;
 }
 
@@ -1507,6 +1531,7 @@ body {
 }
 .advantages__title {
     text-align: center;
+    font-size: var(--calori-subtitle-fz);
 }
 .advantages__list {
     margin-top: 15px;
@@ -1603,10 +1628,12 @@ body {
 }
 .steps__container {
     max-width: var(--calori-container-width);
+    padding: 0 25px;
     width: 100%;
     margin: 0 auto;
 }
 .steps__body {
+    position: relative;
     display: flex;
     align-items: stretch;
 }
@@ -1637,15 +1664,20 @@ body {
 }
 .steps-slide__heading {
     display: block;
-    font-size: 20px;
     margin-top: 30px;
+    font-size: var(--calori-subtitle-fz);
 }
 .steps-slide__text {
     display: block;
     text-align: center;
     margin-top: 10px;
+    font-size: var(--calori-default-text-fz);
 }
 .steps__progress {
+    position: absolute;
+    right: -30px;
+    top: 0;
+    height: 100%;
     width: 50px;
     display: flex;
     flex-direction: column;
@@ -1750,10 +1782,6 @@ body {
 .why-swiper {
     margin-top: 35px;
 }
-.why-swiper__wrapper {
-}
-.why-slide {
-}
 .why-slide__content {
     display: flex;
     flex-direction: column;
@@ -1771,13 +1799,78 @@ body {
 
 }
 .why-slide__heading {
-    font-size: 14px;
+    font-size: var(--calori-subtitle-fz);
     text-align: center;
     margin-top: auto;
 }
 .why-slide__text {
     display: block;
-    font-size: 15px;
+    font-size: var(--calori-default-text-fz);
     text-align: center;
     margin-top: auto;
 }
+
+/*-------------------------------- Quote section --------------------------------*/
+#quote {
+    padding: var(--calori-sections-padding) 0;
+    color: var(--calori-color-text-third);
+}
+.quote__container {
+    position: relative;
+}
+.quote__body {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+    width: 100%;
+    padding: 30px 0;
+}
+.quote__content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    padding: 30px 0;
+    opacity: 0.9;
+    max-width: 556px;
+}
+.quote__text {
+    line-height: 1.5;
+    font-size: var(--calori-default-text-fz);
+}
+.quote__author {
+}
+.quote__button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    margin-top: 20px;
+}
+.quote__image {
+    position: absolute;
+    left: 0;
+    top: 0;
+    height: 100%;
+    width: 100%;
+    overflow: hidden;
+    z-index: -1;
+}
+.quote__image::before {
+    content: "";
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.7);
+}
+.quote__image img {
+    height: 100%;
+    width: 100%;
+    object-fit: cover;
+    object-position: 10% 90%;
+}
+
+
