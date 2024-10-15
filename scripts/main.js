@@ -5,16 +5,25 @@ document.addEventListener("DOMContentLoaded", () => {
             if (height < content[i].offsetHeight) {
                 height = content[i].offsetHeight;
             }
-            console.log(height);
         }
 
         element.el.style.height = height + "px";
     };
 
+    const centerSlides = (swiper) => {
+        const swiperWrapper = swiper.slidesEl;
+        const slidesLength = swiper.slides.length;
+        const currentSlidesPerView = swiper.params.slidesPerView;
+
+        if (slidesLength < currentSlidesPerView) {
+            swiperWrapper.style.justifyContent = "center";
+        }
+    };
+
     const swipersSettings = {
         delay: 2500,
         speed: 900,
-    }
+    };
 
     const announcementSelectors = {
         announcementItem: "announcement__item",
@@ -833,6 +842,72 @@ document.addEventListener("DOMContentLoaded", () => {
 
     customElements.define("custom-steps", CustomSteps);
 
+    const reviewsSelectors = {
+        reviewsSlide: "reviews-slide",
+        reviewText: "reviews-slide__text",
+    };
+
+    class CustomReviews extends HTMLElement {
+        constructor() {
+            super();
+
+            this.reviewsSlide = this.querySelectorAll(`.${reviewsSelectors.reviewsSlide}`);
+            this.reviewText = this.querySelectorAll(`.${reviewsSelectors.reviewText}`);
+            this.reviewsSlide.forEach((el) => el.addEventListener("click", this.reviewsClickHandle.bind(this)));
+        }
+
+        connectedCallback() {
+            this.init();
+        }
+        init() {
+            this.reviewsSlide.forEach((el) => {
+                const textElem = el.querySelector(`.${reviewsSelectors.reviewText}`);
+                const textLineHeight = window.getComputedStyle(textElem).lineHeight;
+                const rows = textElem.scrollHeight / parseInt(textLineHeight);
+
+                if (rows >= 5) {
+                    el.classList.add("_collapsed");
+                }
+            });
+        }
+        reviewsClickHandle(event) {
+            const target = event.currentTarget;
+
+            if (!target.classList.contains("_collapsed")) return;
+
+            this.closeAllReviews(target);
+            target.classList.toggle("_opened");
+
+            this.setTextHeight(target);
+        }
+
+        closeAllReviews(target) {
+            this.reviewsSlide.forEach((el) => {
+                if (el.classList.contains("_opened")) {
+                    const textElem = el.querySelector(`.${reviewsSelectors.reviewText}`);
+                    textElem.style.height = this.getAttribute("data-text-initial-height");
+                }
+                if (el !== target) {
+                    el.classList.remove("_opened");
+                }
+            });
+        }
+
+        setTextHeight(target) {
+            const textElem = target.querySelector(`.${reviewsSelectors.reviewText}`);
+            if (target.classList.contains("_opened")) {
+                this.initialTextHeight = window.getComputedStyle(textElem).height;
+                textElem.setAttribute("data-initial-height", this.initialTextHeight);
+                const textFullHeight = textElem.scrollHeight;
+
+                textElem.style.height = textFullHeight + "px";
+            } else {
+                textElem.style.height = this.getAttribute("data-text-initial-height") + "px";
+            }
+        }
+    }
+
+    customElements.define("custom-reviews", CustomReviews);
 
     const disableDoubleTouchZoom = () => {
         let lastTouchEnd = 0;
@@ -894,8 +969,7 @@ document.addEventListener("DOMContentLoaded", () => {
             },
             1280: {
                 slidesPerView: 4,
-                
-            }
+            },
         },
         on: {
             init: (swiper) => {
@@ -905,8 +979,44 @@ document.addEventListener("DOMContentLoaded", () => {
         },
     });
 
+    const reviewSwiperSetBreakpoints = (swiper) => {
+        const slidesLength = swiper.slides.length;
+
+        swiper.params.breakpoints = {
+            620: {
+                slidesPerView: slidesLength > 2 ? 2 : slidesLength,
+            },
+            990: {
+                slidesPerView: slidesLength > 3 ? 3 : slidesLength,
+            },
+            1260: {
+                slidesPerView: slidesLength > 4 ? 4 : slidesLength,
+            },
+        };
+
+        swiper.update();
+    };
+
+    const reviewsSwiper = new Swiper(".reviews-swiper", {
+        spaceBetween: 20,
+        speed: swipersSettings.speed,
+        loop: true,
+        /* autoplay: {
+            delay: 5000,
+            pauseOnMouseEnter: true,
+        }, */
+        on: {
+            init: (swiper) => {
+                centerSlides(swiper);
+                reviewSwiperSetBreakpoints(swiper);
+            },
+            resize: (swiper) => {
+                centerSlides(swiper);
+                reviewSwiperSetBreakpoints(swiper);
+            },
+        },
+    });
     window.addEventListener("resize", () => {
         document.querySelector(".meals").addDays();
     });
-
 });
