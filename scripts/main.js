@@ -878,17 +878,16 @@ document.addEventListener("DOMContentLoaded", () => {
             this.closeAllReviews(target);
             target.classList.toggle("_opened");
 
+            
             this.setTextHeight(target);
         }
 
         closeAllReviews(target) {
             this.reviewsSlide.forEach((el) => {
-                if (el.classList.contains("_opened")) {
-                    const textElem = el.querySelector(`.${reviewsSelectors.reviewText}`);
-                    textElem.style.height = this.getAttribute("data-text-initial-height");
-                }
+                const textElem = el.querySelector(`.${reviewsSelectors.reviewText}`);
                 if (el !== target) {
                     el.classList.remove("_opened");
+                    textElem.style.height = this.getAttribute("data-text-initial-height");
                 }
             });
         }
@@ -902,7 +901,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
                 textElem.style.height = textFullHeight + "px";
             } else {
-                textElem.style.height = this.getAttribute("data-text-initial-height") + "px";
+                textElem.style.height = this.getAttribute("data-text-initial-height");   
             }
         }
     }
@@ -1001,10 +1000,10 @@ document.addEventListener("DOMContentLoaded", () => {
         spaceBetween: 20,
         speed: swipersSettings.speed,
         loop: true,
-        /* autoplay: {
+        autoplay: {
             delay: 5000,
             pauseOnMouseEnter: true,
-        }, */
+        },
         on: {
             init: (swiper) => {
                 centerSlides(swiper);
