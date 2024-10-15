@@ -1983,3 +1983,58 @@ body {
     display: block;
     width: max-content;
 }
+
+
+/*-------------------------------- Quote section --------------------------------*/
+#banner {
+    padding: var(--calori-sections-padding) 0;
+    color: var(--calori-color-text-third);
+}
+.banner {
+    display: block;
+}
+.banner-swiper { 
+}
+.banner-swiper__wrapper {
+}
+.banner-slide {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 463px;
+    height: 100%;
+}
+.banner-slide__content {
+    text-align: center;
+    padding: 0 20px;
+}
+.banner-slide__heading {
+    font-size: 25px;
+}
+.banner-slide__text {
+    display: block;
+    font-size: var(--calori-default-text-fz);
+    margin-top: 10px;
+}
+.banner-slide__image {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -1;
+}
+.banner-slide__image::before {
+    content: "";
+    position: absolute;
+    left: 0;
+    top: 0;
+    height: 100%;
+    width: 100%;
+    background: rgba(0, 0, 0, 0.7);
+}
+.banner-slide__image img {
+    height: 100%;
+    width: 100%;
+    object-fit: cover;
+}

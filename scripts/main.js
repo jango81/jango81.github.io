@@ -796,6 +796,7 @@ document.addEventListener("DOMContentLoaded", () => {
         slides: "steps-slide",
         slideContent: "steps-slide__content",
     };
+
     class CustomSteps extends HTMLElement {
         constructor() {
             super();
@@ -878,7 +879,6 @@ document.addEventListener("DOMContentLoaded", () => {
             this.closeAllReviews(target);
             target.classList.toggle("_opened");
 
-            
             this.setTextHeight(target);
         }
 
@@ -901,12 +901,20 @@ document.addEventListener("DOMContentLoaded", () => {
 
                 textElem.style.height = textFullHeight + "px";
             } else {
-                textElem.style.height = this.getAttribute("data-text-initial-height");   
+                textElem.style.height = this.getAttribute("data-text-initial-height");
             }
         }
     }
 
     customElements.define("custom-reviews", CustomReviews);
+
+    class CustomBanner extends HTMLElement {
+        constructor() {
+            super();
+        }
+    }
+
+    customElements.define("custom-banner", CustomBanner);
 
     const disableDoubleTouchZoom = () => {
         let lastTouchEnd = 0;
@@ -925,6 +933,24 @@ document.addEventListener("DOMContentLoaded", () => {
     };
 
     disableDoubleTouchZoom();
+
+    const reviewSwiperSetBreakpoints = (swiper) => {
+        const slidesLength = swiper.slides.length;
+
+        swiper.params.breakpoints = {
+            620: {
+                slidesPerView: slidesLength > 2 ? 2 : slidesLength,
+            },
+            990: {
+                slidesPerView: slidesLength > 3 ? 3 : slidesLength,
+            },
+            1260: {
+                slidesPerView: slidesLength > 4 ? 4 : slidesLength,
+            },
+        };
+
+        swiper.update();
+    };
 
     const infoSwiper = new Swiper(".info-swiper", {
         loop: true,
@@ -977,25 +1003,6 @@ document.addEventListener("DOMContentLoaded", () => {
             },
         },
     });
-
-    const reviewSwiperSetBreakpoints = (swiper) => {
-        const slidesLength = swiper.slides.length;
-
-        swiper.params.breakpoints = {
-            620: {
-                slidesPerView: slidesLength > 2 ? 2 : slidesLength,
-            },
-            990: {
-                slidesPerView: slidesLength > 3 ? 3 : slidesLength,
-            },
-            1260: {
-                slidesPerView: slidesLength > 4 ? 4 : slidesLength,
-            },
-        };
-
-        swiper.update();
-    };
-
     const reviewsSwiper = new Swiper(".reviews-swiper", {
         spaceBetween: 20,
         speed: swipersSettings.speed,
@@ -1015,6 +1022,14 @@ document.addEventListener("DOMContentLoaded", () => {
             },
         },
     });
+    const bannerSwiper = new Swiper(".banner-swiper", {
+        slidesPerView: 1,
+        effect: "fade",
+        speed: 600,
+        autoplay: {
+            delay: swipersSettings.delay,
+        }
+    })
     window.addEventListener("resize", () => {
         document.querySelector(".meals").addDays();
     });
