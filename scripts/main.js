@@ -1028,8 +1028,32 @@ document.addEventListener("DOMContentLoaded", () => {
         speed: 600,
         autoplay: {
             delay: swipersSettings.delay,
-        }
-    })
+        },
+    });
+    const cooperationSwiper = new Swiper(".cooperation-swiper", {
+        slidesPerView: "auto",
+        spaceBetween: 100,
+        loop: true,
+        autoplay: {
+            enabled: true,
+            delay: swipersSettings.delay,
+        },
+        breakpoints: {
+            320: {
+                slidesPerView: 1,
+            },
+            520: {
+                slidesPerView: 2,
+            },
+            630: {
+                slidesPerView: 3,
+            },
+            1040: {
+                slidesPerView: 4,
+            }
+        },
+        speed: swipersSettings.speed,
+    });
     window.addEventListener("resize", () => {
         document.querySelector(".meals").addDays();
     });
