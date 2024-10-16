@@ -728,7 +728,6 @@ document.addEventListener("DOMContentLoaded", () => {
             }
 
             nextDeliveryDate.setDate(currentDate.getDate() + daysRemaining);
-            console.log(nextDeliveryDate);
 
             this.endDate = Date.parse(nextDeliveryDate);
         }
@@ -793,17 +792,7 @@ document.addEventListener("DOMContentLoaded", () => {
             init: (swiper) => {
                 const slideContents = document.querySelectorAll(".steps-slide__content");
                 resizeSliders(swiper, slideContents);
-                console.log(swiper);
             },
-            slideChange: (swiper) => {
-                /* console.log(swiper.params.touchReleaseOnEdges);
-                console.log(swiper.params.threshold);
-                if(swiper.realIndex === swiper.slides.length - 1) {
-                    console.log("last slide");
-                    swiper.params.touchReleaseOnEdges = true;
-                    swiper.params.threshold = 0;
-                } */
-            }
         },
     });
 
