@@ -797,11 +797,12 @@ document.addEventListener("DOMContentLoaded", () => {
                 console.log(swiper);
             },
             slideChange: (swiper) => {
+                console.log(swiper.params.touchReleaseOnEdges);
+                console.log(swiper.params.threshold);
                 if(swiper.realIndex === swiper.slides.length - 1) {
                     console.log("last slide");
                     swiper.params.touchReleaseOnEdges = true;
-                } else {
-                    swiper.params.touchReleaseOnEdges = false;
+                    swiper.params.threshold = 0;
                 }
             }
         },
