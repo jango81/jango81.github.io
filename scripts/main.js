@@ -108,6 +108,7 @@ document.addEventListener("DOMContentLoaded", () => {
         subMenu: "submenu",
         navOpenSubMenuBtn: "navigation__open button",
         navOpenSubMenuBlock: "navigation__open",
+        navRow: "navigation__row"
     };
 
     class CustomHeader extends HTMLElement {
@@ -122,6 +123,8 @@ document.addEventListener("DOMContentLoaded", () => {
             this.headerItem = [...this.querySelectorAll(`.${headerSelectors.headerItem}`)];
             this.menuItem = [...this.querySelectorAll(`.${headerSelectors.menuItem}`)];
             this.navOpenSubMenuBtn = [...this.querySelectorAll(`.${headerSelectors.navOpenSubMenuBtn}`)];
+            this.navRow = [...this.querySelectorAll(`.${headerSelectors.navRow}`)];
+
         }
         connectedCallback() {
             this.init();
@@ -132,8 +135,11 @@ document.addEventListener("DOMContentLoaded", () => {
             this.burgerMenu.addEventListener("click", this.setNavigationClass.bind(this));
             this.navigationButton.addEventListener("click", this.removeNavigationClass.bind(this));
             this.drawer.addEventListener("click", this.removeNavigationClass.bind(this));
-            this.navOpenSubMenuBtn.forEach((element) => {
+            this.navRow.forEach((element) => {
+               const subMenu = element.nextElementSibling
+               if(subMenu) {
                 element.addEventListener("click", this.navSubmenuButtonHandle.bind(this));
+               }
             });
             this.headerItem.forEach((element) => {
                 element.addEventListener("mouseover", this.showSubMenu.bind(this));
@@ -244,8 +250,8 @@ document.addEventListener("DOMContentLoaded", () => {
 
         //Submenu button click handle (mobile only)
         navSubmenuButtonHandle(event) {
-            const button = event.currentTarget;
-            const parent = button.closest(`.${headerSelectors.menuItem}`);
+            const target = event.currentTarget;
+            const parent = target.closest(`.${headerSelectors.menuItem}`);
             const subMenu = this.checkSubmenu(parent);
 
             if (subMenu) {
@@ -253,7 +259,7 @@ document.addEventListener("DOMContentLoaded", () => {
                 this.changeHeight(subMenu);
             }
 
-            button.classList.toggle("_active");
+           target.classList.toggle("_active");
         }
     }
 

@@ -809,6 +809,9 @@ body {
     align-items: center;
     justify-content: space-between;
 }
+.navigation__row:hover {
+    cursor: pointer;
+}
 .navigation__open {
     visibility: hidden;
     display: flex;
@@ -825,14 +828,12 @@ body {
     padding: 0;
     transition: transform 0.4s ease;
 }
-.navigation__open button._active {
+.navigation__row._active .navigation__open button {
     transform: rotate(-180deg);
 }
-
-.navigation__open button._active::after {
+.navigation__row._active .navigation__open button::after {
     opacity: 0;
 }
-
 .navigation__open button::before {
     content: "";
     position: absolute;
