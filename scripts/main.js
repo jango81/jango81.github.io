@@ -108,7 +108,7 @@ document.addEventListener("DOMContentLoaded", () => {
         subMenu: "submenu",
         navOpenSubMenuBtn: "navigation__open button",
         navOpenSubMenuBlock: "navigation__open",
-        navRow: "navigation__row"
+        navRow: "navigation__row",
     };
 
     class CustomHeader extends HTMLElement {
@@ -124,7 +124,6 @@ document.addEventListener("DOMContentLoaded", () => {
             this.menuItem = [...this.querySelectorAll(`.${headerSelectors.menuItem}`)];
             this.navOpenSubMenuBtn = [...this.querySelectorAll(`.${headerSelectors.navOpenSubMenuBtn}`)];
             this.navRow = [...this.querySelectorAll(`.${headerSelectors.navRow}`)];
-
         }
         connectedCallback() {
             this.init();
@@ -136,10 +135,10 @@ document.addEventListener("DOMContentLoaded", () => {
             this.navigationButton.addEventListener("click", this.removeNavigationClass.bind(this));
             this.drawer.addEventListener("click", this.removeNavigationClass.bind(this));
             this.navRow.forEach((element) => {
-               const subMenu = element.nextElementSibling
-               if(subMenu) {
-                element.addEventListener("click", this.navSubmenuButtonHandle.bind(this));
-               }
+                const subMenu = element.nextElementSibling;
+                if (subMenu) {
+                    element.addEventListener("click", this.navSubmenuButtonHandle.bind(this));
+                }
             });
             this.headerItem.forEach((element) => {
                 element.addEventListener("mouseover", this.showSubMenu.bind(this));
@@ -259,7 +258,7 @@ document.addEventListener("DOMContentLoaded", () => {
                 this.changeHeight(subMenu);
             }
 
-           target.classList.toggle("_active");
+            target.classList.toggle("_active");
         }
     }
 
@@ -792,10 +791,19 @@ document.addEventListener("DOMContentLoaded", () => {
             delay: swipersSettings.delay,
         },
         on: {
-            init: (a) => {
+            init: (swiper) => {
                 const slideContents = document.querySelectorAll(".steps-slide__content");
-                resizeSliders(a, slideContents);
+                resizeSliders(swiper, slideContents);
+                console.log(swiper);
             },
+            slideChange: (swiper) => {
+                if(swiper.realIndex === swiper.slides.length - 1) {
+                    console.log("last slide");
+                    swiper.params.touchReleaseOnEdges = true;
+                } else {
+                    swiper.params.touchReleaseOnEdges = false;
+                }
+            }
         },
     });
 
@@ -948,15 +956,15 @@ document.addEventListener("DOMContentLoaded", () => {
         swiper.params.breakpoints = {
             620: {
                 slidesPerView: slidesLength > 2 ? 2 : slidesLength,
-                slidesPerGroup: slidesLength > 2 ? 2 : slidesLength
+                slidesPerGroup: slidesLength > 2 ? 2 : slidesLength,
             },
             990: {
                 slidesPerView: slidesLength > 3 ? 3 : slidesLength,
-                slidesPerGroup: slidesLength > 2 ? 2 : slidesLength
+                slidesPerGroup: slidesLength > 2 ? 2 : slidesLength,
             },
             1260: {
                 slidesPerView: slidesLength > 4 ? 4 : slidesLength,
-                slidesPerGroup: slidesLength > 2 ? 2 : slidesLength
+                slidesPerGroup: slidesLength > 2 ? 2 : slidesLength,
             },
         };
 
@@ -986,8 +994,8 @@ document.addEventListener("DOMContentLoaded", () => {
                 navigation: {
                     enabled: true,
                     prevEl: ".meals-swiper-prev",
-                    nextEl: ".meals-swiper-next"
-                }
+                    nextEl: ".meals-swiper-next",
+                },
             },
             1340: {
                 slidesPerView: 4,
@@ -998,7 +1006,7 @@ document.addEventListener("DOMContentLoaded", () => {
         },
         navigation: {
             enabled: false,
-        }
+        },
     });
     const whySwiper = new Swiper(".why-swiper", {
         spaceBetween: 20,
@@ -1037,8 +1045,8 @@ document.addEventListener("DOMContentLoaded", () => {
                 navigation: {
                     enabled: true,
                     prevEl: ".reviews-swiper-prev",
-                    nextEl: ".reviews-swiper-next"
-                }
+                    nextEl: ".reviews-swiper-next",
+                },
             },
         },
         navigation: {
@@ -1086,7 +1094,7 @@ document.addEventListener("DOMContentLoaded", () => {
             },
             1040: {
                 slidesPerView: 4,
-            }
+            },
         },
         speed: swipersSettings.speed,
     });
