@@ -779,9 +779,11 @@ document.addEventListener("DOMContentLoaded", () => {
         direction: "vertical",
         spaceBetween: 50,
         speed: swipersSettings.speed,
+        preventInteractionOnTransition: true,
+        noSwipingClass: "swiper-no-swiping",
+        noSwiping: true,
         autoplay: {
             delay: swipersSettings.delay,
-            pauseOnMouseEnter: true,
         },
         on: {
             init: (a) => {
@@ -940,12 +942,15 @@ document.addEventListener("DOMContentLoaded", () => {
         swiper.params.breakpoints = {
             620: {
                 slidesPerView: slidesLength > 2 ? 2 : slidesLength,
+                slidesPerGroup: slidesLength > 2 ? 2 : slidesLength
             },
             990: {
                 slidesPerView: slidesLength > 3 ? 3 : slidesLength,
+                slidesPerGroup: slidesLength > 2 ? 2 : slidesLength
             },
             1260: {
                 slidesPerView: slidesLength > 4 ? 4 : slidesLength,
+                slidesPerGroup: slidesLength > 2 ? 2 : slidesLength
             },
         };
 
@@ -971,6 +976,13 @@ document.addEventListener("DOMContentLoaded", () => {
             980: {
                 slidesPerView: 3,
             },
+            1080: {
+                navigation: {
+                    enabled: true,
+                    prevEl: ".meals-swiper-prev",
+                    nextEl: ".meals-swiper-next"
+                }
+            },
             1340: {
                 slidesPerView: 4,
             },
@@ -978,6 +990,9 @@ document.addEventListener("DOMContentLoaded", () => {
         pagination: {
             el: ".meals-swiper__pagination",
         },
+        navigation: {
+            enabled: false,
+        }
     });
     const whySwiper = new Swiper(".why-swiper", {
         spaceBetween: 20,
@@ -1010,6 +1025,21 @@ document.addEventListener("DOMContentLoaded", () => {
         autoplay: {
             delay: 5000,
             pauseOnMouseEnter: true,
+        },
+        breakpoints: {
+            1080: {
+                navigation: {
+                    enabled: true,
+                    prevEl: ".reviews-swiper-prev",
+                    nextEl: ".reviews-swiper-next"
+                }
+            },
+        },
+        navigation: {
+            enabled: false,
+        },
+        pagination: {
+            el: ".swiper-pagination",
         },
         on: {
             init: (swiper) => {

@@ -338,6 +338,21 @@ body {
     background: var(--calori-color-bg-primary);
 }
 
+.swiper-nav-button {
+    background: #ffff;
+    width: 45px;
+    height: 45px;
+    border-radius: 50%;
+    transition: transform .2s linear;
+}
+.swiper-nav-button::after {
+    font-size: 19px;
+    color: var(--calori-color-text-fifth);
+}
+.swiper-nav-button:hover {
+    transform: scale(1.1);
+}
+
 /*-------------------------------- Buttons --------------------------------*/
 
 .btn {
@@ -798,8 +813,8 @@ body {
     visibility: hidden;
     display: flex;
     align-items: center;
-    width: 14px;
-    height: 14px;
+    width: 20px;
+    height: 20px;
 }
 .navigation__open button {
     width: 100%;
@@ -807,6 +822,7 @@ body {
     background: none;
     border: none;
     position: relative;
+    padding: 0;
     transition: transform 0.4s ease;
 }
 .navigation__open button._active {
@@ -820,20 +836,20 @@ body {
 .navigation__open button::before {
     content: "";
     position: absolute;
-    left: 0;
+    left: 50%;
     top: 50%;
-    transform: translateY(-50%);
-    width: 100%;
+    transform: translateY(-50%) translateX(-50%);
+    width: 60%;
     height: 1px;
     background: #000;
 }
 .navigation__open button::after {
     content: "";
     position: absolute;
-    left: 0;
+    left: 50%;
     top: 50%;
-    transform: translateY(-50%) rotate(-90deg);
-    width: 100%;
+    transform: translateY(-50%) translateX(-50%) rotate(-90deg);
+    width: 60%;
     height: 1px;
     background: #000;
     transition: opacity 0.4s ease;
