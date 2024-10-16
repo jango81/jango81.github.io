@@ -784,9 +784,8 @@ document.addEventListener("DOMContentLoaded", () => {
         direction: "vertical",
         spaceBetween: 50,
         speed: swipersSettings.speed,
-        preventInteractionOnTransition: true,
-        noSwipingClass: "swiper-no-swiping",
-        noSwiping: true,
+        threshold: 0,
+        touchReleaseOnEdges: true,
         autoplay: {
             delay: swipersSettings.delay,
         },
@@ -797,13 +796,13 @@ document.addEventListener("DOMContentLoaded", () => {
                 console.log(swiper);
             },
             slideChange: (swiper) => {
-                console.log(swiper.params.touchReleaseOnEdges);
+                /* console.log(swiper.params.touchReleaseOnEdges);
                 console.log(swiper.params.threshold);
                 if(swiper.realIndex === swiper.slides.length - 1) {
                     console.log("last slide");
                     swiper.params.touchReleaseOnEdges = true;
                     swiper.params.threshold = 0;
-                }
+                } */
             }
         },
     });
