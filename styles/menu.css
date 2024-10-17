@@ -74,6 +74,7 @@
 }
 .menu__buttons button {
     background: #ffff;
+    color: var(--calori-color-text-secondary);
     padding: 10px 15px;
     border: 1px solid #000;
     border-radius: 6px;
