@@ -3,16 +3,21 @@
     <head>
         <meta charset="UTF-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
         <link rel="stylesheet" href="styles/reset.css" />
         <link rel="stylesheet" href="styles/style.css" />
         <title>Calori</title>
+        <meta
+            name="description"
+            content="Calori tarjoaa kalorilaskettuja, monipuolisia ja terveellisiä ratkaisuja arjen helpottamiseksi ilmaisella kotiinkuletuksella. Löydä laadukkaat tuotteet ja palvelut, jotka tukevat painonhallintaa ja hyvinvointia ja säätä aikaasi mealprepillä!"
+        />
     </head>
     <body>
-        <div class="wrapper">
+        <div id="wrapper">
             <announcement-bar class="announcement" data-icon="images/icons/truck.svg" data-heading="Toimitukset vain PK seudulla">
                 <div class="announcement__content" id="announcement__content"></div>
             </announcement-bar>
-            <header>
+            <header id="header" class="">
                 <custom-header class="header">
                     <div class="header__container _container">
                         <div class="header__content">
@@ -67,91 +72,91 @@
                                 </div>
                             </div>
                         </div>
-                        <nav class="navigation _container">
-                            <div class="navigation__content">
-                                <header class="navigation__header">
-                                    <div class="navigation__logo">
-                                        <img src="/images/calori_logo.png" alt="logo" srcset="" />
-                                    </div>
-                                    <div class="navigation__button">
-                                        <button></button>
-                                    </div>
-                                </header>
-                                <ul class="navigation__menu">
-                                    <li class="menu__item">
-                                        <div class="navigation__row">
-                                            <a href="">Ruokalista</a>
-                                            <div class="navigation__open">
-                                                <button></button>
-                                            </div>
-                                        </div>
-                                    </li>
-                                    <li class="menu__item">
-                                        <div class="navigation__row">
-                                            <a href="">Tuotteet</a>
-                                            <div class="navigation__open">
-                                                <button></button>
-                                            </div>
-                                        </div>
-                                    </li>
-                                    <li class="menu__item">
-                                        <div class="navigation__row">
-                                            <a href="">Meistä</a>
-                                            <div class="navigation__open">
-                                                <button></button>
-                                            </div>
-                                        </div>
-                                        <ul class="navigation__submenu submenu">
-                                            <li><a href="">Miksi Calori?</a></li>
-                                            <li><a href="">FAQs</a></li>
-                                            <li><a href="">Ota yhteyttä</a></li>
-                                        </ul>
-                                    </li>
-                                    <li class="menu__item">
-                                        <div class="navigation__row">
-                                            <a href="">Toimitus</a>
-                                            <div class="navigation__open">
-                                                <button></button>
-                                            </div>
-                                        </div>
-                                    </li>
-                                    <li class="menu__item">
-                                        <div class="navigation__row">
-                                            <a href="">Yrityksille</a>
-                                            <div class="navigation__open">
-                                                <button></button>
-                                            </div>
-                                        </div>
-                                        <ul class="navigation__submenu submenu">
-                                            <li><a href="">Miksi Calori?</a></li>
-                                            <li><a href="">FAQs</a></li>
-                                            <li><a href="">Ota yhteyttä</a></li>
-                                        </ul>
-                                    </li>
-                                    <li class="menu__item">
-                                        <div class="navigation__row">
-                                            <a href="">Arvostelut</a>
-                                            <div class="navigation__open">
-                                                <button></button>
-                                            </div>
-                                        </div>
-                                    </li>
-                                    <li class="menu__item">
-                                        <div class="navigation__row">
-                                            <a href="">Bonukset</a>
-                                            <div class="navigation__open">
-                                                <button></button>
-                                            </div>
-                                        </div>
-                                    </li>
-                                </ul>
-                                <ul class="navigation__options">
-                                    <li><a href="#">Kirjaudu sisään</a></li>
-                                    <li><a href="#">Luo käyttäjä</a></li>
-                                </ul>
-                            </div>
-                        </nav>
                     </div>
+                    <nav class="navigation _container">
+                        <div class="navigation__content">
+                            <header class="navigation__header">
+                                <div class="navigation__logo">
+                                    <img src="/images/calori_logo.png" alt="logo" srcset="" />
+                                </div>
+                                <div class="navigation__button">
+                                    <button></button>
+                                </div>
+                            </header>
+                            <ul class="navigation__menu">
+                                <li class="menu__item">
+                                    <div class="navigation__row">
+                                        <a href="">Ruokalista</a>
+                                        <div class="navigation__open">
+                                            <button></button>
+                                        </div>
+                                    </div>
+                                </li>
+                                <li class="menu__item">
+                                    <div class="navigation__row">
+                                        <a href="">Tuotteet</a>
+                                        <div class="navigation__open">
+                                            <button></button>
+                                        </div>
+                                    </div>
+                                </li>
+                                <li class="menu__item">
+                                    <div class="navigation__row">
+                                        <a href="">Meistä</a>
+                                        <div class="navigation__open">
+                                            <button></button>
+                                        </div>
+                                    </div>
+                                    <ul class="navigation__submenu submenu">
+                                        <li><a href="">Miksi Calori?</a></li>
+                                        <li><a href="">FAQs</a></li>
+                                        <li><a href="">Ota yhteyttä</a></li>
+                                    </ul>
+                                </li>
+                                <li class="menu__item">
+                                    <div class="navigation__row">
+                                        <a href="">Toimitus</a>
+                                        <div class="navigation__open">
+                                            <button></button>
+                                        </div>
+                                    </div>
+                                </li>
+                                <li class="menu__item">
+                                    <div class="navigation__row">
+                                        <a href="">Yrityksille</a>
+                                        <div class="navigation__open">
+                                            <button></button>
+                                        </div>
+                                    </div>
+                                    <ul class="navigation__submenu submenu">
+                                        <li><a href="">Miksi Calori?</a></li>
+                                        <li><a href="">FAQs</a></li>
+                                        <li><a href="">Ota yhteyttä</a></li>
+                                    </ul>
+                                </li>
+                                <li class="menu__item">
+                                    <div class="navigation__row">
+                                        <a href="">Arvostelut</a>
+                                        <div class="navigation__open">
+                                            <button></button>
+                                        </div>
+                                    </div>
+                                </li>
+                                <li class="menu__item">
+                                    <div class="navigation__row">
+                                        <a href="">Bonukset</a>
+                                        <div class="navigation__open">
+                                            <button></button>
+                                        </div>
+                                    </div>
+                                </li>
+                            </ul>
+                            <ul class="navigation__options">
+                                <li><a href="#">Kirjaudu sisään</a></li>
+                                <li><a href="#">Luo käyttäjä</a></li>
+                            </ul>
+                        </div>
+                    </nav>
                     <div class="header__drawer"></div>
                 </custom-header>
             </header>
@@ -159,14 +164,16 @@
                 <section class="head-section">
                     <div class="head-section__container _container">
                         <div class="head-section__wrapper">
-                            <h1 class="head-section__title">Terveelliset ja maukkaat ateriat kotiovellesi toimitettuna</h1>
+                            <header class="head-section__title">
+                                <h1>Terveelliset ja maukkaat ateriat kotiovellesi toimitettuna</h1>
+                            </header>
                             <h3 class="head-section__subtext">Säästä jopa 50h / kk sinulle tärkeämpiin asioihin</h3>
                             <div class="head-section__buttons main-buttons">
                                 <div class="main-buttons__item">
-                                    <a class="btn-solid btn-medium" href="#"><span class="btn-text">Valitse menu</span></a>
+                                    <a class="btn btn-solid btn-medium" href="#"><span class="btn-text">Valitse menu</span></a>
                                 </div>
                                 <div class="main-buttons__item">
-                                    <a class="btn-transparent btn-small" href="#">Tutustu lisää</a>
+                                    <a class="btn btn-transparent btn-small" href="#">Tutustu lisää</a>
                                 </div>
                             </div>
                         </div>
@@ -175,8 +182,787 @@
                         <img src="images/image1.png" alt="bg-image" />
                     </div>
                 </section>
+                <section class="info">
+                    <div class="swiper info-swiper">
+                        <div class="swiper-wrapper info-swiper__wrapper">
+                            <div class="swiper-slide info-swiper__slide info-slide">
+                                <div class="info-slide__content">
+                                    <div class="info-slide__image info__image">
+                                        <img src="images/icons/calori-icon-diet-food.svg" alt="icon" />
+                                    </div>
+                                    <p class="info-slide__text">Suunniteltua, kokattua ja toimitettua</p>
+                                </div>
+                            </div>
+                            <div class="swiper-slide info-slide">
+                                <div class="info-slide__content">
+                                    <div class="info-slide__image info__image">
+                                        <img src="images/icons/calori-icon-bodybuilding.svg" alt="" />
+                                    </div>
+                                    <p class="info-slide__text">Ravitsemusasiantuntijoita tiimissä</p>
+                                </div>
+                            </div>
+                            <div class="swiper-slide info-slide">
+                                <div class="info-slide__content">
+                                    <div class="info-slide__image info__image">
+                                        <img src="images/icons/calori-icon-stopwatch.svg" alt="icon" />
+                                    </div>
+                                    <p class="info-slide__text">Ruokalistat kehittyvät viikoittain</p>
+                                </div>
+                            </div>
+                            <div class="swiper-slide info-slide">
+                                <div class="info-slide__content">
+                                    <div class="info-slide__image info__image">
+                                        <img src="images/icons/calori-icon-salad.svg" alt="icon" />
+                                    </div>
+                                    <p class="info-slide__text">Ammattikokkien valmistamaa ruokaa</p>
+                                </div>
+                            </div>
+                            <div class="swiper-slide info-slide">
+                                <div class="info-slide__content">
+                                    <div class="info-slide__image info__image">
+                                        <img src="images/icons/calori-icon-diet.svg" alt="icon" />
+                                    </div>
+                                    <p class="info-slide__text">Yli 100 reseptiä reseptikirjassa</p>
+                                </div>
+                            </div>
+                            <div class="swiper-slide info-slide">
+                                <div class="info-slide__content">
+                                    <div class="info-slide__image info__image">
+                                        <img src="images/icons/calori-icon-kettlebell.svg" alt="icon" />
+                                    </div>
+                                    <p class="info-slide__text">Jostava kuljetus ja pakkaus</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="swiper-pagination info-swiper__pagination"></div>
+                    </div>
+                    <div class="info__container _container">
+                        <div class="info__content">
+                            <div class="info__item">
+                                <div class="info__image">
+                                    <img src="images/icons/calori-icon-bodybuilding.svg" alt="icon" />
+                                </div>
+                                <p class="info__text">Ravitsemusasiantuntijoita tiimissä</p>
+                            </div>
+                            <div class="info__item">
+                                <div class="info__image">
+                                    <img src="images/icons/calori-icon-bodybuilding.svg" alt="icon" />
+                                </div>
+                                <p class="info__text">Ravitsemusasiantuntijoita tiimissä</p>
+                            </div>
+                            <div class="info__item">
+                                <div class="info__image">
+                                    <img src="images/icons/calori-icon-bodybuilding.svg" alt="icon" />
+                                </div>
+                                <p class="info__text">Ravitsemusasiantuntijoita tiimissä</p>
+                            </div>
+                            <div class="info__item">
+                                <div class="info__image">
+                                    <img src="images/icons/calori-icon-bodybuilding.svg" alt="icon" />
+                                </div>
+                                <p class="info__text">Ravitsemusasiantuntijoita tiimissä</p>
+                            </div>
+                            <div class="info__item">
+                                <div class="info__image">
+                                    <img src="images/icons/calori-icon-bodybuilding.svg" alt="icon" />
+                                </div>
+                                <p class="info__text">Ravitsemusasiantuntijoita tiimissä</p>
+                            </div>
+                            <div class="info__item">
+                                <div class="info__image">
+                                    <img src="images/icons/calori-icon-bodybuilding.svg" alt="icon" />
+                                </div>
+                                <p class="info__text">Ravitsemusasiantuntijoita tiimissä</p>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+                <div class="decor-line _container">
+                    <span></span>
+                </div>
+                <section id="meals">
+                    <custom-meals class="meals">
+                        <div class="meals__container _container">
+                            <div class="meals__content">
+                                <header class="meals__title section-title">
+                                    <h1>Tämän viikon ruokalista</h1>
+                                </header>
+                                <ul class="meals__days"></ul>
+                            </div>
+                        </div>
+                        <div class="swiper meals-swiper">
+                            <div class="swiper-wrapper meals-swiper__wrapper">
+                                <div class="swiper-slide meals-slide">
+                                    <div class="meals-slide__content">
+                                        <div class="meals-slide__image">
+                                            <img src="images/пятница 4.png" alt="food image" />
+                                        </div>
+                                        <div class="meals-slide__info">
+                                            <header class="meals-slide__title">
+                                                <h2>Double touch fixes v1</h2>
+                                            </header>
+                                            <div class="meals-slide__description">
+                                                <p>Ateria 1</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="swiper-slide meals-slide">
+                                    <div class="meals-slide__content">
+                                        <div class="meals-slide__image">
+                                            <img src="images/пятница 4.png" alt="food image" />
+                                        </div>
+                                        <div class="meals-slide__info">
+                                            <header class="meals-slide__title">
+                                                <h2>Dish name</h2>
+                                            </header>
+                                            <div class="meals-slide__description">
+                                                <p>Ateria 1</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="swiper-slide meals-slide">
+                                    <div class="meals-slide__content">
+                                        <div class="meals-slide__image">
+                                            <img src="images/пятница 4.png" alt="food image" />
+                                        </div>
+                                        <div class="meals-slide__info">
+                                            <header class="meals-slide__title">
+                                                <h2>Dish name</h2>
+                                            </header>
+                                            <div class="meals-slide__description">
+                                                <p>Ateria 1</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="swiper-slide meals-slide">
+                                    <div class="meals-slide__content">
+                                        <div class="meals-slide__image">
+                                            <img src="images/пятница 4.png" alt="food image" />
+                                        </div>
+                                        <div class="meals-slide__info">
+                                            <header class="meals-slide__title">
+                                                <h2>Dish name</h2>
+                                            </header>
+                                            <div class="meals-slide__description">
+                                                <p>Ateria 1</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                            </div>
+                            <div class="swiper-button-prev swiper-nav-button meals-swiper-prev"></div>
+                            <div class="swiper-button-next swiper-nav-button meals-swiper-next"></div>
+                            <div class="swiper-pagination meals-swiper__pagination"></div>
+                        </div>
+                        <div class="meals-popup">
+                            <div class="meals-popup__image">
+                                <img src="" alt="food image" />
+                            </div>
+                        </div>
+                    </custom-meals>
+                </section>
+                <div class="decor-line _container">
+                    <span></span>
+                </div>
+                <section id="order">
+                    <custom-order class="order">
+                        <div class="order__container _container">
+                            <div class="order__content">
+                                <header class="order__title section-title">
+                                    <h1>Tilaa nyt</h1>
+                                </header>
+                                <div class="order__delivery order-delivery">
+                                    <div class="order-delivery__icon">
+                                        <svg fill="#d3d3d3" width="800px" height="800px" viewBox="0 0 16 16" xmlns="http://www.w3.org/2000/svg">
+                                            <g id="SVGRepo_bgCarrier" stroke-width="0" />
+
+                                            <g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round" />
+
+                                            <g id="SVGRepo_iconCarrier">
+                                                <path
+                                                    d="M15.17 7.36 13 4.92a1.25 1.25 0 0 0-.94-.42h-2V2.75A1.25 1.25 0 0 0 8.82 1.5H1.76A1.25 1.25 0 0 0 .51 2.75v8.5a1.25 1.25 0 0 0 1.25 1.25h.33a2.07 2.07 0 0 0 2.13 2 2.08 2.08 0 0 0 2.14-2H10a2.07 2.07 0 0 0 2.13 2 2.08 2.08 0 0 0 2.14-2 1.26 1.26 0 0 0 1.2-1.25V8.19a1.22 1.22 0 0 0-.3-.83zM4.22 13.25a.82.82 0 0 1-.88-.75.82.82 0 0 1 .88-.75.83.83 0 0 1 .89.75.83.83 0 0 1-.89.75zm4.6-7.58v5.58H5.89a2.17 2.17 0 0 0-1.67-.75 2.17 2.17 0 0 0-1.66.75h-.8v-8.5h7.06zm1.25.08h2l1.44 1.63h-3.44zm2.08 7.5a.82.82 0 0 1-.88-.75.82.82 0 0 1 .88-.75.83.83 0 0 1 .89.75.83.83 0 0 1-.89.75zm0-2.75a2.17 2.17 0 0 0-1.66.75h-.42V8.62h4.17v2.63h-.42a2.17 2.17 0 0 0-1.67-.75z"
+                                                />
+                                            </g>
+                                        </svg>
+                                    </div>
+                                    <div class="order-delivery__text">
+                                        <h3>Ensimmäinen toimitus:</h3>
+                                    </div>
+                                    <div class="order-delivery__date">
+                                        <h3>PE 11.10</h3>
+                                    </div>
+                                </div>
+                                <form class="order__form">
+                                    <div class="order__products order-products order-block">
+                                        <div class="order-products__product">
+                                            <button type="button">Arjen helpotus ruokavalio</button>
+                                        </div>
+                                        <div class="order-products__product">
+                                            <button type="button">Kalorilaskettu ruokavalio</button>
+                                        </div>
+                                    </div>
+                                    <div class="order__controls">
+                                        <div class="order__settings">
+                                            <fieldset class="order__type order-type order-block">
+                                                <legend class="order-type__title order-block-title">Ruokatilaus</legend>
+                                                <custom-select class="custom-select order-type__variants order-block-select" data-heading="Valitse ruokatilauksesi">
+                                                    <select name="order-variants"></select>
+                                                    <div class="custom-select__wrapper">
+                                                        <div class="custom-select__value">
+                                                            <h5></h5>
+                                                            <span></span>
+                                                        </div>
+                                                        <div class="custom-select__options">
+                                                            <div class="custom-select__option" data-value="Lounas + Päivällinen">Lounas + Päivällinen</div>
+                                                            <div class="custom-select__option" data-value="Aamupala + Lounas">Aamupala + Lounas</div>
+                                                            <div class="custom-select__option" data-value="Aamupala + Päivällinen">Aamupala + Päivällinen</div>
+                                                            <div class="custom-select__option" data-value="Päivällinen + Välipala">Päivällinen + Välipala</div>
+                                                            <div class="custom-select__option" data-value="Aamupala + Lounas + Päivällinen">Aamupala + Lounas + Päivällinen</div>
+                                                            <div class="custom-select__option" data-value="Lounas + Päivällinen + Välipala">Lounas + Päivällinen + Välipala</div>
+                                                        </div>
+                                                    </div>
+                                                </custom-select>
+                                                <div class="order-type__buttons _desktop">
+                                                    <span class="order-type__button radio-sm">
+                                                        <input type="radio" name="order-variants" id="order-variants" />
+                                                        <label for="order-variants">1500 kcal</label>
+                                                    </span>
+                                                    <span class="order-type__button radio-sm">
+                                                        <input type="radio" name="order-variants" id="order-variants" />
+                                                        <label for="order-variants">1500 kcal</label>
+                                                    </span>
+                                                    <span class="order-type__button radio-sm">
+                                                        <input type="radio" name="order-variants" id="order-variants" />
+                                                        <label for="order-variants">1500 kcal</label>
+                                                    </span>
+                                                    <span class="order-type__button radio-sm">
+                                                        <input type="radio" name="order-variants" id="order-variants" />
+                                                        <label for="order-variants">1500 kcal</label>
+                                                    </span>
+                                                </div>
+                                            </fieldset>
+                                            <fieldset class="order__duration order-duration order-block">
+                                                <legend class="order-duration__title order-block-title">Tilauksen kesto</legend>
+                                                <custom-select class="custom-select order-type__durations order-block-select" data-heading="Valitse tilauksen kesto">
+                                                    <select name="order-variants"></select>
+                                                    <div class="custom-select__wrapper">
+                                                        <div class="custom-select__value">
+                                                            <h5></h5>
+                                                            <span></span>
+                                                        </div>
+                                                        <div class="custom-select__options">
+                                                            <div class="custom-select__option" data-value="Lounas + Päivällinen">Lounas + Päivällinen</div>
+                                                            <div class="custom-select__option" data-value="Aamupala + Lounas">Aamupala + Lounas</div>
+                                                            <div class="custom-select__option" data-value="Aamupala + Päivällinen">Aamupala + Päivällinen</div>
+                                                            <div class="custom-select__option" data-value="Päivällinen + Välipala">Päivällinen + Välipala</div>
+                                                            <div class="custom-select__option" data-value="Aamupala + Lounas + Päivällinen">Aamupala + Lounas + Päivällinen</div>
+                                                            <div class="custom-select__option" data-value="Lounas + Päivällinen + Välipala">Lounas + Päivällinen + Välipala</div>
+                                                        </div>
+                                                    </div>
+                                                </custom-select>
+                                                <div class="order-duration__buttons _desktop">
+                                                    <span class="order-duration__button radio-sm">
+                                                        <input type="radio" name="order-duration" id="" />
+                                                        <label for="order-duration">1500 kcal</label>
+                                                    </span>
+                                                    <span class="order-duration__button radio-sm">
+                                                        <input type="radio" name="order-duration" id="" />
+                                                        <label for="order-duration">1500 kcal</label>
+                                                    </span>
+                                                    <span class="order-duration__button radio-sm">
+                                                        <input type="radio" name="order-duration" id="" />
+                                                        <label for="order-duration">1500 kcal</label>
+                                                    </span>
+                                                    <span class="order-duration__button radio-sm">
+                                                        <input type="radio" name="order-duration" id="" />
+                                                        <label for="order-duration">1500 kcal</label>
+                                                    </span>
+                                                </div>
+                                            </fieldset>
+                                        </div>
+                                        <div class="order__details">
+                                            <fieldset class="order__payment order-payment order-block">
+                                                <legend class="order-payment__title order-block-title">Maksun muoto</legend>
+                                                <div class="order-payment__radiobuttons">
+                                                    <div class="order-payment__radiobutton">
+                                                        <custom-radio class="custom-radio" data-radio="order-payment-radio" data-price="" data-heading="Kertamaksu">
+                                                            <input type="radio" name="order-radio" />
+                                                            <div class="custom-radio__wrapper">
+                                                                <span class="custom-radio__bullet"></span>
+                                                                <h3 class="custom-radio__heading"></h3>
+                                                                <h3 class="custom-radio__price"></h3>
+                                                            </div>
+                                                        </custom-radio>
+                                                    </div>
+                                                    <div class="order-payment__radiobutton">
+                                                        <custom-radio class="custom-radio" data-radio="order-payment-radio" data-price="" data-heading="Uusiutuva">
+                                                            <input type="radio" name="order-radio" />
+                                                            <div class="custom-radio__wrapper">
+                                                                <span class="custom-radio__bullet"></span>
+                                                                <h3 class="custom-radio__heading"></h3>
+                                                                <h3 class="custom-radio__price"></h3>
+                                                            </div>
+                                                        </custom-radio>
+                                                    </div>
+                                                </div>
+                                            </fieldset>
+                                            <div class="order__buttons">
+                                                <div class="order__button">
+                                                    <a href="#" class="btn btn-solid btn-medium">
+                                                        <span class="btn-text">Lisää ostoskoriin</span>
+                                                    </a>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </form>
+                                <div class="order__infos infos-order">
+                                    <div class="infos-order__spoiler">
+                                        <div class="infos-order__heading us-none">
+                                            <h3>Tilaus / toimitus</h3>
+                                            <span></span>
+                                        </div>
+                                        <div class="infos-order__content">
+                                            <p>
+                                                Kun teet tilauksen ennen tiistaita 14:30 - tilauksesi toimitetaan ensimmäistä kertaa saman viikon perjantaina kun tilaukset sulkeutuivat. Sen jälkeen saat toimituksia kahdesti viikossa (ti ja pe) kunnes
+                                                tilauksesi päättyy. Tiistain jälkeen tehdyt tilaukset siirtyvät automaattisesti seuraavalle viikolle.
+                                            </p>
+                                        </div>
+                                    </div>
+                                    <div class="infos-order__spoiler">
+                                        <div class="infos-order__heading us-none">
+                                            <h3>Ruokarajoitteet / allergiat</h3>
+                                            <span></span>
+                                        </div>
+                                        <div class="infos-order__content">
+                                            <p>
+                                                Kun teet tilauksen ennen tiistaita 14:30 - tilauksesi toimitetaan ensimmäistä kertaa saman viikon perjantaina kun tilaukset sulkeutuivat. Sen jälkeen saat toimituksia kahdesti viikossa (ti ja pe) kunnes
+                                                tilauksesi päättyy. Tiistain jälkeen tehdyt tilaukset siirtyvät automaattisesti seuraavalle viikolle.
+                                            </p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <custom-timer class="order__timer custom-timer" data-day="Tiistai" data-time="14:30">
+                                    <h4 class="custom-timer__title">Tilaukset sulkeutuvat tiistaisin klo 14.30</h4>
+                                    <div class="custom-timer__body">
+                                        <div class="custom-timer__time">
+                                            <span class="custom-timer__number" id="timer-days">4</span>
+                                            <span class="custom-timer__name">Päivää</span>
+                                        </div>
+                                        <div class="custom-timer__time">
+                                            <span class="custom-timer__number" id="timer-hours">0</span>
+                                            <span class="custom-timer__name">Tuntia</span>
+                                        </div>
+                                        <div class="custom-timer__time">
+                                            <span class="custom-timer__number" id="timer-minutes">13</span>
+                                            <span class="custom-timer__name">Minuuttia</span>
+                                        </div>
+                                        <div class="custom-timer__time">
+                                            <span class="custom-timer__number" id="timer-seconds">23</span>
+                                            <span class="custom-timer__name">Sekunttia</span>
+                                        </div>
+                                    </div>
+                                </custom-timer>
+                            </div>
+                        </div>
+                    </custom-order>
+                </section>
+                <div class="decor-line _container">
+                    <span></span>
+                </div>
+                <section id="advantages">
+                    <div class="advantages__container _container">
+                        <div class="advantages__body">
+                            <div class="advantages__block advantages-without">
+                                <div class="advantages__content">
+                                    <header class="advantages__title">
+                                        <h1>Ilman caloria</h1>
+                                    </header>
+                                    <ul class="advantages__list">
+                                        <li><h4>Jopa 20€ / pv lounaaseen ja välipaloihin</h4></li>
+                                        <li><h4>Vaikeaa pitää ruokarytmin</h4></li>
+                                        <li><h4>Vaikeaa syödä terveellisesti</h4></li>
+                                    </ul>
+                                </div>
+                            </div>
+                            <div class="advantages__block advantages-with">
+                                <div class="advantages__content">
+                                    <header class="advantages__title">
+                                        <h1>Calorin kanssa</h1>
+                                    </header>
+                                    <ul class="advantages__list">
+                                        <li><h4>Alkaen 19,5€ / pv ja 5,7€ / ateria</h4></li>
+                                        <li><h4>2-4 ateriaa päivässä</h4></li>
+                                        <li><h4>Räätälöityä ja toimitettu kotiovelle</h4></li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+                <div class="decor-line _container">
+                    <span></span>
+                </div>
+                <section id="steps">
+                    <custom-steps class="steps">
+                        <div class="steps__container _container">
+                            <div class="steps__body">
+                                <div class="swiper steps-swiper">
+                                    <div class="swiper-wrapper swiper-steps__wrapper">
+                                        <div class="swiper-slide steps-slide">
+                                            <div class="steps-slide__content">
+                                                <div class="steps-slide__image">
+                                                    <img src="images/tilaa.png" alt="bg image" />
+                                                </div>
+                                                <header class="steps-slide__heading"><h3>Tilaa</h3></header>
+                                                <p class="steps-slide__text">Valitse tavoitteellesi sopiva menu ja tilaa itsellesi tai paritilaus</p>
+                                            </div>
+                                        </div>
+                                        <div class="swiper-slide steps-slide">
+                                            <div class="steps-slide__content">
+                                                <div class="steps-slide__image">
+                                                    <img src="images/vastaanota.png" alt="bg image" />
+                                                </div>
+                                                <header class="steps-slide__heading"><h3>Vastaanota</h3></header>
+                                                <p class="steps-slide__text">Toimitamme sinulle kotiin 2-4 ateriaa valitsemillesi päiville</p>
+                                            </div>
+                                        </div>
+                                        <div class="swiper-slide steps-slide swiper-no-swiping">
+                                            <div class="steps-slide__content">
+                                                <div class="steps-slide__image">
+                                                    <img src="images/nauti.png" alt="bg image" />
+                                                </div>
+                                                <header class="steps-slide__heading"><h3>Nauti</h3></header>
+                                                <p class="steps-slide__text">Syö terveellisesti päivittäin, nauti ja säästä aikaasi</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="steps__progress">
+                                    <div class="steps__point">
+                                        <span>1</span>
+                                    </div>
+                                    <div class="steps__point">
+                                        <span>2</span>
+                                    </div>
+                                    <div class="steps__point">
+                                        <span>3</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </custom-steps>
+                </section>
+                <div class="decor-line _container">
+                    <span></span>
+                </div>
+                <section id="why" class="us-none">
+                    <div class="why__container _container">
+                        <header class="why__title section-title">
+                            <h1>Miksi Calori?</h1>
+                        </header>
+                        <div class="swiper why-swiper">
+                            <div class="swiper-wrapper why-swiper__wrapper">
+                                <div class="swiper-slide why-slide">
+                                    <div class="why-slide__content">
+                                        <div class="why-slide__icon">
+                                            <img src="/images/icons/star.svg" alt="icon" />
+                                        </div>
+                                        <header class="why-slide__heading"><h3>Maukasta ja terveellistä ruokaa</h3></header>
+                                        <p class="why-slide__text">Yli 100 erilaista ateriaa kuukaudessa suomalaisesta ja maailman keittiökulttuureista.</p>
+                                    </div>
+                                </div>
+                                <div class="swiper-slide why-slide">
+                                    <div class="why-slide__content">
+                                        <div class="why-slide__icon">
+                                            <img src="/images/icons/star.svg" alt="icon" />
+                                        </div>
+                                        <header class="why-slide__heading"><h3>Pidät taukoa kokkaamisesta</h3></header>
+                                        <p class="why-slide__text">Ruokakauppaan juoksemisen ja kokkaamisen sijaa keskityt sinulle tärkeimpiin asioihin.</p>
+                                    </div>
+                                </div>
+                                <div class="swiper-slide why-slide">
+                                    <div class="why-slide__content">
+                                        <div class="why-slide__icon">
+                                            <img src="/images/icons/star.svg" alt="icon" />
+                                        </div>
+                                        <header class="why-slide__heading"><h3>Tasapainoa ja helpoutta elämääsi</h3></header>
+                                        <p class="why-slide__text">Olemme miettineet puolestasi kaikki ruokailuun liittyvät huolet ja rutiinit.</p>
+                                    </div>
+                                </div>
+                                <div class="swiper-slide why-slide">
+                                    <div class="why-slide__content">
+                                        <div class="why-slide__icon">
+                                            <img src="/images/icons/star.svg" alt="icon" />
+                                        </div>
+                                        <header class="why-slide__heading"><h3>Saavutat kaikki tavoitteesi</h3></header>
+                                        <p class="why-slide__text">Saavuta unelmakroppasi, säästä aikaa tai syö terveellisesti - kaikki onnistuu helposti.</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+                <div class="decor-line _container">
+                    <span></span>
+                </div>
+                <section id="quote">
+                    <div class="quote__container _container">
+                        <div class="quote__body">
+                            <div class="quote__content">
+                                <blockquote class="quote__text">
+                                    Me Calorilla näemme maailman, jossa terveellisten ruokavalintojen tekeminen on jännittävää ja vaivatonta. Pyrimme olemaan edelläkävijöitä, jotka tarjoavat tasapainoisia aterioita yhdistäen kotiruokien periaatteet ja
+                                    ravintolatason laatustandardit, mikä kannustaa kaikkia terveellisempään elämään.
+                                </blockquote>
+                                <p class="quote__author">- Calorin tiimi</p>
+                                <div class="quote__button">
+                                    <a class="btn btn-transparent btn-small" href="#">Lue meistä lisää</a>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="quote__image">
+                            <img src="images/quoteImage.png" alt="quote image" />
+                        </div>
+                    </div>
+                </section>
+                <div class="decor-line _container">
+                    <span></span>
+                </div>
+                <section id="reviews">
+                    <custom-reviews class="reviews" data-text-initial-height="100px">
+                        <div class="reviews__container _container">
+                            <header class="reviews__title section-title">
+                                <h1>Käytössä kiireisillä yrittäjillä, vaikuttajilla ja urheilijoilla</h1>
+                            </header>
+                            <div class="swiper reviews-swiper">
+                                <div class="swiper-wrapper reviews-swiper__wrapper">
+                                    <div class="swiper-slide reviews-slide">
+                                        <div class="reviews-slide__content">
+                                            <p class="reviews-slide__text">
+                                                Maukas helpotus kiireiseen arkeen! Palvelu antoi minulle monta tuntia lisäaikaa muihin arjen askareisiin, vei kiireen pois aamuista ja helpotti säännöllisen syömisen ylläpitoa. Iso suositus!
+                                            </p>
+                                            <h4 class="reviews-slide__author">Nina Moritz</h4>
+                                        </div>
+                                    </div>
+                                    <div class="swiper-slide reviews-slide">
+                                        <div class="reviews-slide__content">
+                                            <p class="reviews-slide__text">
+                                                Ruoka oli todella herkullista ja monipuolista. Ihanaa kun oli niin paljon erilaisia ateriaoita 😍 Säästin myös todella paljon aikaa kun ei tarvinnut itse kokata ja mikä parasta ateriat toimitettiin suoraan
+                                                kotiovelle! Suosittelen lämmöllä!
+                                            </p>
+                                            <h4 class="reviews-slide__author">Nina Moritz</h4>
+                                        </div>
+                                    </div>
+                                    <div class="swiper-slide reviews-slide">
+                                        <div class="reviews-slide__content">
+                                            <p class="reviews-slide__text">Lounasravintolassa maksat jopa 15€ ateriasta, mutta Calorilla saat aamiaisen, lounaan, päivällisen ja iltapalan alle 30€:lla kotiovelle toimitettuna.</p>
+                                            <h4 class="reviews-slide__author">Nina Moritz</h4>
+                                        </div>
+                                    </div>
+                                    <div class="swiper-slide reviews-slide">
+                                        <div class="reviews-slide__content">
+                                            <p class="reviews-slide__text">Palvelu on helppoa ja ystävällistä, ruoka myös erittäin maukasta! Etenkin sopii jos haluaa pelailla painon kanssa.</p>
+                                            <h4 class="reviews-slide__author">Nina Moritz</h4>
+                                        </div>
+                                    </div>
+                                    <div class="swiper-slide reviews-slide">
+                                        <div class="reviews-slide__content">
+                                            <p class="reviews-slide__text">Palvelu on helppoa ja ystävällistä, ruoka myös erittäin maukasta! Etenkin sopii jos haluaa pelailla painon kanssa.</p>
+                                            <h4 class="reviews-slide__author">Nina Moritz</h4>
+                                        </div>
+                                    </div>
+                                    <div class="swiper-slide reviews-slide">
+                                        <div class="reviews-slide__content">
+                                            <p class="reviews-slide__text">Palvelu on helppoa ja ystävällistä, ruoka myös erittäin maukasta! Etenkin sopii jos haluaa pelailla painon kanssa.</p>
+                                            <h4 class="reviews-slide__author">Nina Moritz</h4>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="swiper-button-prev swiper-nav-button reviews-swiper-prev"></div>
+                                <div class="swiper-button-next swiper-nav-button reviews-swiper-next"></div>
+                                <div class="swiper-pagination"></div>
+                            </div>
+                            <div class="reviews__button">
+                                <a class="btn btn-solid btn-medium" href="#">
+                                    <span class="btn-text">Katso kaikki arvostelut</span>
+                                </a>
+                            </div>
+                        </div>
+                    </custom-reviews>
+                </section>
+                <div class="decor-line _container">
+                    <span></span>
+                </div>
+                <section id="banner">
+                    <custom-banner class="banner">
+                        <div class="swiper banner-swiper">
+                            <div class="swiper-wrapper banner-swiper__wrapper">
+                                <div class="swiper-slide banner-slide">
+                                    <div class="banner-slide__content">
+                                        <h3 class="banner-slide__heading">Perinteiset raaka-aineet</h3>
+                                        <p class="banner-slide__text">Joka päivä jotain uutta sinulle tutuista raaka-aineista.</p>
+                                        <div class="banner-slide__image">
+                                            <img src="images/banner-table.png" alt="banner image" />
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="swiper-slide banner-slide">
+                                    <div class="banner-slide__content">
+                                        <h3 class="banner-slide__heading">Helpotat elämääsi</h3>
+                                        <p class="banner-slide__text">Yli 50 tuntia lisää vapaata aikaa kuukaudessa. Voit kokeilla uutta harrastusta, käyttää aikaa tavoitteiden saavuttamiseen tai rentoutua kotona.</p>
+                                        <div class="banner-slide__image">
+                                            <img src="images/banner-breakfast.png" alt="banner image" />
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="swiper-slide banner-slide">
+                                    <div class="banner-slide__content">
+                                        <h3 class="banner-slide__heading">Syö yksin tai parisi kanssa</h3>
+                                        <p class="banner-slide__text">Pidämme huolen, että voit nauttia ruoasta yhdessä seurasi kanssa.</p>
+                                        <div class="banner-slide__image">
+                                            <img src="images/banner-couple.png" alt="banner image" />
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </custom-banner>
+                </section>
+                <div class="decor-line _container">
+                    <span></span>
+                </div>
+                <section id="cooperation" class="us-none">
+                    <header class="cooperation__title section-title"><h1>Yhteistyössä</h1></header>
+                    <div class="swiper cooperation-swiper">
+                        <div class="swiper-wrapper cooperation-swiper__wrapper">
+                            <div class="swiper-slide cooperation-slide">
+                                <div class="cooperation-slide__image">
+                                    <img src="images/kmarket.png" alt="cooperation company logo" />
+                                </div>
+                            </div>
+                            <div class="swiper-slide cooperation-slide">
+                                <div class="cooperation-slide__image">
+                                    <img src="images/kcitymarket.png" alt="cooperation company logo" />
+                                </div>
+                            </div>
+                            <div class="swiper-slide cooperation-slide">
+                                <div class="cooperation-slide__image">
+                                    <img src="images/T4U 1.png" alt="cooperation company logo" />
+                                </div>
+                            </div>
+                            <div class="swiper-slide cooperation-slide">
+                                <div class="cooperation-slide__image">
+                                    <img src="images/kmarket.png" alt="cooperation company logo" />
+                                </div>
+                            </div>
+                            <div class="swiper-slide cooperation-slide">
+                                <div class="cooperation-slide__image">
+                                    <img src="images/kcitymarket.png" alt="cooperation company logo" />
+                                </div>
+                            </div>
+                            <div class="swiper-slide cooperation-slide">
+                                <div class="cooperation-slide__image">
+                                    <img src="images/T4U 1.png" alt="cooperation company logo" />
+                                </div>
+                            </div>
+                            <div class="swiper-slide cooperation-slide">
+                                <div class="cooperation-slide__image">
+                                    <img src="images/kmarket.png" alt="cooperation company logo" />
+                                </div>
+                            </div>
+                            <div class="swiper-slide cooperation-slide">
+                                <div class="cooperation-slide__image">
+                                    <img src="images/kcitymarket.png" alt="cooperation company logo" />
+                                </div>
+                            </div>
+                            <div class="swiper-slide cooperation-slide">
+                                <div class="cooperation-slide__image">
+                                    <img src="images/T4U 1.png" alt="cooperation company logo" />
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+                <footer id="footer">
+                    <div class="footer__container _container">
+                        <div class="footer__body">
+                            <div class="footer__content footer-content">
+                                <div class="footer-content__decor decor-content">
+                                    <div class="decor-content__logo">
+                                        <a href=""><img src="images/calori.png" alt="calori logo" /></a>
+                                    </div>
+                                    <h4 class="decor-content__heading">Seuraa meitä</h4>
+                                    <div class="decor-content__socials">
+                                        <div class="decor-content__instagram decor-content__icon">
+                                            <a href="https://www.instagram.com/calori.fi/"><img src="images/icons/instagram-outline-svgrepo-com.svg" alt="instagram logo" /></a>
+                                        </div>
+                                        <div class="decor-content__tiktok decor-content__icon">
+                                            <a href="https://www.tiktok.com/@calori.fi"><img src="images/icons/tiktok-outline-svgrepo-com.svg" alt="tiktok logo" /></a>
+                                        </div>
+                                    </div>
+                                </div>
+                                <nav class="footer-content__nav nav-content">
+                                    <div class="nav-content__wrapper">
+                                        <header class="nav-content__heading"><strong>Linkit:</strong></header>
+                                        <ul class="nav-content__list">
+                                            <li><a href="#">Ruokalista</a></li>
+                                            <li><a href="#">Meistä</a></li>
+                                            <li><a href="#">Toimitus</a></li>
+                                            <li><a href="#">Arvostelut</a></li>
+                                            <li><a href="#">Bonukset</a></li>
+                                            <li><a href="#">Kirjaudu sisään</a></li>
+                                            <li><a href="#">Luo tili</a></li>
+                                        </ul>
+                                    </div>
+                                </nav>
+                                <nav class="footer-content__about about-content">
+                                    <div class="about-content__wrapper">
+                                        <header class="about-content__heading"><strong>Meistä:</strong></header>
+                                        <ul class="about-content__list">
+                                            <li><a href="#">Miksi Calori?</a></li>
+                                            <li><a href="">FAQs</a></li>
+                                            <li><a href="">Ota yhteyttä</a></li>
+                                        </ul>
+                                    </div>
+                                </nav>
+                                <div class="footer-content__info info-content">
+                                    <header class="info-content__heading"><strong>Yhteystiedot:</strong></header>
+                                    <p class="info-content__address">
+                                        <span class="info-content__street">Sörnäisten rantatie 27 A, </span>
+                                        <br />
+                                        <span class="info-content__city">00500 Helsinki</span>
+                                        <br />
+                                        <span class="info-content__company-name">Lagom food Oy</span>
+                                    </p>
+                                    <p class="info-content__phone">
+                                        <a href="tel:+358 40 2160 180">040 2160 180</a>
+                                    </p>
+                                </div>
+                            </div>
+                            <div class="footer__others others-footer">
+                                <ul class="others-footer__terms">
+                                    <li><a href="#">Käyttöehdot</a></li>
+                                    <li><a href="#">Tietosuojaeloste</a></li>
+                                </ul>
+                                <!-- <div class="others-footer__bottom">
+                                    <ul class="others-footer__payment">
+                                        <li><img src="" alt=""></li>
+                                        <li><img src="" alt=""></li>
+                                        <li><img src="" alt=""></li>
+                                        <li><img src="" alt=""></li>
+                                    </ul>
+                                </div> -->
+                            </div>
+                        </div>
+                    </div>
+                </footer>
             </main>
         </div>
+        <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
         <script src="scripts/main.js"></script>
     </body>
 </html>

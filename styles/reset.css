@@ -9,6 +9,10 @@ html {
     box-sizing: inherit;
 }
 
+* {
+    touch-action: manipulation;
+}
+
 body,
 h1,
 h2,
@@ -21,7 +25,7 @@ ol,
 ul {
     margin: 0;
     padding: 0;
-    font-weight: normal;
+    font-weight: inherit;
 }
 
 ol,
@@ -33,7 +37,16 @@ a {
     text-decoration: none;
     color: inherit;
 }
-
+button, select, select > option {
+    font-family: "DM Sans", sans-serif;
+    font-style: normal;
+}
 button:hover {
     cursor: pointer;
+}
+
+fieldset {
+    border: none;
+    margin: 0;
+    padding: 0;
 }
