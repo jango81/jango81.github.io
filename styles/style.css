@@ -1,32 +1,5 @@
 @import url("https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&display=swap");
-
-:root {
-    /* Colors */
-
-    --calori-color-bg-primary: rgb(33, 55, 53);
-    --calori-color-bg-secondary: rgb(232, 250, 238);
-    --calori-color-bg-third: rgb(243, 243, 243);
-    --calori-color-bg-fourth: rgb(211, 211, 211);
-    --calor-color-bg-fifth: rgb(225, 242, 231);
-    --calori-color-text-primary: rgb(102, 102, 102);
-    --calori-color-text-secondary: rgb(0, 0, 0);
-    --calori-color-text-third: rgb(255, 255, 255);
-    --calori-color-text-fourth: rgb(51, 51, 51);
-    --calori-color-text-fifth: rgb(33, 55, 53);
-    --calori-color-button-anim: rgb(46, 67, 65);
-
-    /* Measures */
-    --calori-container-width: 1440px;
-    --calori-blocks-border-radius: 15px;
-    --calori-sections-padding: 30px;
-
-    /*Fonts sizes*/
-
-    --calori-sections-title-fz: 18px;
-    --calori-default-text-fz: 16px;
-    --calori-subtitle-fz: 16px;
-    --calori-subtext-fz: 14px;
-}
+@import "./variables.css";
 
 @media (min-width: 900px) {
     :root {
@@ -55,8 +28,12 @@ body {
     height: 100%;
     overflow-y: auto;
     overflow-x: hidden;
+    display: flex;
+    flex-direction: column;
 }
-
+#main {
+    flex: 1 1 auto;
+}
 ._container {
     padding: 0 20px;
 }
@@ -343,7 +320,7 @@ body {
     width: 45px;
     height: 45px;
     border-radius: 50%;
-    transition: transform .2s linear;
+    transition: transform 0.2s linear;
 }
 .swiper-nav-button::after {
     font-size: 19px;
@@ -521,8 +498,12 @@ body {
 #header {
     position: relative;
     min-height: 72px;
+    z-index: 9999;
 }
-
+#header._no-anim {
+    position: sticky;
+    top: 0;
+}
 .header {
     display: block;
     height: 100%;
@@ -536,7 +517,6 @@ body {
 .header.hide {
     animation: hideCompactHeader 0.2s ease forwards;
 }
-
 .header.scrolled {
     position: fixed;
     left: 0;
@@ -1116,27 +1096,38 @@ body {
     border: none;
     padding: 10px;
     border-radius: 10px;
-    color: var(--calori-color-text-fifth);
+    color: var(--calori-color-text-secondary);
     font-weight: 500;
-    background: var(--calor-color-bg-fifth);
+    background: #ffff;
+    border: 1px solid #000;
     transition: color 0.3s ease, background 0.3s ease;
 }
 .meals__days li button._active {
     color: var(--calori-color-text-third);
     background: var(--calori-color-bg-primary);
+    border: 1px solid var(--calori-color-bg-primary);
 }
 .meals__days li button:hover {
     color: var(--calori-color-text-third);
     background: var(--calori-color-bg-primary);
+    border: 1px solid var(--calori-color-bg-primary);
+}
+.meals-swiper {
+    padding: 30px 0;
+}
+.meals-swiper__pagination {
+    margin-top: 20px;
 }
 .meals-slide__content {
-    padding: 20px;
+    border: 2px solid var(--calori-color-bg-fourth);
+    border-radius: var(--calori-blocks-border-radius);
+    box-shadow: 0px 0px 19px -8px rgba(0, 0, 0, 0.75);
+    overflow: hidden;
+    margin: 0 20px;
 }
 .meals-slide__image {
     position: relative;
-    padding: 20px;
-    background: var(--calor-color-bg-fifth);
-    border-radius: var(--calori-blocks-border-radius);
+    overflow: hidden;
 }
 .meals-slide__image:hover {
     cursor: pointer;
@@ -1153,7 +1144,7 @@ body {
     font-size: var(--calori-default-text-fz);
 }
 .meals-slide__info {
-    margin-top: 17px;
+    padding: 10px;
 }
 .meals-popup {
     visibility: hidden;
@@ -1276,7 +1267,7 @@ body {
 }
 .order-delivery__text {
     margin-left: 10px;
-    text-transform: uppercase;
+
 }
 .order-delivery__date {
     margin-left: 10px;
@@ -1287,11 +1278,13 @@ body {
     flex-direction: row;
     justify-content: space-between;
     padding: 10px 25px;
-
+    min-width: 580px;
     font-weight: 500;
     font-size: 16px;
 }
 .order-products__product {
+    align-self: stretch;
+    font-size: var(--calori-subtitle-fz);
     margin: 0 10px;
 }
 .order-products__product button {
@@ -1299,7 +1292,9 @@ body {
     background: none;
     border: 1px solid #000;
     border-radius: 10px;
-    padding: 10px 20px;
+    padding: 20px 30px;
+    width: 100%;
+    height: 100%;
     transition: background 0.3s ease, border 0.3s ease, color 0.3s ease;
 }
 .order-products__product button:hover {
@@ -1312,7 +1307,6 @@ body {
     background: var(--calori-color-bg-primary);
     border: 1px solid var(--calori-color-bg-primary);
     border-radius: 10px;
-    padding: 10px 20px;
 }
 
 .order__controls {
@@ -1411,13 +1405,21 @@ body {
     transition: height 0.3s ease, opacity 0.3s ease;
 }
 
-@media (max-width: 480px) {
+@media (max-width: 520px) {
     .order-products {
-        font-size: 14px;
+        flex-direction: column;
+    }
+    .order-products__product {
+        margin: 0;
+    }
+    .order-products__product:not(:first-child) {
+        margin-top: 15px;
     }
 }
-
 @media (max-width: 650px) {
+    .order__products {
+        min-width: 350px;
+    }
     .order-type__buttons,
     .order-duration__buttons {
         display: none;
@@ -1431,14 +1433,8 @@ body {
     .order-products {
         max-width: 50%;
     }
-    .order-products button {
-        font-size: 18px;
-    }
     .order-type {
         display: flex;
-    }
-    .order-delivery {
-        font-size: 12px;
     }
     .order-type > custom-select,
     .order-duration > custom-select {

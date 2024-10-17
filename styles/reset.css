@@ -44,7 +44,9 @@ button, select, select > option {
 button:hover {
     cursor: pointer;
 }
-
+button {
+    border: none;
+}
 fieldset {
     border: none;
     margin: 0;

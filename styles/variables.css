@@ -1,0 +1,27 @@
+:root {
+    /* Colors */
+
+    --calori-color-bg-primary: rgb(33, 55, 53);
+    --calori-color-bg-secondary: rgb(232, 250, 238);
+    --calori-color-bg-third: rgb(243, 243, 243);
+    --calori-color-bg-fourth: rgb(211, 211, 211);
+    --calor-color-bg-fifth: rgb(225, 242, 231);
+    --calori-color-text-primary: rgb(102, 102, 102);
+    --calori-color-text-secondary: rgb(0, 0, 0);
+    --calori-color-text-third: rgb(255, 255, 255);
+    --calori-color-text-fourth: rgb(51, 51, 51);
+    --calori-color-text-fifth: rgb(33, 55, 53);
+    --calori-color-button-anim: rgb(46, 67, 65);
+
+    /* Measures */
+    --calori-container-width: 1440px;
+    --calori-blocks-border-radius: 15px;
+    --calori-sections-padding: 30px;
+
+    /*Fonts sizes*/
+
+    --calori-sections-title-fz: 18px;
+    --calori-default-text-fz: 16px;
+    --calori-subtitle-fz: 16px;
+    --calori-subtext-fz: 14px;
+}

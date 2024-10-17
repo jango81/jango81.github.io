@@ -1,0 +1,194 @@
+@import "./variables.css";
+
+.day-card {
+    border-radius: 15px;
+    overflow: hidden;
+}
+.day-card-image {
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+}
+.day-card-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+}
+.day-card-info {
+    padding: 10px;
+}
+.day-card-propeties {
+    display: flex;
+}
+.day-card-propeties li {
+    font-size: 13px;
+    background: var(--calori-color-bg-primary);
+    color: var(--calori-color-text-third);
+    padding: 3px 8px;
+    border-radius: 5px;
+}
+.day-card-meal {
+    text-align: center;
+    margin-top: 10px;
+}
+.day-card-meal-name {
+    margin-top: 10px;
+    text-align: center;
+}
+
+#menu {
+    padding: var(--calori-sections-padding) 0;
+}
+.menu {
+    width: 100%;
+}
+.menu__container {
+}
+.menu__body {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.menu__title {
+    text-align: center;
+}
+.menu__sticky {
+    position: sticky;
+    z-index: 500;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 20px 0;
+    padding-bottom: 30px;
+    width: 100%;
+    background: #ffff;
+    /* box-shadow: 0px 43px 48px -40px rgba(0, 0, 0, 0.9); */
+}
+.menu__date {
+    margin-top: 15px;
+    font-size: 20px;
+}
+.menu__buttons {
+    margin-top: 15px;
+}
+.menu__buttons button {
+    background: #ffff;
+    padding: 10px 15px;
+    border: 1px solid #000;
+    border-radius: 6px;
+    transition: background 0.3s ease, color 0.3s ease;
+}
+.menu__buttons button._active,
+.menu__buttons button:hover {
+    border: 1px solid var(--calori-color-bg-primary);
+    background: var(--calori-color-bg-primary);
+    color: var(--calori-color-text-third);
+}
+.menu__current {
+}
+.menu__next {
+}
+.day-menu {
+    width: 100%;
+    margin-top: 30px;
+}
+.day-menu__heading {
+    text-align: center;
+    font-size: 20px;
+}
+.day-swiper {
+    width: 100%;
+    margin-top: 15px;
+}
+.day-swiper__slide {
+}
+.day-slide {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.day-slide__content {
+    margin: 10px;
+    max-width: 400px;
+    border: 2px solid var(--calori-color-bg-fourth);
+    box-shadow: 0px 0px 19px -8px rgba(0, 0, 0, 0.75);
+}
+.day-slide__image {
+}
+.day-slide__image img {
+}
+.day-slide__info {
+}
+.day-slide__properties {
+}
+.day-slide__properties li {
+}
+.day-slide__meal {
+}
+.day-slide__name {
+}
+
+.menu-popup__meal {
+    position: fixed;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 10000;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.menu-popup__meal::before {
+    content: "";
+    position: absolute;
+    left: 0;
+    top: 0;
+    height: 100%;
+    width: 100%;
+    z-index: -1;
+    background: rgba(0, 0, 0, 0.5);
+}
+.popup-meal__content {
+    background: #ffff;
+    max-width: 600px;
+    width: 100%;
+    overflow: hidden;
+    border-radius: 15px;
+    transform: scale(0.5);
+    opacity: 0;
+    margin: 0 20px;
+    transition: transform .3s ease, opacity .3s ease;
+}
+
+.menu-popup__meal._active .popup-meal__content {
+    transform: scale(1);
+    opacity: 1;
+}
+
+.popup-meal__image {
+    max-height: 500px;
+    max-height: 800px;
+    width: 100%;
+    height: 100%;
+}
+.popup-meal__image img {
+    max-width: 100%;
+    max-height: 100%;
+    height: auto;
+}
+.popup-meal__info {
+}
+.popup-meal__properties {
+}
+.popup-meal__meal {
+}
+.popup-meal__name {
+}
+
+@media (max-width: 700px) {
+    .popup-meal__content {
+        max-width: 500px;
+    }
+}

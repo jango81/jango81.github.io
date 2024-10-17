@@ -154,6 +154,7 @@ document.addEventListener("DOMContentLoaded", () => {
         }
 
         showHeaderScrolled() {
+            if (document.querySelector("#header").classList.contains("_no-anim")) return;
             const rect = this.headerTag.getBoundingClientRect();
             const headerTopSide = rect.top;
             const headerBottomSide = rect.bottom;
@@ -174,7 +175,6 @@ document.addEventListener("DOMContentLoaded", () => {
                 );
             }
         }
-
         //Set class active to navigation that showing it
         setNavigationClass() {
             document.querySelector(".navigation").classList.add("_active");
@@ -921,6 +921,65 @@ document.addEventListener("DOMContentLoaded", () => {
 
     customElements.define("custom-banner", CustomBanner);
 
+    const customMenuSelectors = {
+        dayCard: "day-card",
+        mealPopup: "popup-meal",
+        timeOfDay: "day-card-meal",
+        productProperities: "day-card-properties",
+        productImage: "day-card-image",
+        productName: "day-card-meal-name",
+        menuSticky: "menu__sticky",
+    };
+
+    class CustomMenu extends HTMLElement {
+        constructor() {
+            super();
+
+            this.dayCard = this.querySelectorAll(`.${customMenuSelectors.dayCard}`);
+            this.mealPopup = this.querySelector(`.${customMenuSelectors.mealPopup}`);
+            this.menuSticky = this.querySelector(`.${customMenuSelectors.menuSticky}`);
+            this.header = document.querySelector(".header");
+            this.currentMealData = {};
+
+            this.dayCard.forEach((el) => el.addEventListener("click", this.popupHandle.bind(this)));
+            this.mealPopup.addEventListener("click", this.popupHandle.bind(this));
+        }
+
+        connectedCallback() {
+            document.querySelector("#header").classList.add("_no-anim");
+            this.mealPopup.style.visibility = "hidden";
+            this.menuSticky.style.top = this.header.offsetHeight + "px";
+        }
+        popupHandle(e) {
+            const isDayCardClicked = e.currentTarget === this.mealPopup.querySelector(`.${customMenuSelectors.dayCard}`);
+            if (isDayCardClicked) {
+                this.closePopup();
+            }
+            if (this.mealPopup.classList.contains("_active") && !isDayCardClicked) {
+                this.closePopup();
+            } else {
+                this.showPopup();
+            }
+        }
+        showPopup() {
+            this.mealPopup.classList.add("_active");
+            this.mealPopup.style.visibility = "visible";
+        }
+        closePopup() {
+            const popupCard = this.mealPopup.querySelector(`.${customMenuSelectors.dayCard}`);
+            this.mealPopup.classList.remove("_active");
+            popupCard.addEventListener(
+                "transitionend",
+                () => {
+                    this.mealPopup.style.visibility = "hidden";
+                },
+                { once: true }
+            );
+        }
+    }
+
+    customElements.define("custom-menu", CustomMenu);
+
     const disableDoubleTouchZoom = () => {
         let lastTouchEnd = 0;
 
@@ -985,6 +1044,7 @@ document.addEventListener("DOMContentLoaded", () => {
                     prevEl: ".meals-swiper-prev",
                     nextEl: ".meals-swiper-next",
                 },
+                slidesPerView: 3,
             },
             1340: {
                 slidesPerView: 4,
@@ -995,6 +1055,11 @@ document.addEventListener("DOMContentLoaded", () => {
         },
         navigation: {
             enabled: false,
+        },
+        on: {
+            init: (swiper) => {
+                centerSlides(swiper);
+            },
         },
     });
     const whySwiper = new Swiper(".why-swiper", {
@@ -1087,7 +1152,33 @@ document.addEventListener("DOMContentLoaded", () => {
         },
         speed: swipersSettings.speed,
     });
+    const dayMenuSwiper = new Swiper(".day-swiper", {
+        slidesPerView: "auto",
+        pagination: {
+            el: ".swiper-pagination",
+        },
+        breakpoints: {
+            730: {
+                slidesPerView: 2,
+            },
+            1100: {
+                slidesPerView: 3,
+            },
+            1580: {
+                slidesPerView: 4,
+            },
+        },
+
+        on: {
+            init: (swiper) => {
+                centerSlides(swiper);
+            },
+        },
+    });
     window.addEventListener("resize", () => {
-        document.querySelector(".meals").addDays();
+        const meals = document.querySelector(".meals");
+        if (meals) {
+            meals.addDays();
+        }
     });
 });
