@@ -528,30 +528,30 @@
                                     </div>
                                 </form>
                                 <div class="order__infos infos-order">
-                                    <div class="infos-order__spoiler">
-                                        <div class="infos-order__heading us-none">
+                                    <custom-spoiler class="custom-spoiler infos-order__spoiler">
+                                        <div class="custom-spoiler__heading infos-order__heading us-none">
                                             <h3>Tilaus / toimitus</h3>
                                             <span></span>
                                         </div>
-                                        <div class="infos-order__content">
+                                        <div class="custom-spoiler__content infos-order__content">
                                             <p>
                                                 Kun teet tilauksen ennen tiistaita 14:30 - tilauksesi toimitetaan ensimmäistä kertaa saman viikon perjantaina kun tilaukset sulkeutuivat. Sen jälkeen saat toimituksia kahdesti viikossa (ti ja pe) kunnes
                                                 tilauksesi päättyy. Tiistain jälkeen tehdyt tilaukset siirtyvät automaattisesti seuraavalle viikolle.
                                             </p>
                                         </div>
-                                    </div>
-                                    <div class="infos-order__spoiler">
-                                        <div class="infos-order__heading us-none">
-                                            <h3>Ruokarajoitteet / allergiat</h3>
+                                    </custom-spoiler>
+                                    <custom-spoiler class="custom-spoiler infos-order__spoiler">
+                                        <div class="custom-spoiler__heading infos-order__heading us-none">
+                                            <h3>Tilaus / toimitus</h3>
                                             <span></span>
                                         </div>
-                                        <div class="infos-order__content">
+                                        <div class="custom-spoiler__content infos-order__content">
                                             <p>
                                                 Kun teet tilauksen ennen tiistaita 14:30 - tilauksesi toimitetaan ensimmäistä kertaa saman viikon perjantaina kun tilaukset sulkeutuivat. Sen jälkeen saat toimituksia kahdesti viikossa (ti ja pe) kunnes
                                                 tilauksesi päättyy. Tiistain jälkeen tehdyt tilaukset siirtyvät automaattisesti seuraavalle viikolle.
                                             </p>
                                         </div>
-                                    </div>
+                                    </custom-spoiler>
                                 </div>
                                 <custom-timer class="order__timer custom-timer" data-day="Tiistai" data-time="14:30">
                                     <h4 class="custom-timer__title">Tilaukset sulkeutuvat tiistaisin klo 14.30</h4>
@@ -805,7 +805,7 @@
                     <span></span>
                 </div>
                 <section id="banner">
-                    <custom-banner class="banner">
+                    <div class="banner">
                         <div class="swiper banner-swiper">
                             <div class="swiper-wrapper banner-swiper__wrapper">
                                 <div class="swiper-slide banner-slide">
@@ -837,7 +837,7 @@
                                 </div>
                             </div>
                         </div>
-                    </custom-banner>
+                    </div>
                 </section>
                 <div class="decor-line _container">
                     <span></span>
@@ -972,6 +972,7 @@
             </footer>
         </div>
         <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+        <script type="module" src="scripts/landing.js"></script>
         <script src="scripts/main.js"></script>
     </body>
 </html>

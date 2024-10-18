@@ -21,8 +21,8 @@
 
     /*Fonts sizes*/
 
-    --calori-sections-title-fz: 18px;
+    --calori-sections-title-fz: 20px;
+    --calori-subtitle-fz: 18px;
     --calori-default-text-fz: 16px;
-    --calori-subtitle-fz: 16px;
     --calori-subtext-fz: 14px;
 }
