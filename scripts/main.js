@@ -1,13 +1,11 @@
 document.addEventListener("DOMContentLoaded", () => {
     const getMaxHeight = (content) => {
         let height = 0;
-        console.log(content);
 
         for (let i = 0; i < content.length; i++) {
             if (height < content[i].offsetHeight) {
                 height = content[i].offsetHeight;
             }
-            console.log(height);
         }
 
         return height;
@@ -354,15 +352,10 @@ document.addEventListener("DOMContentLoaded", () => {
     class CustomOrder extends HTMLElement {
         constructor() {
             super();
-            this.spoilers = this.querySelectorAll(`.${customOrderSelectors.orderSpoiler}`);
             this.productButtons = this.querySelectorAll(`.${customOrderSelectors.productButton}`);
             this.infoContent = this.querySelector(`.${customOrderSelectors.orderInfoContent}`);
             this.orderButtons = this.querySelector(`.${customOrderSelectors.orderButtons}`);
             this.orderDuration = this.querySelector(`.${customOrderSelectors.orderDuration}`);
-
-            this.spoilers.forEach((e) => {
-                e.querySelector(`.${customOrderSelectors.orderInfoHeading}`).addEventListener("click", this.spoilerHandle.bind(this));
-            });
             this.productButtons.forEach((e) => {
                 e.addEventListener("click", this.productButtonHandle.bind(this));
             });
@@ -370,26 +363,6 @@ document.addEventListener("DOMContentLoaded", () => {
 
         connectedCallback() {
             //this.setButtonsMargin();
-        }
-
-        spoilerHandle(event) {
-            const target = event.currentTarget;
-            const parent = target.parentElement;
-
-            parent.classList.toggle("_opened");
-            this.setSpoilerContentHeight(parent);
-        }
-
-        setSpoilerContentHeight(parent) {
-            const contentElem = parent.querySelector(`.${customOrderSelectors.orderInfoContent}`);
-            if (parent.classList.contains("_opened")) {
-                const height = contentElem.scrollHeight;
-                contentElem.style.height = `${height}px`;
-                contentElem.style.opacity = 1;
-            } else {
-                contentElem.style.height = "0px";
-                contentElem.style.opacity = 0;
-            }
         }
 
         productButtonHandle(e) {
@@ -981,6 +954,47 @@ document.addEventListener("DOMContentLoaded", () => {
 
     customElements.define("custom-menu", CustomMenu);
 
+    const customSpoilerSelectors = {
+        spoilerHeading: "custom-spoiler__heading",
+        spoilerContent: "custom-spoiler__content",
+        spoilerText: "custom-spoiler__text",
+    };
+
+    class CustomSpoiler extends HTMLElement {
+        constructor() {
+            super();
+            this.content = this.querySelector(`.${customSpoilerSelectors.spoilerContent}`);
+            this.spoilerText = this.querySelector(`.${customSpoilerSelectors.spoilerText}`);
+            this.contentPadding = this.getAttribute("data-content-padding");
+            this.addEventListener("click", this.spoilerHandle.bind(this));
+        }
+
+        connectedCallback() {
+            this.content.style.height = 0;
+        }
+        spoilerHandle() {
+            this.classList.toggle("_opened");
+            this.changeSpoilerHeight();
+        }
+
+        changeSpoilerHeight() {
+            let contentHeight = this.content.scrollHeight;
+            contentHeight += parseInt(this.contentPadding * 2);
+
+            if (this.classList.contains("_opened")) {
+                this.content.style.paddingTop = this.contentPadding + "px";
+                this.content.style.paddingBottom = this.contentPadding + "px";
+                this.content.style.height = contentHeight + "px";
+            } else {
+                this.content.style.paddingTop = 0;
+                this.content.style.paddingBottom = 0;
+                this.content.style.height = 0;
+            }
+        }
+    }
+
+    customElements.define("custom-spoiler", CustomSpoiler);
+
     const disableDoubleTouchZoom = () => {
         let lastTouchEnd = 0;
 
@@ -1058,10 +1072,7 @@ document.addEventListener("DOMContentLoaded", () => {
             enabled: false,
         },
         on: {
-            init: (swiper) => {
-                const content = swiper.el.querySelectorAll(".meals-slide__content");
-                swiper.slides.forEach((el) => (el.style.height = getMaxHeight(content) + "px"));
-            },
+            init: (swiper) => {},
         },
     });
     const whySwiper = new Swiper(".why-swiper", {

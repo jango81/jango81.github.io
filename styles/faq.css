@@ -1,0 +1,58 @@
+@import "./variables.css";
+
+
+
+#faq {
+    padding-bottom: var(--calori-sections-padding);
+}
+.faq-block {
+    max-width: var(--calori-container-width);
+    width: 100%;
+    margin: 0 auto;
+    margin-top: 20px;
+}
+.faq-block:not(:first-child) {
+    margin-top: 50px;
+}
+.faq-block__title {
+    text-align: center;
+    font-size: var(--calori-subtitle-fz);
+    margin-bottom: 20px;
+}
+.faq-spoiler {
+    color: var(--calori-color-text-third);
+    overflow: hidden;
+    border-radius: 10px;
+}
+.faq-spoiler:not(:first-child) {
+    margin-top: 10px;
+}
+.faq-spoiler__heading {
+    font-size: var(--calori-default-text-fz);
+    position: relative;
+    background: var(--calori-color-bg-primary);
+    padding: 15px 20px;
+}
+.faq-spoiler__heading span::before,
+.faq-spoiler__heading span::after {
+    background: var(--calori-color-text-third);
+}
+.faq-spoiler__heading::before {
+    content: "";
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    height: 1px;
+    opacity: 0;
+    background: var(--calori-color-text-third);
+    transition: opacity 0.3s ease;
+}
+.faq-spoiler._opened .faq-spoiler__heading::before {
+    opacity: 1;
+}
+.faq-spoiler__content {
+    background: var(--calori-color-bg-primary);
+    line-height: 1.7;
+    padding: 0 10px;
+}
