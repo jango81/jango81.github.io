@@ -1,13 +1,16 @@
 document.addEventListener("DOMContentLoaded", () => {
-    const resizeSliders = (element, content) => {
+    const getMaxHeight = (content) => {
         let height = 0;
+        console.log(content);
+
         for (let i = 0; i < content.length; i++) {
             if (height < content[i].offsetHeight) {
                 height = content[i].offsetHeight;
             }
+            console.log(height);
         }
 
-        element.el.style.height = height + "px";
+        return height;
     };
 
     const centerSlides = (swiper) => {
@@ -154,7 +157,6 @@ document.addEventListener("DOMContentLoaded", () => {
         }
 
         showHeaderScrolled() {
-            if (document.querySelector("#header").classList.contains("_no-anim")) return;
             const rect = this.headerTag.getBoundingClientRect();
             const headerTopSide = rect.top;
             const headerBottomSide = rect.bottom;
@@ -462,7 +464,7 @@ document.addEventListener("DOMContentLoaded", () => {
             const selectValueOptions = this.customSelectOptions.scrollHeight;
             this.customSelectOptions.style.height = "0px";
             setTimeout(() => {
-                this.customSelectOptions.style.height = `${selectValueOptions}px`;
+                this.customSelectOptions.style.height = `${selectValueOptions + selectValueHeight}px`;
                 this.customSelectOptions.style.paddingTop = `${selectValueHeight}px`;
             }, 0);
 
@@ -791,7 +793,7 @@ document.addEventListener("DOMContentLoaded", () => {
         on: {
             init: (swiper) => {
                 const slideContents = document.querySelectorAll(".steps-slide__content");
-                resizeSliders(swiper, slideContents);
+                swiper.el.style.height = getMaxHeight(slideContents) + "px";
             },
         },
     });
@@ -946,7 +948,6 @@ document.addEventListener("DOMContentLoaded", () => {
         }
 
         connectedCallback() {
-            document.querySelector("#header").classList.add("_no-anim");
             this.mealPopup.style.visibility = "hidden";
             this.menuSticky.style.top = this.header.offsetHeight + "px";
         }
@@ -1058,7 +1059,8 @@ document.addEventListener("DOMContentLoaded", () => {
         },
         on: {
             init: (swiper) => {
-                centerSlides(swiper);
+                const content = swiper.el.querySelectorAll(".meals-slide__content");
+                swiper.slides.forEach((el) => (el.style.height = getMaxHeight(content) + "px"));
             },
         },
     });
@@ -1080,10 +1082,7 @@ document.addEventListener("DOMContentLoaded", () => {
             },
         },
         on: {
-            init: (swiper) => {
-                const content = document.querySelectorAll(".why-slide__content");
-                resizeSliders(swiper, content);
-            },
+            init: (swiper) => {},
         },
     });
     const reviewsSwiper = new Swiper(".reviews-swiper", {

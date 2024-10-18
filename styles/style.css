@@ -106,7 +106,20 @@ body {
     margin: 0 5px;
     margin-top: 5px;
 }
+.radio-sm._price-tag::before {
+}
 
+.radio-sm .price-tag {
+    position: absolute;
+    right: 0;
+    top: 0;
+    font-size: 12px;
+    padding: 5px;
+    transform: translateY(-50%) translateX(15%);
+    background: var(--calori-color-price-tag);
+    color: var(--calori-color-text-third);
+    border-radius: 5px;
+}
 .radio-sm input {
     position: absolute;
     left: 0;
@@ -296,9 +309,23 @@ body {
 }
 
 .custom-select__option {
+    position: relative;
     border-radius: 10px;
     padding: 10px;
     transition: background 0.3s ease, color 0.3s ease;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.custom-select__option .price-tag {
+    margin-left: 5px;
+    flex-shrink: 0;
+    padding: 5px;
+    font-size: 12px;
+    align-self: right;
+    background: var(--calori-color-price-tag);
+    color: var(--calori-color-text-third);
+    border-radius: 5px;
 }
 .custom-select__option:hover {
     background: var(--calori-color-bg-primary);
@@ -1119,6 +1146,7 @@ body {
     margin-top: 20px;
 }
 .meals-slide__content {
+    min-height: 100%;
     border: 2px solid var(--calori-color-bg-fourth);
     border-radius: var(--calori-blocks-border-radius);
     box-shadow: 0px 0px 19px -8px rgba(0, 0, 0, 0.75);
@@ -1144,7 +1172,7 @@ body {
     font-size: var(--calori-default-text-fz);
 }
 .meals-slide__info {
-    padding: 10px;
+    padding: 20px;
 }
 .meals-popup {
     visibility: hidden;
@@ -1157,7 +1185,7 @@ body {
     top: 0;
     width: 100%;
     height: 100%;
-    z-index: 100;
+    z-index: 9999;
     background: rgba(0, 0, 0, 0.5);
     transition: visibility 0.3s ease, opacity 0.3s ease;
 }
@@ -1209,10 +1237,6 @@ body {
     justify-content: center;
     align-items: center;
     width: 100%;
-}
-
-.order-block:not(:first-child) {
-    margin-top: 10px;
 }
 .order-block-title {
     width: 100%;
@@ -1267,7 +1291,6 @@ body {
 }
 .order-delivery__text {
     margin-left: 10px;
-
 }
 .order-delivery__date {
     margin-left: 10px;
@@ -1433,6 +1456,9 @@ body {
     .order-products {
         max-width: 50%;
     }
+    .order-block:not(:first-child) {
+        margin-top: 10px;
+    }
     .order-type {
         display: flex;
     }
@@ -1459,8 +1485,12 @@ body {
         height: 100%;
     }
     .order-duration__button {
+        position: relative;
         flex: 1 1 auto;
         height: var(--order-form-elems-height);
+    }
+    .order-duration__buttons.price-tag-margin {
+        margin-top: 15px;
     }
     .order__controls {
         display: flex;
@@ -2088,16 +2118,18 @@ body {
     --calori-footer-li-margin: 15px;
     font-size: var(--calori-default-text-fz);
 }
-.footer__container {
-}
 .footer__body {
     padding-top: 80px;
     padding-bottom: var(--calori-sections-padding);
 }
 .footer-content {
     display: grid;
-    grid-template-areas: "decor decor" "about nav" "info info";
+    grid-template-areas: 
+    "decor decor" 
+    "about nav" 
+    "info nav";
     gap: 20px;
+    
     padding-bottom: 20px;
 }
 
@@ -2138,10 +2170,7 @@ body {
     width: 30px;
     margin: 0 10px;
 }
-.decor-content__instagram {
-}
-.decor-content__tiktok {
-}
+
 .decor-content__instagram img {
     height: 100%;
     width: 100%;
@@ -2156,8 +2185,7 @@ body {
     align-items: center;
     flex-direction: column;
 }
-.nav-content__wrapper {
-}
+
 .nav-content__list {
     margin-top: 20px;
 }
@@ -2168,10 +2196,9 @@ body {
     grid-area: about;
     display: flex;
     flex-direction: column;
-    align-items: center;
+    align-items: start;
 }
-.about-content__wrapper {
-}
+
 .about-content__list {
     margin-top: 20px;
 }
@@ -2180,15 +2207,14 @@ body {
 }
 .info-content {
     grid-area: info;
+    display: flex;
+    flex-direction: column;
+    align-items: start;
 }
-.info-content__heading {
+.info-content__wrapper {
 }
 .info-content__address {
     margin-top: 15px;
-}
-.info-content__street {
-}
-.info-content__city {
 }
 .info-content__phone {
     margin-top: 10px;
@@ -2204,12 +2230,7 @@ body {
 .others-footer__terms li:not(:first-child) {
     margin-left: 10px;
 }
-.others-footer__bottom {
-}
-.others-footer__payment {
-}
-
-@media (min-width: 720px) {
+@media (min-width: 560px) {
     #footer {
         font-size: 18px;
         letter-spacing: 0.6px;

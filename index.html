@@ -295,7 +295,7 @@
                                 <div class="swiper-slide meals-slide">
                                     <div class="meals-slide__content">
                                         <div class="meals-slide__image">
-                                            <img src="images/meal1.jpg" alt="food image" />
+                                            <img src="images/menu/meal1.jpg" alt="food image" />
                                         </div>
                                         <div class="meals-slide__info">
                                             <header class="meals-slide__title">
@@ -310,7 +310,7 @@
                                 <div class="swiper-slide meals-slide">
                                     <div class="meals-slide__content">
                                         <div class="meals-slide__image">
-                                            <img src="images/meal2.jpg " alt="food image" />
+                                            <img src="images/menu/meal2.jpg " alt="food image" />
                                         </div>
                                         <div class="meals-slide__info">
                                             <header class="meals-slide__title">
@@ -325,7 +325,7 @@
                                 <div class="swiper-slide meals-slide">
                                     <div class="meals-slide__content">
                                         <div class="meals-slide__image">
-                                            <img src="images/meal3.jpg" alt="food image" />
+                                            <img src="images/menu/meal3.jpg" alt="food image" />
                                         </div>
                                         <div class="meals-slide__info">
                                             <header class="meals-slide__title">
@@ -340,7 +340,7 @@
                                 <div class="swiper-slide meals-slide">
                                     <div class="meals-slide__content">
                                         <div class="meals-slide__image">
-                                            <img src="images/meal4.jpg" alt="food image" />
+                                            <img src="images/menu/meal4.jpg" alt="food image" />
                                         </div>
                                         <div class="meals-slide__info">
                                             <header class="meals-slide__title">
@@ -398,10 +398,14 @@
                                 <form class="order__form">
                                     <div class="order__products order-products order-block">
                                         <div class="order-products__product _active">
-                                            <button type="button"><strong><h3>Kalorilaskettu ruokavalio</h3></strong></button>
+                                            <button type="button">
+                                                <strong><h3>Kalorilaskettu ruokavalio</h3></strong>
+                                            </button>
                                         </div>
                                         <div class="order-products__product">
-                                            <button type="button"><strong><h3>Arjen helpotus ruokavalio</h3></strong></button>
+                                            <button type="button">
+                                                <strong><h3>Arjen helpotus ruokavalio</h3></strong>
+                                            </button>
                                         </div>
                                     </div>
                                     <div class="order__controls">
@@ -454,31 +458,35 @@
                                                             <span></span>
                                                         </div>
                                                         <div class="custom-select__options">
-                                                            <div class="custom-select__option" data-value="Lounas + Päivällinen">Lounas + Päivällinen</div>
-                                                            <div class="custom-select__option" data-value="Aamupala + Lounas">Aamupala + Lounas</div>
-                                                            <div class="custom-select__option" data-value="Aamupala + Päivällinen">Aamupala + Päivällinen</div>
-                                                            <div class="custom-select__option" data-value="Päivällinen + Välipala">Päivällinen + Välipala</div>
-                                                            <div class="custom-select__option" data-value="Aamupala + Lounas + Päivällinen">Aamupala + Lounas + Päivällinen</div>
-                                                            <div class="custom-select__option" data-value="Lounas + Päivällinen + Välipala">Lounas + Päivällinen + Välipala</div>
+                                                            <div class="custom-select__option" data-value="Lounas + Päivällinen">Lounas + Päivällinen<span class="price-tag">30€/pv</span></div>
+                                                            <div class="custom-select__option" data-value="Aamupala + Lounas">Aamupala + Lounas<span class="price-tag">30€/pv</span></div>
+                                                            <div class="custom-select__option" data-value="Aamupala + Päivällinen">Aamupala + Päivällinen<span class="price-tag">30€/pv</span></div>
+                                                            <div class="custom-select__option" data-value="Päivällinen + Välipala">Päivällinen + Välipala<span class="price-tag">30€/pv</span></div>
+                                                            <div class="custom-select__option" data-value="Aamupala + Lounas + Päivällinen">Aamupala + Lounas + Päivällinen<span class="price-tag">30€/pv</span></div>
+                                                            <div class="custom-select__option" data-value="Lounas + Päivällinen + Välipala">Lounas + Päivällinen + Välipala<span class="price-tag">30€/pv</span></div>
                                                         </div>
                                                     </div>
                                                 </custom-select>
-                                                <div class="order-duration__buttons _desktop">
+                                                <div class="order-duration__buttons _desktop price-tag-margin">
                                                     <span class="order-duration__button radio-sm">
                                                         <input type="radio" name="order-duration" id="" />
                                                         <label for="order-duration">1500 kcal</label>
+                                                        <span class="price-tag">30€/pv</span>
                                                     </span>
                                                     <span class="order-duration__button radio-sm">
                                                         <input type="radio" name="order-duration" id="" />
                                                         <label for="order-duration">1500 kcal</label>
+                                                        <span class="price-tag">30€/pv</span>
                                                     </span>
                                                     <span class="order-duration__button radio-sm">
                                                         <input type="radio" name="order-duration" id="" />
                                                         <label for="order-duration">1500 kcal</label>
+                                                        <span class="price-tag">30€/pv</span>
                                                     </span>
                                                     <span class="order-duration__button radio-sm">
                                                         <input type="radio" name="order-duration" id="" />
                                                         <label for="order-duration">1500 kcal</label>
+                                                        <span class="price-tag">30€/pv</span>
                                                     </span>
                                                 </div>
                                             </fieldset>
@@ -930,17 +938,19 @@
                                 </div>
                             </nav>
                             <div class="footer-content__info info-content">
-                                <header class="info-content__heading"><strong>Yhteystiedot:</strong></header>
-                                <p class="info-content__address">
-                                    <span class="info-content__street">Sörnäisten rantatie 27 A, </span>
-                                    <br />
-                                    <span class="info-content__city">00500 Helsinki</span>
-                                    <br />
-                                    <span class="info-content__company-name">Lagom food Oy</span>
-                                </p>
-                                <p class="info-content__phone">
-                                    <a href="tel:+358 40 2160 180">040 2160 180</a>
-                                </p>
+                                <div class="info-content__wrapper">
+                                    <header class="info-content__heading"><strong>Yhteystiedot:</strong></header>
+                                    <p class="info-content__address">
+                                        <span class="info-content__street">Sörnäisten rantatie 27 A, </span>
+                                        <br />
+                                        <span class="info-content__city">00500 Helsinki</span>
+                                        <br />
+                                        <span class="info-content__company-name">Lagom food Oy</span>
+                                    </p>
+                                    <p class="info-content__phone">
+                                        <a href="tel:+358 40 2160 180">040 2160 180</a>
+                                    </p>
+                                </div>
                             </div>
                         </div>
                         <div class="footer__others others-footer">
