@@ -1,13 +1,16 @@
 document.addEventListener("DOMContentLoaded", () => {
-    const resizeSliders = (element, content) => {
+    const getMaxHeight = (content) => {
         let height = 0;
+        console.log(content);
+
         for (let i = 0; i < content.length; i++) {
             if (height < content[i].offsetHeight) {
                 height = content[i].offsetHeight;
             }
+            console.log(height);
         }
 
-        element.el.style.height = height + "px";
+        return height;
     };
 
     const centerSlides = (swiper) => {
@@ -174,7 +177,6 @@ document.addEventListener("DOMContentLoaded", () => {
                 );
             }
         }
-
         //Set class active to navigation that showing it
         setNavigationClass() {
             document.querySelector(".navigation").classList.add("_active");
@@ -462,7 +464,7 @@ document.addEventListener("DOMContentLoaded", () => {
             const selectValueOptions = this.customSelectOptions.scrollHeight;
             this.customSelectOptions.style.height = "0px";
             setTimeout(() => {
-                this.customSelectOptions.style.height = `${selectValueOptions}px`;
+                this.customSelectOptions.style.height = `${selectValueOptions + selectValueHeight}px`;
                 this.customSelectOptions.style.paddingTop = `${selectValueHeight}px`;
             }, 0);
 
@@ -791,7 +793,7 @@ document.addEventListener("DOMContentLoaded", () => {
         on: {
             init: (swiper) => {
                 const slideContents = document.querySelectorAll(".steps-slide__content");
-                resizeSliders(swiper, slideContents);
+                swiper.el.style.height = getMaxHeight(slideContents) + "px";
             },
         },
     });
@@ -921,6 +923,64 @@ document.addEventListener("DOMContentLoaded", () => {
 
     customElements.define("custom-banner", CustomBanner);
 
+    const customMenuSelectors = {
+        dayCard: "day-card",
+        mealPopup: "popup-meal",
+        timeOfDay: "day-card-meal",
+        productProperities: "day-card-properties",
+        productImage: "day-card-image",
+        productName: "day-card-meal-name",
+        menuSticky: "menu__sticky",
+    };
+
+    class CustomMenu extends HTMLElement {
+        constructor() {
+            super();
+
+            this.dayCard = this.querySelectorAll(`.${customMenuSelectors.dayCard}`);
+            this.mealPopup = this.querySelector(`.${customMenuSelectors.mealPopup}`);
+            this.menuSticky = this.querySelector(`.${customMenuSelectors.menuSticky}`);
+            this.header = document.querySelector(".header");
+            this.currentMealData = {};
+
+            this.dayCard.forEach((el) => el.addEventListener("click", this.popupHandle.bind(this)));
+            this.mealPopup.addEventListener("click", this.popupHandle.bind(this));
+        }
+
+        connectedCallback() {
+            this.mealPopup.style.visibility = "hidden";
+            this.menuSticky.style.top = this.header.offsetHeight + "px";
+        }
+        popupHandle(e) {
+            const isDayCardClicked = e.currentTarget === this.mealPopup.querySelector(`.${customMenuSelectors.dayCard}`);
+            if (isDayCardClicked) {
+                this.closePopup();
+            }
+            if (this.mealPopup.classList.contains("_active") && !isDayCardClicked) {
+                this.closePopup();
+            } else {
+                this.showPopup();
+            }
+        }
+        showPopup() {
+            this.mealPopup.classList.add("_active");
+            this.mealPopup.style.visibility = "visible";
+        }
+        closePopup() {
+            const popupCard = this.mealPopup.querySelector(`.${customMenuSelectors.dayCard}`);
+            this.mealPopup.classList.remove("_active");
+            popupCard.addEventListener(
+                "transitionend",
+                () => {
+                    this.mealPopup.style.visibility = "hidden";
+                },
+                { once: true }
+            );
+        }
+    }
+
+    customElements.define("custom-menu", CustomMenu);
+
     const disableDoubleTouchZoom = () => {
         let lastTouchEnd = 0;
 
@@ -985,6 +1045,7 @@ document.addEventListener("DOMContentLoaded", () => {
                     prevEl: ".meals-swiper-prev",
                     nextEl: ".meals-swiper-next",
                 },
+                slidesPerView: 3,
             },
             1340: {
                 slidesPerView: 4,
@@ -995,6 +1056,12 @@ document.addEventListener("DOMContentLoaded", () => {
         },
         navigation: {
             enabled: false,
+        },
+        on: {
+            init: (swiper) => {
+                const content = swiper.el.querySelectorAll(".meals-slide__content");
+                swiper.slides.forEach((el) => (el.style.height = getMaxHeight(content) + "px"));
+            },
         },
     });
     const whySwiper = new Swiper(".why-swiper", {
@@ -1015,10 +1082,7 @@ document.addEventListener("DOMContentLoaded", () => {
             },
         },
         on: {
-            init: (swiper) => {
-                const content = document.querySelectorAll(".why-slide__content");
-                resizeSliders(swiper, content);
-            },
+            init: (swiper) => {},
         },
     });
     const reviewsSwiper = new Swiper(".reviews-swiper", {
@@ -1087,7 +1151,33 @@ document.addEventListener("DOMContentLoaded", () => {
         },
         speed: swipersSettings.speed,
     });
+    const dayMenuSwiper = new Swiper(".day-swiper", {
+        slidesPerView: "auto",
+        pagination: {
+            el: ".swiper-pagination",
+        },
+        breakpoints: {
+            730: {
+                slidesPerView: 2,
+            },
+            1100: {
+                slidesPerView: 3,
+            },
+            1580: {
+                slidesPerView: 4,
+            },
+        },
+
+        on: {
+            init: (swiper) => {
+                centerSlides(swiper);
+            },
+        },
+    });
     window.addEventListener("resize", () => {
-        document.querySelector(".meals").addDays();
+        const meals = document.querySelector(".meals");
+        if (meals) {
+            meals.addDays();
+        }
     });
 });

@@ -1,0 +1,239 @@
+@import "./variables.css";
+
+.day-card {
+    border-radius: 15px;
+    overflow: hidden;
+}
+.day-card-image {
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+}
+.day-card-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+}
+.day-card-info {
+    padding: 10px;
+    padding-bottom: 20px;
+    max-height: 250px;
+    overflow: auto;
+}
+.day-card-propeties {
+    display: flex;
+}
+.day-card-propeties li {
+    font-size: 13px;
+    background: var(--calori-color-bg-primary);
+    color: var(--calori-color-text-third);
+    padding: 3px 8px;
+    border-radius: 5px;
+}
+.day-card-propeties li:not(:first-child) {
+    margin-left: 5px;
+}
+.day-card-meal {
+    margin-top: 10px;
+}
+.day-card-meal-name {
+    margin-top: 10px;
+}
+
+#menu {
+}
+.menu {
+    width: 100%;
+}
+.menu__container {
+}
+.menu__body {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.menu__banner {
+    position: relative;
+    width: 100%;
+    min-height: 300px;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.menu__title {
+    color: var(--calori-color-text-third);
+}
+.menu__title h1 {
+    font-size: 40px;
+    font-style: italic;
+    letter-spacing: 3px;
+}
+.menu__title h3 {
+    font-size: 16px;
+}
+.menu__image {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+}
+.menu__image::before {
+    content: "";
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -1;
+    background: rgba(0, 0, 0, 0.5);
+}
+.menu__image img {
+    position: absolute;
+    left: 0;
+    top: 0;
+    z-index: -2;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+}
+.menu__title {
+    text-align: center;
+}
+.menu__sticky {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 20px 0;
+    padding-bottom: 30px;
+    width: 100%;
+    background: #ffff;
+}
+.menu__date {
+    margin-top: 15px;
+    font-size: 20px;
+}
+.menu__buttons {
+    margin-top: 15px;
+}
+.menu__buttons button {
+    background: #ffff;
+    color: var(--calori-color-text-secondary);
+    padding: 10px 15px;
+    border: 1px solid #000;
+    border-radius: 6px;
+    transition: background 0.3s ease, color 0.3s ease;
+    font-size: 17px;
+}
+.menu__buttons button._active,
+.menu__buttons button:hover {
+    border: 1px solid var(--calori-color-bg-primary);
+    background: var(--calori-color-bg-primary);
+    color: var(--calori-color-text-third);
+}
+
+.day-menu {
+    width: 100%;
+    margin-top: 30px;
+}
+.day-menu__heading {
+    text-align: center;
+    font-size: 20px;
+}
+.day-swiper {
+    width: 100%;
+    margin-top: 15px;
+}
+.day-swiper__slide {
+}
+.day-slide {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.day-slide__content {
+    margin: 10px;
+    max-width: 400px;
+    border: 2px solid var(--calori-color-bg-fourth);
+    box-shadow: 0px 0px 19px -8px rgba(0, 0, 0, 0.75);
+}
+
+.menu-popup__meal {
+    position: fixed;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 10000;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.menu-popup__meal::before {
+    content: "";
+    position: absolute;
+    left: 0;
+    top: 0;
+    height: 100%;
+    width: 100%;
+    z-index: -1;
+    background: rgba(0, 0, 0, 0.5);
+}
+.popup-meal__wrapper {
+    padding: 20px;
+}
+.popup-meal__content {
+    background: #ffff;
+    max-width: 600px;
+    width: 100%;
+    
+    border-radius: 15px;
+    transform: scale(0.5);
+    opacity: 0;
+    transition: transform .3s ease, opacity .3s ease;
+}
+
+.menu-popup__meal._active .popup-meal__content {
+    transform: scale(1);
+    opacity: 1;
+}
+
+.popup-meal__image {
+    max-height: 500px;
+    max-height: 800px;
+    width: 100%;
+    height: 100%;
+}
+.popup-meal__image img {
+    max-width: 100%;
+    max-height: 100%;
+    height: auto;
+}
+.popup-block {
+    margin-top: 15px;
+}
+.popup-block__title {
+    font-size: 18px;
+    font-weight: 400;
+    border-radius: 5px;
+}
+.popup-meal__ingredients {
+    margin-top: 7px;
+    font-style: italic;
+}
+@media (max-width: 700px) {
+    .popup-meal__content {
+        max-width: 500px;
+    }
+}
+@media (min-width: 500px) {
+    .popup-block__title {
+        font-size: 19px;
+    }
+    .popup-meal__ingredients {
+        font-size: 18px;
+    }
+}

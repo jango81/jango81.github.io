@@ -160,7 +160,7 @@
                     <div class="header__drawer"></div>
                 </custom-header>
             </header>
-            <main>
+            <main id="main">
                 <section class="head-section">
                     <div class="head-section__container _container">
                         <div class="head-section__wrapper">
@@ -295,7 +295,7 @@
                                 <div class="swiper-slide meals-slide">
                                     <div class="meals-slide__content">
                                         <div class="meals-slide__image">
-                                            <img src="images/пятница 4.png" alt="food image" />
+                                            <img src="images/menu/meal1.jpg" alt="food image" />
                                         </div>
                                         <div class="meals-slide__info">
                                             <header class="meals-slide__title">
@@ -310,7 +310,7 @@
                                 <div class="swiper-slide meals-slide">
                                     <div class="meals-slide__content">
                                         <div class="meals-slide__image">
-                                            <img src="images/пятница 4.png" alt="food image" />
+                                            <img src="images/menu/meal2.jpg " alt="food image" />
                                         </div>
                                         <div class="meals-slide__info">
                                             <header class="meals-slide__title">
@@ -325,7 +325,7 @@
                                 <div class="swiper-slide meals-slide">
                                     <div class="meals-slide__content">
                                         <div class="meals-slide__image">
-                                            <img src="images/пятница 4.png" alt="food image" />
+                                            <img src="images/menu/meal3.jpg" alt="food image" />
                                         </div>
                                         <div class="meals-slide__info">
                                             <header class="meals-slide__title">
@@ -340,7 +340,7 @@
                                 <div class="swiper-slide meals-slide">
                                     <div class="meals-slide__content">
                                         <div class="meals-slide__image">
-                                            <img src="images/пятница 4.png" alt="food image" />
+                                            <img src="images/menu/meal4.jpg" alt="food image" />
                                         </div>
                                         <div class="meals-slide__info">
                                             <header class="meals-slide__title">
@@ -352,7 +352,6 @@
                                         </div>
                                     </div>
                                 </div>
-                                
                             </div>
                             <div class="swiper-button-prev swiper-nav-button meals-swiper-prev"></div>
                             <div class="swiper-button-next swiper-nav-button meals-swiper-next"></div>
@@ -398,11 +397,15 @@
                                 </div>
                                 <form class="order__form">
                                     <div class="order__products order-products order-block">
-                                        <div class="order-products__product">
-                                            <button type="button">Arjen helpotus ruokavalio</button>
+                                        <div class="order-products__product _active">
+                                            <button type="button">
+                                                <strong><h3>Kalorilaskettu ruokavalio</h3></strong>
+                                            </button>
                                         </div>
                                         <div class="order-products__product">
-                                            <button type="button">Kalorilaskettu ruokavalio</button>
+                                            <button type="button">
+                                                <strong><h3>Arjen helpotus ruokavalio</h3></strong>
+                                            </button>
                                         </div>
                                     </div>
                                     <div class="order__controls">
@@ -455,31 +458,35 @@
                                                             <span></span>
                                                         </div>
                                                         <div class="custom-select__options">
-                                                            <div class="custom-select__option" data-value="Lounas + Päivällinen">Lounas + Päivällinen</div>
-                                                            <div class="custom-select__option" data-value="Aamupala + Lounas">Aamupala + Lounas</div>
-                                                            <div class="custom-select__option" data-value="Aamupala + Päivällinen">Aamupala + Päivällinen</div>
-                                                            <div class="custom-select__option" data-value="Päivällinen + Välipala">Päivällinen + Välipala</div>
-                                                            <div class="custom-select__option" data-value="Aamupala + Lounas + Päivällinen">Aamupala + Lounas + Päivällinen</div>
-                                                            <div class="custom-select__option" data-value="Lounas + Päivällinen + Välipala">Lounas + Päivällinen + Välipala</div>
+                                                            <div class="custom-select__option" data-value="Lounas + Päivällinen">Lounas + Päivällinen<span class="price-tag">30€/pv</span></div>
+                                                            <div class="custom-select__option" data-value="Aamupala + Lounas">Aamupala + Lounas<span class="price-tag">30€/pv</span></div>
+                                                            <div class="custom-select__option" data-value="Aamupala + Päivällinen">Aamupala + Päivällinen<span class="price-tag">30€/pv</span></div>
+                                                            <div class="custom-select__option" data-value="Päivällinen + Välipala">Päivällinen + Välipala<span class="price-tag">30€/pv</span></div>
+                                                            <div class="custom-select__option" data-value="Aamupala + Lounas + Päivällinen">Aamupala + Lounas + Päivällinen<span class="price-tag">30€/pv</span></div>
+                                                            <div class="custom-select__option" data-value="Lounas + Päivällinen + Välipala">Lounas + Päivällinen + Välipala<span class="price-tag">30€/pv</span></div>
                                                         </div>
                                                     </div>
                                                 </custom-select>
-                                                <div class="order-duration__buttons _desktop">
+                                                <div class="order-duration__buttons _desktop price-tag-margin">
                                                     <span class="order-duration__button radio-sm">
                                                         <input type="radio" name="order-duration" id="" />
                                                         <label for="order-duration">1500 kcal</label>
+                                                        <span class="price-tag">30€/pv</span>
                                                     </span>
                                                     <span class="order-duration__button radio-sm">
                                                         <input type="radio" name="order-duration" id="" />
                                                         <label for="order-duration">1500 kcal</label>
+                                                        <span class="price-tag">30€/pv</span>
                                                     </span>
                                                     <span class="order-duration__button radio-sm">
                                                         <input type="radio" name="order-duration" id="" />
                                                         <label for="order-duration">1500 kcal</label>
+                                                        <span class="price-tag">30€/pv</span>
                                                     </span>
                                                     <span class="order-duration__button radio-sm">
                                                         <input type="radio" name="order-duration" id="" />
                                                         <label for="order-duration">1500 kcal</label>
+                                                        <span class="price-tag">30€/pv</span>
                                                     </span>
                                                 </div>
                                             </fieldset>
@@ -725,7 +732,7 @@
                             </div>
                         </div>
                         <div class="quote__image">
-                            <img src="images/quoteImage.png" alt="quote image" />
+                            <img src="images/quoteImage (2).png" alt="quote image" />
                         </div>
                     </div>
                 </section>
@@ -887,49 +894,51 @@
                         </div>
                     </div>
                 </section>
-                <footer id="footer">
-                    <div class="footer__container _container">
-                        <div class="footer__body">
-                            <div class="footer__content footer-content">
-                                <div class="footer-content__decor decor-content">
-                                    <div class="decor-content__logo">
-                                        <a href=""><img src="images/calori.png" alt="calori logo" /></a>
+            </main>
+            <footer id="footer">
+                <div class="footer__container _container">
+                    <div class="footer__body">
+                        <div class="footer__content footer-content">
+                            <div class="footer-content__decor decor-content">
+                                <div class="decor-content__logo">
+                                    <a href=""><img src="images/calori.png" alt="calori logo" /></a>
+                                </div>
+                                <h4 class="decor-content__heading">Seuraa meitä</h4>
+                                <div class="decor-content__socials">
+                                    <div class="decor-content__instagram decor-content__icon">
+                                        <a href="https://www.instagram.com/calori.fi/"><img src="images/icons/instagram-outline-svgrepo-com.svg" alt="instagram logo" /></a>
                                     </div>
-                                    <h4 class="decor-content__heading">Seuraa meitä</h4>
-                                    <div class="decor-content__socials">
-                                        <div class="decor-content__instagram decor-content__icon">
-                                            <a href="https://www.instagram.com/calori.fi/"><img src="images/icons/instagram-outline-svgrepo-com.svg" alt="instagram logo" /></a>
-                                        </div>
-                                        <div class="decor-content__tiktok decor-content__icon">
-                                            <a href="https://www.tiktok.com/@calori.fi"><img src="images/icons/tiktok-outline-svgrepo-com.svg" alt="tiktok logo" /></a>
-                                        </div>
+                                    <div class="decor-content__tiktok decor-content__icon">
+                                        <a href="https://www.tiktok.com/@calori.fi"><img src="images/icons/tiktok-outline-svgrepo-com.svg" alt="tiktok logo" /></a>
                                     </div>
                                 </div>
-                                <nav class="footer-content__nav nav-content">
-                                    <div class="nav-content__wrapper">
-                                        <header class="nav-content__heading"><strong>Linkit:</strong></header>
-                                        <ul class="nav-content__list">
-                                            <li><a href="#">Ruokalista</a></li>
-                                            <li><a href="#">Meistä</a></li>
-                                            <li><a href="#">Toimitus</a></li>
-                                            <li><a href="#">Arvostelut</a></li>
-                                            <li><a href="#">Bonukset</a></li>
-                                            <li><a href="#">Kirjaudu sisään</a></li>
-                                            <li><a href="#">Luo tili</a></li>
-                                        </ul>
-                                    </div>
-                                </nav>
-                                <nav class="footer-content__about about-content">
-                                    <div class="about-content__wrapper">
-                                        <header class="about-content__heading"><strong>Meistä:</strong></header>
-                                        <ul class="about-content__list">
-                                            <li><a href="#">Miksi Calori?</a></li>
-                                            <li><a href="">FAQs</a></li>
-                                            <li><a href="">Ota yhteyttä</a></li>
-                                        </ul>
-                                    </div>
-                                </nav>
-                                <div class="footer-content__info info-content">
+                            </div>
+                            <nav class="footer-content__nav nav-content">
+                                <div class="nav-content__wrapper">
+                                    <header class="nav-content__heading"><strong>Linkit:</strong></header>
+                                    <ul class="nav-content__list">
+                                        <li><a href="#">Ruokalista</a></li>
+                                        <li><a href="#">Meistä</a></li>
+                                        <li><a href="#">Toimitus</a></li>
+                                        <li><a href="#">Arvostelut</a></li>
+                                        <li><a href="#">Bonukset</a></li>
+                                        <li><a href="#">Kirjaudu sisään</a></li>
+                                        <li><a href="#">Luo tili</a></li>
+                                    </ul>
+                                </div>
+                            </nav>
+                            <nav class="footer-content__about about-content">
+                                <div class="about-content__wrapper">
+                                    <header class="about-content__heading"><strong>Meistä:</strong></header>
+                                    <ul class="about-content__list">
+                                        <li><a href="#">Miksi Calori?</a></li>
+                                        <li><a href="">FAQs</a></li>
+                                        <li><a href="">Ota yhteyttä</a></li>
+                                    </ul>
+                                </div>
+                            </nav>
+                            <div class="footer-content__info info-content">
+                                <div class="info-content__wrapper">
                                     <header class="info-content__heading"><strong>Yhteystiedot:</strong></header>
                                     <p class="info-content__address">
                                         <span class="info-content__street">Sörnäisten rantatie 27 A, </span>
@@ -943,24 +952,24 @@
                                     </p>
                                 </div>
                             </div>
-                            <div class="footer__others others-footer">
-                                <ul class="others-footer__terms">
-                                    <li><a href="#">Käyttöehdot</a></li>
-                                    <li><a href="#">Tietosuojaeloste</a></li>
+                        </div>
+                        <div class="footer__others others-footer">
+                            <ul class="others-footer__terms">
+                                <li><a href="#">Käyttöehdot</a></li>
+                                <li><a href="#">Tietosuojaeloste</a></li>
+                            </ul>
+                            <!-- <div class="others-footer__bottom">
+                                <ul class="others-footer__payment">
+                                    <li><img src="" alt=""></li>
+                                    <li><img src="" alt=""></li>
+                                    <li><img src="" alt=""></li>
+                                    <li><img src="" alt=""></li>
                                 </ul>
-                                <!-- <div class="others-footer__bottom">
-                                    <ul class="others-footer__payment">
-                                        <li><img src="" alt=""></li>
-                                        <li><img src="" alt=""></li>
-                                        <li><img src="" alt=""></li>
-                                        <li><img src="" alt=""></li>
-                                    </ul>
-                                </div> -->
-                            </div>
+                            </div> -->
                         </div>
                     </div>
-                </footer>
-            </main>
+                </div>
+            </footer>
         </div>
         <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
         <script src="scripts/main.js"></script>
