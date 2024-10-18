@@ -25,26 +25,3 @@ export default {
     },
 };
 
-const dayMenuSwiper = new Swiper(".day-swiper", {
-    slidesPerView: "auto",
-    pagination: {
-        el: ".swiper-pagination",
-    },
-    breakpoints: {
-        730: {
-            slidesPerView: 2,
-        },
-        1100: {
-            slidesPerView: 3,
-        },
-        1580: {
-            slidesPerView: 4,
-        },
-    },
-
-    on: {
-        init: (swiper) => {
-            centerSlides(swiper);
-        },
-    },
-});

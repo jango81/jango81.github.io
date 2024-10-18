@@ -1,5 +1,8 @@
 @import "./variables.css";
 
+#menu {
+    padding-bottom: var(--calori-sections-padding);
+}
 .day-card {
     border-radius: 15px;
     overflow: hidden;
