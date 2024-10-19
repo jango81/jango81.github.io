@@ -10,12 +10,17 @@
 .why-calori__title {
 }
 .why-calori__image {
-    max-height: 480px;
+    position: relative;
+    min-height: 360px;
+    height: 100%;
     width: 100%;
     overflow: hidden;
     border-radius: 15px;
 }
 .why-calori__image img {
+    position: absolute;
+    left: 0;
+    top: 0;
     width: 100%;
     height: 100%;
     object-fit: cover;
@@ -29,7 +34,7 @@
 .why-calori__block {
     display: flex;
     flex-direction: column;
-    margin-top: 20px;
+    margin-top: 60px;
 }
 .why-calori__content {
     margin-top: 10px;
