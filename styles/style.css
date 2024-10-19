@@ -124,7 +124,8 @@ body {
     color: var(--calori-color-text-third);
 }
 .section-banner__wrapper {
-    
+    position: relative;
+    z-index: 3;
 }
 .section-banner__title {
     display: flex;
@@ -138,7 +139,9 @@ body {
     letter-spacing: 3px;
     text-align: center;
 }
-
+.section-banner__title h3 {
+    text-align: center;
+}
 .section-banner__image {
     position: absolute;
     left: 0;
