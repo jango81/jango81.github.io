@@ -1,0 +1,111 @@
+@import "./variables.css";
+
+#why-calori {
+    padding-bottom: var(--calori-sections-padding);
+}
+.why-calori__banner {
+}
+.why-calori-banner__wrapper {
+}
+.why-calori__title {
+}
+.why-calori__image {
+    max-height: 480px;
+    width: 100%;
+    overflow: hidden;
+    border-radius: 15px;
+}
+.why-calori__image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.why-calori__container {
+    max-width: var(--calori-container-width);
+    width: 100%;
+    margin: 0 auto;
+}
+.why-calori__block {
+    display: flex;
+    flex-direction: column;
+    margin-top: 20px;
+}
+.why-calori__content {
+    margin-top: 10px;
+}
+.why-calori__heading {
+    font-size: 20px;
+    font-weight: 300;
+}
+.why-calori__text {
+    font-size: 17px;
+    margin-top: 10px;
+}
+
+.why-calori__text li:not(:first-child) {
+    margin-top: 5px;
+}
+.order-now__title {
+    font-style: italic;
+    font-size: 25px;
+}
+.order-now-button {
+    margin-top: 20px;
+    font-size: 17px;
+}
+
+.order-now__wrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+@media (min-width: 680px) {
+    .why-calori__block {
+        flex-direction: row;
+        margin-top: 80px;
+    }
+    .why-calori__block:nth-child(2n) {
+        flex-direction: row-reverse;
+    }
+    .why-calori__content {
+        width: 100%;
+        height: 100%;
+        margin: 0;
+        margin-left: 20px;
+        align-self: center;
+    }
+    .why-calori__block:nth-child(2n) .why-calori__content {
+        margin: 0;
+        margin-right: 20px;
+    }
+    .why-calori__image {
+        flex: 1 0 50%;
+    }
+}
+
+@media (min-width: 840px) {
+    .why-calori__content {
+        margin-left: 50px;
+    }
+    .why-calori__block:nth-child(2n) .why-calori__content {
+        margin: 0;
+        margin-right: 50px;
+    }
+    .why-calori__heading {
+        font-size: 25px;
+    }
+    .why-calori__text {
+        font-size: 19px;
+    }
+    .order-now__title {
+        font-size: 30px;
+        letter-spacing: 3px;
+    }
+}
+
+@media (min-width: 1050px) {
+    .why-calori__heading {
+        font-size: 30px;
+    }
+}
