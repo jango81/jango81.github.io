@@ -1,6 +1,5 @@
 import swipersSettings from "./swiperSettings.js";
 
-
 document.addEventListener("DOMContentLoaded", () => {
     const reviewSwiperSetBreakpoints = (swiper) => {
         const slidesLength = swiper.slides.length;
@@ -168,7 +167,6 @@ document.addEventListener("DOMContentLoaded", () => {
         speed: swipersSettings.speed,
     });
 
-
     const mealsSelectors = {
         mealsDays: "meals__days",
         mealsPopup: "meals-popup",
@@ -250,21 +248,34 @@ document.addEventListener("DOMContentLoaded", () => {
         orderButtons: "order__buttons",
         orderBlock: "order-block",
         orderDuration: "order__duration",
+        orderRadio: "order-radio",
+        priceElement: "custom-radio__price",
+        calculatorButton: "order-calculator__button",
+        calculator: "calculator",
     };
     class CustomOrder extends HTMLElement {
         constructor() {
             super();
             this.productButtons = this.querySelectorAll(`.${customOrderSelectors.productButton}`);
+            this.radioButton = this.querySelectorAll(`.${customOrderSelectors.orderRadio}`);
             this.infoContent = this.querySelector(`.${customOrderSelectors.orderInfoContent}`);
             this.orderButtons = this.querySelector(`.${customOrderSelectors.orderButtons}`);
             this.orderDuration = this.querySelector(`.${customOrderSelectors.orderDuration}`);
+            this.calculatorButton = this.querySelector(`.${customOrderSelectors.calculatorButton}`);
+            this.calculator = this.querySelector(`.${customOrderSelectors.calculator}`);
+
             this.productButtons.forEach((e) => {
                 e.addEventListener("click", this.productButtonHandle.bind(this));
             });
         }
 
         connectedCallback() {
-            //this.setButtonsMargin();
+            this.radioButtonPrice = this.radioButton.forEach((el) => {
+                const price = el.getAttribute("data-price");
+                el.querySelector(`.${customOrderSelectors.priceElement}`).textContent = price ? price : "0.00€";
+            });
+
+            this.calculatorButton.addEventListener("click", () => this.calculator.classList.toggle("_active"));
         }
 
         productButtonHandle(e) {
@@ -405,4 +416,94 @@ document.addEventListener("DOMContentLoaded", () => {
         }
     }
     customElements.define("custom-reviews", CustomReviews);
+
+    const calculatorSelectors = {
+        age: "calculator__age input[type='text']",
+        gender: "calculator__gender input[type='radio']",
+        height: "calculator__height input[type='text']",
+        weight: "calculator__weight input[type='text']",
+        activity: "calculator-activity__select select",
+        resultMaintenance: "results-calculator__maintenance span",
+        resultLoss: "results-calculator__loss span",
+        resultGrow: "results-calculator__grow span",
+        closeButton: "calculator__close span",
+    };
+    class CustomCalculator extends HTMLElement {
+        constructor() {
+            super();
+
+            this.ageInput = this.querySelector(`.${calculatorSelectors.age}`);
+            this.genderInput = this.querySelectorAll(`.${calculatorSelectors.gender}`);
+            this.heightInput = this.querySelector(`.${calculatorSelectors.height}`);
+            this.weightInput = this.querySelector(`.${calculatorSelectors.weight}`);
+            this.activitySelect = this.querySelector(`.${calculatorSelectors.activity}`);
+            this.resultMaintenance = this.querySelector(`.${calculatorSelectors.resultMaintenance}`);
+            this.resultLoss = this.querySelector(`.${calculatorSelectors.resultLoss}`);
+            this.resultGrow = this.querySelector(`.${calculatorSelectors.resultGrow}`);
+            this.closeButton = this.querySelector(`.${calculatorSelectors.closeButton}`);
+
+            this.controls = [this.ageInput, this.heightInput, this.weightInput, this.activitySelect, ...this.genderInput];
+            this.controls.forEach((el) => {
+                if (el.type === "text") {
+                    el.addEventListener("input", this.onChangeHandler.bind(this));
+                } else {
+                    el.addEventListener("change", this.onChangeHandler.bind(this));
+                }
+            });
+        }
+
+        connectedCallback() {
+            this.onChangeHandler();
+            this.closeButton.addEventListener("click", (e) => {
+                this.classList.remove("_active");
+            });
+        }
+
+        onChangeHandler() {
+            this.values = {
+                age: this.ageInput.value,
+                gender: Array.from(this.genderInput).find((el) => el.checked).value,
+                height: this.heightInput.value,
+                weight: this.weightInput.value,
+                activity: parseFloat(this.activitySelect.value),
+            };
+
+            this.setResults();
+        }
+
+        calcCalories() {
+            let bmr;
+
+            for (const key in this.values) {
+                if (!this.values[key]) {
+                    return {
+                        maintenance: 0,
+                        loss: 0,
+                        grow: 0,
+                    };
+                }
+            }
+
+            if (this.values.gender === "male") {
+                bmr = this.values.activity * (88.36 + 13.4 * this.values.weight + 4.8 * this.values.height - 5.7 * this.values.age);
+            } else if (this.values.gender === "female") {
+                bmr = this.values.activity * (447.6 + 9.2 * this.values.weight + 3.1 * this.values.height - 4.3 * this.values.age);
+            }
+
+            return {
+                maintenance: bmr,
+                loss: bmr - 500,
+                grow: bmr + 300,
+            };
+        }
+
+        setResults() {
+            const results = this.calcCalories();
+
+            this.resultMaintenance.textContent = results.maintenance.toFixed(0);
+            this.resultGrow.textContent = results.grow.toFixed(0);
+            this.resultLoss.textContent = results.loss.toFixed(0);
+        }
+    }
+    customElements.define("custom-calculator", CustomCalculator);
 });

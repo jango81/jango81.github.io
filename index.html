@@ -496,7 +496,7 @@
                                                 <legend class="order-payment__title order-block-title">Maksun muoto</legend>
                                                 <div class="order-payment__radiobuttons">
                                                     <div class="order-payment__radiobutton">
-                                                        <custom-radio class="custom-radio" data-radio="order-payment-radio" data-price="" data-heading="Kertamaksu">
+                                                        <custom-radio class="custom-radio order-radio" data-radio="order-payment-radio" data-price="" data-heading="Kertamaksu">
                                                             <input type="radio" name="order-radio" />
                                                             <div class="custom-radio__wrapper">
                                                                 <span class="custom-radio__bullet"></span>
@@ -506,7 +506,7 @@
                                                         </custom-radio>
                                                     </div>
                                                     <div class="order-payment__radiobutton">
-                                                        <custom-radio class="custom-radio" data-radio="order-payment-radio" data-price="" data-heading="Uusiutuva">
+                                                        <custom-radio class="custom-radio order-radio" data-radio="order-payment-radio" data-price="" data-heading="Uusiutuva">
                                                             <input type="radio" name="order-radio" />
                                                             <div class="custom-radio__wrapper">
                                                                 <span class="custom-radio__bullet"></span>
@@ -527,6 +527,84 @@
                                         </div>
                                     </div>
                                 </form>
+                                <div class="order__calculator order-calculator">
+                                    <p>Etkö tiedä mikä on kaloritarpeesi?</p>
+                                    <a class="btn btn-transparent btn-small order-calculator__button">Avaa kalorilaskuri</a>
+                                    <custom-calculator class="calculator">
+                                        <div class="calculator__wrapper">
+                                            <div class="calculator__body">
+                                                <form class="calculator__form">
+                                                    <div class="calculator__close">
+                                                        <span></span>
+                                                    </div>
+                                                    <div class="calculator__age calculator__block">
+                                                        <label for="age">Ikä</label>
+                                                        <input class="input" type="text" id="age">
+                                                    </div>
+                                                    <div class="calculator__gender calculator__block">
+                                                        <label for="age">Sukupuoli</label>
+                                                        <custom-radio class="custom-radio" data-radio="calculator__age" data-heading="Mies">
+                                                            <input type="radio" value="male" name="calculator-radio" id="age"/>
+                                                            <div class="custom-radio__wrapper">
+                                                                <span class="custom-radio__bullet"></span>
+                                                                <h3 class="custom-radio__heading"></h3>
+                                                            </div>
+                                                        </custom-radio>
+                                                        <custom-radio class="custom-radio" data-radio="calculator__age" data-heading="Nainen">
+                                                            <input type="radio" value="female" name="calculator-radio" id="age"/>
+                                                            <div class="custom-radio__wrapper">
+                                                                <span class="custom-radio__bullet"></span>
+                                                                <h3 class="custom-radio__heading"></h3>
+                                                            </div>
+                                                        </custom-radio>
+                                                    </div>
+                                                    <div class="calculator__height calculator__block">
+                                                        <label for="height">Pituus</label>
+                                                        <input placeholder="cm" class="input" type="text" id="height">
+                                                    </div>
+                                                    <div class="calculator__weight calculator__block">
+                                                        <label for="weight">Paino</label>
+                                                        <input placeholder="kg" class="input" type="text" id="weight">
+                                                    </div>
+                                                    <div class="calculator__activity calculator__block">
+                                                        <custom-select class="custom-select calculator-activity__select" data-value="" data-heading="Valitse aktiivisuus" data-default="">
+                                                            <select>
+                                                                <option value="1.2">Vähän tai ei lainkaan liikuntaa</option>
+                                                                <option value="1.375">Liikunta (1-3krt/vko)</option>
+                                                                <option value="1.55">Liikunta (3-5krt/vko)</option>
+                                                            </select>
+                                                            <div class="custom-select__wrapper">
+                                                                <div class="custom-select__value">
+                                                                    <h5></h5>
+                                                                    <span></span>
+                                                                </div>
+                                                                <div class="custom-select__options">
+                                                                    <div class="custom-select__option" data-value="1.2">Vähän tai ei lainkaan liikuntaa</div>
+                                                                    <div class="custom-select__option" data-value="1.375">Liikunta (1-3krt/vko)</div>
+                                                                    <div class="custom-select__option" data-value="1.55">Liikunta (3-5krt/vko)</div>
+                                                                </div>
+                                                            </div>
+                                                        </custom-select>
+                                                    </div>
+                                                </form>
+                                                <div class="calculator__results results-calculator">
+                                                    <div class="results-calculator__maintenance results-calculator__block">
+                                                        <h4>Kalorit painon ylläpitämiseen:</h4>
+                                                        <span>2307</span>
+                                                    </div>
+                                                    <div class="results-calculator__grow results-calculator__block">
+                                                        <h4>Kalorit lihasmassan kasvattamiseen:</h4>
+                                                        <span>2307</span>
+                                                    </div>
+                                                    <div class="results-calculator__loss results-calculator__block">
+                                                        <h4>Kalorit painonpudottamiseen:</h4>
+                                                        <span>2307</span>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </custom-calculator>
+                                </div>
                                 <div class="order__infos infos-order">
                                     <custom-spoiler class="custom-spoiler infos-order__spoiler">
                                         <div class="custom-spoiler__heading infos-order__heading us-none">

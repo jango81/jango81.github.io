@@ -37,9 +37,12 @@ a {
     text-decoration: none;
     color: inherit;
 }
-button, select, select > option {
+button, select, select > option, input, textarea {
     font-family: "DM Sans", sans-serif;
     font-style: normal;
+}
+input:focus, textarea:focus {
+    outline: none;
 }
 button:hover {
     cursor: pointer;
