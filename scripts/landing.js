@@ -473,7 +473,8 @@ document.addEventListener("DOMContentLoaded", () => {
 
         calcCalories() {
             let bmr;
-
+            
+            
             for (const key in this.values) {
                 if (!this.values[key]) {
                     return {
