@@ -83,6 +83,7 @@ document.addEventListener("DOMContentLoaded", () => {
         navOpenSubMenuBtn: "navigation__open button",
         navOpenSubMenuBlock: "navigation__open",
         navRow: "navigation__row",
+        cartIcon: "header__cart-icon",
     };
 
     class CustomHeader extends HTMLElement {
@@ -94,16 +95,17 @@ document.addEventListener("DOMContentLoaded", () => {
             this.burgerMenu = this.querySelector(`.${headerSelectors.burgerMenu}`);
             this.navigationButton = this.querySelector(`.${headerSelectors.navButton}`);
             this.drawer = this.querySelector(`.${headerSelectors.drawer}`);
+            this.cartIcon = this.querySelector(`.${headerSelectors.cartIcon}`);
             this.headerItem = [...this.querySelectorAll(`.${headerSelectors.headerItem}`)];
             this.menuItem = [...this.querySelectorAll(`.${headerSelectors.menuItem}`)];
             this.navOpenSubMenuBtn = [...this.querySelectorAll(`.${headerSelectors.navOpenSubMenuBtn}`)];
             this.navRow = [...this.querySelectorAll(`.${headerSelectors.navRow}`)];
-        }
-        connectedCallback() {
-            this.init();
-        }
+            this.mainDark = document.querySelector(".main__dark");
 
-        init() {
+            this.cartIcon.addEventListener("click", () => {
+                document.querySelector("#cart").classList.add("_active");
+                this.mainDark.classList.add("_active");
+            });
             this.siteWrapper.addEventListener("scroll", this.showHeaderScrolled.bind(this));
             this.burgerMenu.addEventListener("click", this.setNavigationClass.bind(this));
             this.navigationButton.addEventListener("click", this.removeNavigationClass.bind(this));
@@ -118,7 +120,12 @@ document.addEventListener("DOMContentLoaded", () => {
                 element.addEventListener("mouseover", this.showSubMenu.bind(this));
                 element.addEventListener("mouseout", this.hideSubMenu.bind(this));
             });
+        }
+        connectedCallback() {
+            this.init();
+        }
 
+        init() {
             this.menuItem.forEach((element) => {
                 const subMenu = this.checkSubmenu(element);
                 if (subMenu) {
@@ -236,6 +243,36 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 
     customElements.define("custom-header", CustomHeader);
+
+    const cartSelectors = {
+        closeButton: "cart__close",
+        amountSelect: "cart-amount__select",
+    };
+    class CustomCart extends HTMLElement {
+        constructor() {
+            super();
+            this.closeButton = this.querySelector(`.${cartSelectors.closeButton}`);
+            this.amountSelect = this.querySelector(`.${cartSelectors.amountSelect}`);
+            this.mainDark = document.querySelector(".main__dark");
+            this.cart = document.querySelector("#cart");
+
+            this.closeButton.addEventListener("click", this.closeHandle.bind(this));
+            this.mainDark.addEventListener(
+                "click",
+                () => {
+                    this.mainDark.classList.remove("_active");
+                    this.classList.remove("_active");
+                },
+            );
+        }
+
+        closeHandle() {
+            this.classList.remove("_active");
+            this.mainDark.classList.remove("_active");
+        }
+    }
+
+    customElements.define("custom-cart", CustomCart);
 
     const customSelect = {
         customSelecValue: "custom-select__value",
