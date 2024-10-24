@@ -1,8 +1,4 @@
-
-
 document.addEventListener("DOMContentLoaded", () => {
-
-
     const announcementSelectors = {
         announcementItem: "announcement__item",
         announcementIcon: "announcement__icon",
@@ -241,7 +237,6 @@ document.addEventListener("DOMContentLoaded", () => {
 
     customElements.define("custom-header", CustomHeader);
 
-
     const customSelect = {
         customSelecValue: "custom-select__value",
         customSelectOptions: "custom-select__options",
@@ -255,6 +250,7 @@ document.addEventListener("DOMContentLoaded", () => {
             this.customSelectValue = this.querySelector(`.${customSelect.customSelecValue}`);
             this.customSelectOptions = this.querySelector(`.${customSelect.customSelectOptions}`);
             this.customSelectOption = this.querySelectorAll(`.${customSelect.customSelectOption}`);
+            this.defaultSelect = this.querySelector("select");
             this.heading = this.getAttribute("data-heading");
         }
 
@@ -265,6 +261,8 @@ document.addEventListener("DOMContentLoaded", () => {
         init() {
             this.changeHeading();
             this.customSelectValue.addEventListener("click", this.selectClickHandle.bind(this));
+            this.customSelectOption.forEach((el) => el.addEventListener("click", this.setSelectData.bind(this)));
+            this.defaultSelect.selectedIndex = -1;
         }
 
         changeHeading() {
@@ -290,8 +288,6 @@ document.addEventListener("DOMContentLoaded", () => {
                 this.customSelectOptions.style.height = `${selectValueOptions + selectValueHeight}px`;
                 this.customSelectOptions.style.paddingTop = `${selectValueHeight}px`;
             }, 0);
-
-            this.customSelectOption.forEach((el) => el.addEventListener("click", this.setSelectData.bind(this)));
         }
         closeSelectOptions() {
             if (this.customSelectValue.classList.contains("_opened") && this.customSelectOptions.classList.contains("_opened")) {
@@ -306,10 +302,26 @@ document.addEventListener("DOMContentLoaded", () => {
             const currentOption = event.currentTarget;
             const dataValue = currentOption.getAttribute("data-value");
             if (!dataValue) throw new Error("data-value attribute is undefined");
+
+            this.setAttribute("data-value", dataValue);
             this.defaulSelect.value = dataValue;
-            this.heading = dataValue;
+            this.heading = currentOption.textContent;
+
+            this.setDefaultSelect(dataValue);
+
             this.changeHeading();
             this.closeSelectOptions();
+        }
+
+        setDefaultSelect(value) {
+            const options = this.defaultSelect.options;
+            const event = new Event("change");
+            this.defaultSelect.dispatchEvent(event);
+            for (let i = 0; i < this.defaultSelect.options.length; i++) {
+                if (options[i].value === value) {
+                    this.defaultSelect.selectedIndex = i;
+                }
+            }
         }
     }
 
@@ -470,17 +482,11 @@ document.addEventListener("DOMContentLoaded", () => {
         }
 
         connectedCallback() {
+            this.radioHeading.textContent = this.getAttribute("data-heading");
             radioHandler.addRadio(this);
-            this.setInfo();
         }
         disconnectedCallback() {
             radioHandler.deleteRadio(this);
-        }
-
-        setInfo() {
-            let price = this.getAttribute("data-price") !== "" ? this.getAttribute("data-price") : "0.00€";
-            this.radioHeading.textContent = this.getAttribute("data-heading");
-            this.radioPrice.textContent = price;
         }
     }
 
