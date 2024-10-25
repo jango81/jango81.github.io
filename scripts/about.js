@@ -1,27 +1,31 @@
 document.addEventListener("DOMContentLoaded", () => {
     const customQuoteSelectors = {
-        quotes: "about-quote__quotes",
-        textBlock: "about-quote__text",
-        icon: "about-quote__icon",
+        quotes: ".about-quote__quotes",
+        textBlock: ".about-quote__text",
+        icon: ".about-quote__icon",
     };
     class CustomQuote extends HTMLElement {
         constructor() {
             super();
-            this.icons = this.querySelectorAll(`.${customQuoteSelectors.icon}`);
-            this.quotes = this.querySelectorAll(`.${customQuoteSelectors.textBlock}`);
-            this.quotesBlock = this.querySelector(`.${customQuoteSelectors.quotes}`);
-
             this.map = new Map();
-            this.activeQuote = this.icons[0];
-
-            this.icons.forEach((el) => el.addEventListener("click", this.changeQuotes.bind(this)));
         }
 
         connectedCallback() {
+            this.init();
             this.initMap();
             this.setActive();
             this.setWrapperHeight();
             this.interval = setInterval(this.changeQuotes.bind(this), 5000);
+        }
+
+        init() {
+            this.icons = this.querySelectorAll(customQuoteSelectors.icon);
+            this.quotes = this.querySelectorAll(customQuoteSelectors.textBlock);
+            this.quotesBlock = this.querySelector(customQuoteSelectors.quotes);
+
+            this.icons.forEach((el) => el.addEventListener("click", this.changeQuotes.bind(this)));
+
+            this.activeQuote = this.icons[0];
         }
 
         setWrapperHeight() {
@@ -34,7 +38,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
         changeQuotes() {
             clearInterval(this.interval);
-            
+
             this.activeQuote.classList.remove("_active");
             this.map.get(this.activeQuote).classList.remove("_active");
 

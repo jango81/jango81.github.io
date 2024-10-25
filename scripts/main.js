@@ -121,7 +121,7 @@ document.addEventListener("DOMContentLoaded", () => {
             this.addListeners();
         }
 
-        addListeners() {
+        addListeners() {     
             this.cartIcon.addEventListener("click", this.showCart.bind(this));
             this.siteWrapper.addEventListener("scroll", this.showHeaderScrolled.bind(this));
             this.burgerMenu.addEventListener("click", this.setNavigationClass.bind(this));
@@ -346,7 +346,7 @@ document.addEventListener("DOMContentLoaded", () => {
             if (!dataValue) throw new Error("data-value attribute is undefined");
 
             this.setAttribute("data-value", dataValue);
-            this.defaulSelect.value = dataValue;
+            this.defaultSelect.value = dataValue;
             this.heading = currentOption.textContent;
 
             this.setDefaultSelect(dataValue);
