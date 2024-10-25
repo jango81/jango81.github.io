@@ -248,14 +248,21 @@ document.addEventListener("DOMContentLoaded", () => {
     customElements.define("custom-header", CustomHeader);
 
     const cartSelectors = {
-        closeButton: "cart__close",
-        amountSelect: "cart-amount__select",
+        closeButton: ".cart__close",
+        amountSelect: ".cart-amount__select",
     };
     class CustomCart extends HTMLElement {
         constructor() {
             super();
-            this.closeButton = this.querySelector(`.${cartSelectors.closeButton}`);
-            this.amountSelect = this.querySelector(`.${cartSelectors.amountSelect}`);
+        }
+
+        connectedCallback() {
+            this.init();
+        }
+
+        init() {
+            this.closeButton = this.querySelector(cartSelectors.closeButton);
+            this.amountSelect = this.querySelector(cartSelectors.amountSelect);
             this.mainDark = document.querySelector(".main__dark");
             this.cart = document.querySelector("#cart");
 
@@ -271,32 +278,30 @@ document.addEventListener("DOMContentLoaded", () => {
             this.mainDark.classList.remove("_active");
         }
     }
-
     customElements.define("custom-cart", CustomCart);
 
     const customSelect = {
-        customSelecValue: "custom-select__value",
-        customSelectOptions: "custom-select__options",
-        customSelectOption: "custom-select__option",
+        customSelecValue: ".custom-select__value",
+        customSelectOptions: ".custom-select__options",
+        customSelectOption: ".custom-select__option",
     };
-
     class CustomSelect extends HTMLElement {
         constructor() {
             super();
-            this.defaulSelect = this.querySelector("select");
-            this.customSelectValue = this.querySelector(`.${customSelect.customSelecValue}`);
-            this.customSelectOptions = this.querySelector(`.${customSelect.customSelectOptions}`);
-            this.customSelectOption = this.querySelectorAll(`.${customSelect.customSelectOption}`);
-            this.defaultSelect = this.querySelector("select");
-            this.heading = this.getAttribute("data-heading");
         }
 
         connectedCallback() {
             this.init();
+            this.changeHeading();
         }
 
         init() {
-            this.changeHeading();
+            this.defaultSelect = this.querySelector("select");
+            this.customSelectValue = this.querySelector(customSelect.customSelecValue);
+            this.customSelectOptions = this.querySelector(customSelect.customSelectOptions);
+            this.customSelectOption = this.querySelectorAll(customSelect.customSelectOption);
+            this.heading = this.getAttribute("data-heading");
+
             this.customSelectValue.addEventListener("click", this.selectClickHandle.bind(this));
             this.customSelectOption.forEach((el) => el.addEventListener("click", this.setSelectData.bind(this)));
             this.defaultSelect.selectedIndex = -1;
