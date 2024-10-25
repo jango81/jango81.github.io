@@ -370,9 +370,9 @@ document.addEventListener("DOMContentLoaded", () => {
     customElements.define("custom-select", CustomSelect);
 
     const customRadioSelectors = {
-        radioBullet: "custom-radio__bullet",
-        radioHeading: "custom-radio__heading",
-        radioPrice: "custom-radio__price",
+        radioBullet: ".custom-radio__bullet",
+        radioHeading: ".custom-radio__heading",
+        radioPrice: ".custom-radio__price",
     };
 
     class RadiosHandler {
@@ -493,15 +493,9 @@ document.addEventListener("DOMContentLoaded", () => {
     class CustomRadio extends HTMLElement {
         constructor() {
             super();
-            this.radioHeading = this.querySelector(`.${customRadioSelectors.radioHeading}`);
-            this.radioBullet = this.querySelector(`${customRadioSelectors.radioBullet}`);
-            this.radioPrice = this.querySelector(`.${customRadioSelectors.radioPrice}`);
-            this.customRadios = document.querySelectorAll("custom-radio");
             this.checked = false;
             this.hasGroup = false;
             this.groupName = "";
-
-            this.addEventListener("click", (event) => radioHandler.clickHandle(event));
         }
 
         set setGroupStatus(value) {
@@ -524,11 +518,20 @@ document.addEventListener("DOMContentLoaded", () => {
         }
 
         connectedCallback() {
+            this.init();
             this.radioHeading.textContent = this.getAttribute("data-heading");
             radioHandler.addRadio(this);
         }
         disconnectedCallback() {
             radioHandler.deleteRadio(this);
+        }
+        init() {
+            this.radioHeading = this.querySelector(customRadioSelectors.radioHeading);
+            this.radioBullet = this.querySelector(customRadioSelectors.radioBullet);
+            this.radioPrice = this.querySelector(customRadioSelectors.radioPrice);
+            this.customRadios = document.querySelectorAll("custom-radio");
+
+            this.addEventListener("click", (event) => radioHandler.clickHandle(event));
         }
     }
 
@@ -544,14 +547,6 @@ document.addEventListener("DOMContentLoaded", () => {
     class CustomTimer extends HTMLElement {
         constructor() {
             super();
-            this.daysElement = this.querySelector(timerSelectors.days);
-            this.hoursElement = this.querySelector(timerSelectors.hours);
-            this.minutesElement = this.querySelector(timerSelectors.minutes);
-            this.secondsElement = this.querySelector(timerSelectors.seconds);
-
-            this.endDay = this.getAttribute("data-day").toLowerCase();
-            this.endTime = this.getAttribute("data-time");
-
             this.daysInMs = 1000 * 60 * 60 * 24;
             this.hoursInMs = this.daysInMs / 24;
             this.minutesInMs = this.hoursInMs / 60;
@@ -559,11 +554,20 @@ document.addEventListener("DOMContentLoaded", () => {
         }
 
         connectedCallback() {
+            this.init();
             this.calcEndDate();
 
             this.interval = setInterval(this.updateTime.bind(this), 1000);
         }
+        init() {
+            this.daysElement = this.querySelector(timerSelectors.days);
+            this.hoursElement = this.querySelector(timerSelectors.hours);
+            this.minutesElement = this.querySelector(timerSelectors.minutes);
+            this.secondsElement = this.querySelector(timerSelectors.seconds);
 
+            this.endDay = this.getAttribute("data-day").toLowerCase();
+            this.endTime = this.getAttribute("data-time");
+        }
         calcEndDate() {
             const week = {
                 "sunnuntai": 0,
@@ -649,26 +653,30 @@ document.addEventListener("DOMContentLoaded", () => {
             this.render(remainingTime);
         }
     }
-
     customElements.define("custom-timer", CustomTimer);
 
     const customSpoilerSelectors = {
-        spoilerHeading: "custom-spoiler__heading",
-        spoilerContent: "custom-spoiler__content",
-        spoilerText: "custom-spoiler__text",
+        spoilerHeading: ".custom-spoiler__heading",
+        spoilerContent: ".custom-spoiler__content",
+        spoilerText: ".custom-spoiler__text",
     };
 
     class CustomSpoiler extends HTMLElement {
         constructor() {
             super();
-            this.content = this.querySelector(`.${customSpoilerSelectors.spoilerContent}`);
-            this.spoilerText = this.querySelector(`.${customSpoilerSelectors.spoilerText}`);
-            this.contentPadding = this.getAttribute("data-content-padding");
-            this.addEventListener("click", this.spoilerHandle.bind(this));
         }
 
         connectedCallback() {
+            this.init();
             this.content.style.height = 0;
+        }
+        init() {
+            this.content = this.querySelector(customSpoilerSelectors.spoilerContent);
+            this.spoilerText = this.querySelector(customSpoilerSelectors.spoilerText);
+            
+            this.contentPadding = this.getAttribute("data-content-padding");
+
+            this.addEventListener("click", this.spoilerHandle.bind(this));
         }
         spoilerHandle() {
             this.classList.toggle("_opened");
