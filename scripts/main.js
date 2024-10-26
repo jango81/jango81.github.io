@@ -1,3 +1,4 @@
+import { Time } from "./helper.js";
 document.addEventListener("DOMContentLoaded", () => {
     const announcementSelectors = {
         announcementItem: ".announcement__item",
@@ -121,7 +122,7 @@ document.addEventListener("DOMContentLoaded", () => {
             this.addListeners();
         }
 
-        addListeners() {     
+        addListeners() {
             this.cartIcon.addEventListener("click", this.showCart.bind(this));
             this.siteWrapper.addEventListener("scroll", this.showHeaderScrolled.bind(this));
             this.burgerMenu.addEventListener("click", this.setNavigationClass.bind(this));
@@ -383,11 +384,12 @@ document.addEventListener("DOMContentLoaded", () => {
             this.hoursInMs = this.daysInMs / 24;
             this.minutesInMs = this.hoursInMs / 60;
             this.secondsInMs = this.minutesInMs / 60;
+            this.time = new Time();
         }
 
         connectedCallback() {
             this.init();
-            this.calcEndDate();
+            this.setEndDate();
 
             this.interval = setInterval(this.updateTime.bind(this), 1000);
         }
@@ -400,45 +402,10 @@ document.addEventListener("DOMContentLoaded", () => {
             this.endDay = this.getAttribute("data-day").toLowerCase();
             this.endTime = this.getAttribute("data-time");
         }
-        calcEndDate() {
-            const week = {
-                "sunnuntai": 0,
-                "maanantai": 1,
-                "tiistai": 2,
-                "keskiviikko": 3,
-                "torstai": 4,
-                "perjantai": 5,
-                "lauatai": 6,
-            };
 
-            const [hours, minutes] = this.endTime.split(":").map(Number);
-            const currentDate = new Date();
-            const currentDay = currentDate.getDay();
-            const deliveryDay = week[this.endDay];
-
-            const nextDeliveryDate = new Date(currentDate);
-            nextDeliveryDate.setHours(hours);
-            nextDeliveryDate.setMinutes(minutes);
-            nextDeliveryDate.setSeconds(0);
-            nextDeliveryDate.setMilliseconds(0);
-
-            let daysRemaining;
-
-            if (currentDay < deliveryDay) {
-                daysRemaining = deliveryDay - currentDay;
-            } else if (currentDay === deliveryDay) {
-                if (currentDate > nextDeliveryDate) {
-                    daysRemaining = 7;
-                } else {
-                    daysRemaining = 0;
-                }
-            } else {
-                daysRemaining = 7 - (currentDay - deliveryDay);
-            }
-
-            nextDeliveryDate.setDate(currentDate.getDate() + daysRemaining);
-
-            this.endDate = Date.parse(nextDeliveryDate);
+        setEndDate() {
+            this.endDate = this.time.getEndDate(this.endDay, this.endTime);
+            this.parsedDate = Date.parse(this.endDate);
         }
 
         convertTime(timeInMs) {
@@ -472,11 +439,10 @@ document.addEventListener("DOMContentLoaded", () => {
 
         updateTime() {
             const currentDate = Date.now();
-            const timeDiff = this.endDate - currentDate;
+            const timeDiff = this.parsedDate - currentDate;
 
             if (timeDiff <= 0) {
-                this.calcNextDate();
-
+                this.setEndDate();
                 return;
             }
 
@@ -505,7 +471,7 @@ document.addEventListener("DOMContentLoaded", () => {
         init() {
             this.content = this.querySelector(customSpoilerSelectors.spoilerContent);
             this.spoilerText = this.querySelector(customSpoilerSelectors.spoilerText);
-            
+
             this.contentPadding = this.getAttribute("data-content-padding");
 
             this.addEventListener("click", this.spoilerHandle.bind(this));

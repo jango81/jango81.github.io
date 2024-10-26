@@ -660,20 +660,20 @@
                                                     </div>
                                                     <div class="calculator__gender calculator__block">
                                                         <label for="age">Sukupuoli</label>
-                                                        <custom-radio class="custom-radio" data-heading="Mies">
+                                                        <div class="custom-radio" data-heading="Mies">
                                                             <input type="radio" value="male" name="calculator-radio" id="age" />
                                                             <div class="custom-radio__wrapper">
                                                                 <span class="custom-radio__bullet"></span>
-                                                                <h3 class="custom-radio__heading"></h3>
+                                                                <h3 class="custom-radio__heading">Mies</h3>
                                                             </div>
-                                                        </custom-radio>
-                                                        <custom-radio class="custom-radio" data-heading="Nainen">
+                                                        </div>
+                                                        <div class="custom-radio">
                                                             <input type="radio" value="female" name="calculator-radio" id="age" />
                                                             <div class="custom-radio__wrapper">
                                                                 <span class="custom-radio__bullet"></span>
-                                                                <h3 class="custom-radio__heading"></h3>
+                                                                <h3 class="custom-radio__heading">Nainen</h3>
                                                             </div>
-                                                        </custom-radio>
+                                                        </div>
                                                     </div>
                                                     <div class="calculator__height calculator__block">
                                                         <label for="height">Pituus</label>
@@ -748,23 +748,23 @@
                                         </div>
                                     </custom-spoiler>
                                 </div>
-                                <custom-timer class="order__timer custom-timer" data-day="Tiistai" data-time="14:30">
+                                <custom-timer class="order__timer custom-timer" data-day="Tuesday" data-time="14:30">
                                     <h4 class="custom-timer__title">Tilaukset sulkeutuvat tiistaisin klo 14.30</h4>
                                     <div class="custom-timer__body">
                                         <div class="custom-timer__time">
-                                            <span class="custom-timer__number" id="timer-days">4</span>
+                                            <span class="custom-timer__number" id="timer-days"></span>
                                             <span class="custom-timer__name">Päivää</span>
                                         </div>
                                         <div class="custom-timer__time">
-                                            <span class="custom-timer__number" id="timer-hours">0</span>
+                                            <span class="custom-timer__number" id="timer-hours"></span>
                                             <span class="custom-timer__name">Tuntia</span>
                                         </div>
                                         <div class="custom-timer__time">
-                                            <span class="custom-timer__number" id="timer-minutes">13</span>
+                                            <span class="custom-timer__number" id="timer-minutes"></span>
                                             <span class="custom-timer__name">Minuuttia</span>
                                         </div>
                                         <div class="custom-timer__time">
-                                            <span class="custom-timer__number" id="timer-seconds">23</span>
+                                            <span class="custom-timer__number" id="timer-seconds"></span>
                                             <span class="custom-timer__name">Sekunttia</span>
                                         </div>
                                     </div>
@@ -1169,6 +1169,6 @@
         </div>
         <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
         <script type="module" src="scripts/landing.js"></script>
-        <script src="scripts/main.js"></script>
+        <script type="module" src="scripts/main.js"></script>
     </body>
 </html>
