@@ -32,7 +32,7 @@ export class Time {
         if (currentDate.day < finishDay) {
             daysRemaining = finishDay - currentDate.day;
         } else if (currentDate.day === finishDay) {
-            if (currentDate.day > finishDate) {
+            if (Date.parse(currentDate.fullDate) > Date.parse(finishDate)) {
                 daysRemaining = 7;
             } else {
                 daysRemaining = 0;

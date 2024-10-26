@@ -1,5 +1,5 @@
 import swipersSettings from "./swiperSettings.js";
-
+import { Time } from "./helper.js";
 document.addEventListener("DOMContentLoaded", () => {
     const reviewSwiperSetBreakpoints = (swiper) => {
         const slidesLength = swiper.slides.length;
@@ -248,6 +248,7 @@ document.addEventListener("DOMContentLoaded", () => {
     const customOrderSelectors = {
         productButton: ".order-products__product",
         orderSpoiler: ".infos-order__spoiler",
+        orderDeliveryDate: ".order-delivery__date",
         orderInfoHeading: ".infos-order__heading",
         orderInfoContent: ".infos-order__content",
         orderButtons: ".order__buttons",
@@ -261,15 +262,13 @@ document.addEventListener("DOMContentLoaded", () => {
     class CustomOrder extends HTMLElement {
         constructor() {
             super();
+            this.daysOfWeek = ["Sunnuntai", "Maanantai", "Tiistai", "Keskiviikko", "Torstai", "Perjantai", "Lauantai"];
+            this.time = new Time();
         }
 
         connectedCallback() {
             this.init();
-
-            this.radioButtonPrice = this.radioButton.forEach((el) => {
-                const price = el.getAttribute("data-price");
-                el.querySelector(customOrderSelectors.priceElement).textContent = price ? price : "0.00€";
-            });
+            this.setDeliveryDate();
         }
 
         init() {
@@ -280,11 +279,38 @@ document.addEventListener("DOMContentLoaded", () => {
             this.orderDuration = this.querySelector(customOrderSelectors.orderDuration);
             this.calculatorButton = this.querySelector(customOrderSelectors.calculatorButton);
             this.calculator = this.querySelector(customOrderSelectors.calculator);
+            this.deliveryDateEl = this.querySelector(customOrderSelectors.orderDeliveryDate);
+
+            this.endDay = this.deliveryDateEl.getAttribute("data-day");
+            this.endTime = this.deliveryDateEl.getAttribute("data-time");
 
             this.calculatorButton.addEventListener("click", () => this.calculator.classList.toggle("_active"));
             this.productButtons.forEach((e) => {
                 e.addEventListener("click", this.productButtonHandle.bind(this));
             });
+
+            this.updateDate();
+            this.interval = setInterval(this.intervalHandler.bind(this), 1000);
+        }
+
+        setDeliveryDate() {
+            const day = this.daysOfWeek[this.endDate.getDay()];
+            this.deliveryDateEl.textContent = `${day.slice(0, 2)} ${this.endDate.getDate()}.${this.endDate.getMonth() + 1}`
+        }
+
+        updateDate() {
+            this.endDate = this.time.getEndDate(this.endDay, this.endTime);
+            this.parsedDate = Date.parse(this.endDate);
+        }
+
+        intervalHandler() {
+            const currentDate = Date.now();
+            const difference = this.parsedDate - currentDate;
+
+            if (difference <= 0) {
+                this.updateDate();
+                this.setDeliveryDate();
+            }
         }
 
         productButtonHandle(e) {
@@ -454,7 +480,6 @@ document.addEventListener("DOMContentLoaded", () => {
 
         init() {
             this.ageInput = this.querySelector(calculatorSelectors.age);
-            this.genderInput = this.querySelectorAll(calculatorSelectors.gender);
             this.heightInput = this.querySelector(calculatorSelectors.height);
             this.weightInput = this.querySelector(calculatorSelectors.weight);
             this.activitySelect = this.querySelector(calculatorSelectors.activity);
@@ -462,6 +487,7 @@ document.addEventListener("DOMContentLoaded", () => {
             this.resultLoss = this.querySelector(calculatorSelectors.resultLoss);
             this.resultGrow = this.querySelector(calculatorSelectors.resultGrow);
             this.closeButton = this.querySelector(calculatorSelectors.closeButton);
+            this.genderInput = this.querySelectorAll(calculatorSelectors.gender);
 
             this.controls = [this.ageInput, this.heightInput, this.weightInput, this.activitySelect, ...this.genderInput];
 
