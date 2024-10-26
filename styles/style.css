@@ -288,6 +288,12 @@ body {
     background: var(--calori-color-bg-primary);
     color: var(--calori-color-bg-third);
 }
+
+.radio-sm:has(input[type="radio"]:checked) label {
+    border: 1px solid var(--calori-color-bg-primary);
+    background: var(--calori-color-bg-primary);
+    color: var(--calori-color-bg-third);
+}
 .radio-sm._checked label {
     background: var(--calori-color-bg-primary);
     color: var(--calori-color-bg-third);
@@ -325,9 +331,7 @@ body {
     border: 1px solid #000;
     border-radius: 30%;
 }
-.custom-radio._checked .custom-radio__bullet::before {
-    visibility: visible;
-}
+
 .custom-radio__bullet::before {
     content: "";
     visibility: hidden;
@@ -339,6 +343,9 @@ body {
     height: 50%;
     border-radius: 30%;
     background: var(--calori-color-bg-primary);
+}
+.custom-radio:has(input[type="radio"]:checked) .custom-radio__bullet::before {
+    visibility: visible;
 }
 .custom-radio__heading {
     margin-left: 10px;
