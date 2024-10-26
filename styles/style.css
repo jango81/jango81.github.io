@@ -1709,11 +1709,16 @@ body {
     align-items: start;
 }
 .order-payment__radiobuttons {
+    display: flex;
+    align-items: center;
     width: 100%;
 }
-.order-payment__radiobutton {
-    width: 100%;
+.order-radio {
+    flex: 1 1 auto;
     margin-top: 6px;
+}
+.order-radio:not(:first-child) {
+    margin-left: 5px;
 }
 .order__buttons {
     margin-top: 15px;
@@ -1978,19 +1983,16 @@ body {
     }
 }
 
-@media (min-width: 890px) {
+@media (max-width: 490px) {
     .order-payment__radiobuttons {
-        display: flex;
+        flex-direction: column;
+        align-items: stretch;
     }
-    .order-payment__radiobutton {
-        flex: 1 1 auto;
-    }
-
-    .order-payment__radiobutton:not(:first-child) {
-        margin-left: 10px;
+    .order-radio:not(:first-child) {
+        margin: 0;
+        margin-top: 5px;
     }
 }
-
 @media (max-width: 960px) {
 }
 
